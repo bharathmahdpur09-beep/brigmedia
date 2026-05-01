@@ -41,7 +41,6 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 5%;display:
 .eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);box-shadow:0 0 6px var(--orange);animation:blink 2.2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
 
-/* ── SVG HERO TITLE — 100% gradient-safe, no background-clip needed ── */
 .hero-title-wrap{
   display:block;
   width:100%;
@@ -339,12 +338,12 @@ footer{padding:68px 8% 34px;border-top:1px solid var(--border);position:relative
 <section id="hero">
   <div class="hero-eyebrow"><div class="eyebrow-dot"></div>PREMIUM CONTENT AGENCY</div>
 
-  <!-- SVG TITLE: gradient baked into SVG — works 100% on Vercel, Safari, Chrome, Firefox -->
+  <!-- SVG HERO TITLE — gradient baked into SVG, #0a0505 start, Vercel-safe -->
   <div class="hero-title-wrap" id="brig-title">
     <svg class="hero-title-svg" viewBox="0 0 860 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BRIG MEDIA">
       <defs>
         <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%"   stop-color="#ffffff"/>
+          <stop offset="0%"   stop-color="#0a0505"/>
           <stop offset="30%"  stop-color="#f0d0c0"/>
           <stop offset="62%"  stop-color="#e8806a"/>
           <stop offset="100%" stop-color="#c04020"/>
