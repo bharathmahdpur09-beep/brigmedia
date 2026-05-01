@@ -36,13 +36,12 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 5%;display:
 .nav-cta{background:linear-gradient(135deg,var(--red),#8b1a10);color:#fff;border:none;padding:8px 20px;border-radius:9px;font-size:13px;font-weight:600;cursor:none;letter-spacing:.2px;box-shadow:0 0 14px rgba(192,57,43,0.35);transition:transform .18s,box-shadow .18s;}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(192,57,43,0.5);}
 
-#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 5% 80px;text-align:center;overflow:visible;background:transparent;}
+#hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 5% 80px;text-align:center;overflow:hidden;background:transparent;}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(15,4,4,0.7);border:1px solid var(--border);border-radius:100px;padding:7px 17px;font-size:10.5px;color:var(--orange);letter-spacing:2.2px;text-transform:uppercase;margin-bottom:34px;backdrop-filter:blur(12px);animation:fadeUp .65s ease both;font-weight:600;}
 .eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);box-shadow:0 0 6px var(--orange);animation:blink 2.2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
 
-.hero-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(46px,8vw,100px);line-height:.93;letter-spacing:-1.5px;color: #ffffff;background:linear-gradient(148deg,#ffffff 0%,#f0d0c0 35%,#e8806a 62%,#c04020 88%);-webkit-background-clip:text;background-clip:text;margin-bottom:18px;animation:fadeUp .65s .13s ease both;will-change:transform;display:inline-block;filter:drop-shadow(0 0 28px rgba(192,57,43,0.12));transition:filter .4s ease;white-space: nowrap;
-overflow: visible;text-shadow: 0 0 20px rgba(255,255,255,0.2);}
+.hero-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(46px,8vw,100px);line-height:.93;letter-spacing:-3.5px;background:linear-gradient(148deg,#ffffff 0%,#f0d0c0 35%,#e8806a 62%,#c04020 88%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:18px;animation:fadeUp .65s .13s ease both;will-change:transform;display:inline-block;filter:drop-shadow(0 0 28px rgba(192,57,43,0.12));transition:filter .4s ease;}
 .hero-sub{font-size:clamp(16px,2.2vw,24px);font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:16px;letter-spacing:-.25px;animation:fadeUp .65s .25s ease both;}
 .hero-desc{font-size:clamp(13.5px,1.3vw,16px);color:var(--secondary);max-width:520px;margin:0 auto 40px;line-height:1.74;animation:fadeUp .65s .36s ease both;font-weight:400;}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .65s .47s ease both;margin-bottom:40px;}
@@ -87,7 +86,7 @@ overflow: visible;text-shadow: 0 0 20px rgba(255,255,255,0.2);}
 
 .section-label{display:inline-flex;align-items:center;gap:6px;background:rgba(15,4,4,0.72);border:1px solid var(--border);border-radius:100px;padding:5px 13px;font-size:10px;color:var(--orange);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;backdrop-filter:blur(10px);font-weight:600;}
 .section-title{font-weight:800;font-size:clamp(26px,3.8vw,50px);line-height:1.12;letter-spacing:-1px;margin-bottom:12px;}
-.section-title span{background:linear-gradient(135deg,var(--orange),var(--red));-webkit-text-fill-color:transparent;}
+.section-title span{background:linear-gradient(135deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .section-desc{color:var(--secondary);font-size:15.5px;line-height:1.7;font-weight:400;max-width:500px;}
 .line-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0 8%;}
 
@@ -242,7 +241,7 @@ footer{padding:68px 8% 34px;border-top:1px solid var(--border);position:relative
     <div id="modal-form-content">
       <div class="modal-eyebrow"><div class="eyebrow-dot"></div>LET'S WORK TOGETHER</div>
       <h2 class="modal-title">Start Your Brand Journey</h2>
-      <p class="modal-desc">Tell us about your brand and goals — we'll put together a custom proposal within 12 hours.</p>
+      <p class="modal-desc">Tell us about your brand and goals — we'll put together a custom proposal within 48 hours.</p>
       <div class="form-row">
         <div class="form-group">
           <label>Full Name *</label>
@@ -665,7 +664,7 @@ footer{padding:68px 8% 34px;border-top:1px solid var(--border);position:relative
       vec3 col=mix(black,darkRed,smoothstep(0.0,0.35,f));
       col=mix(col,red,smoothstep(0.3,0.55,f));col=mix(col,orange,smoothstep(0.5,0.72,f));col=mix(col,ember,smoothstep(0.68,0.88,f));
       float vign=1.0-smoothstep(0.35,1.12,length((uv-vec2(0.5,0.5))*vec2(1.2,1.4)));
-      col*=vign*0.72;col=clamp(col,0.0,0.35);gl_FragColor=vec4(col,1.0);
+      col*=vign*0.72;col=clamp(col,0.0,0.55);gl_FragColor=vec4(col,1.0);
     }`;
   function compile(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
   const prog=gl.createProgram();
@@ -725,7 +724,7 @@ document.querySelectorAll('button,a,.faq-q,.service-card,.result-card,.testi-car
   let cx=0,cy=0,cr=0,tx=0,ty=0,tr=0;
   document.addEventListener('mousemove',e=>{
     const nx=(e.clientX/window.innerWidth-0.5)*2,ny=(e.clientY/window.innerHeight-0.5)*2;
-    tx=nx*2;ty=ny*2;tr=nx*0.1; // subtle rotation max ±0.3deg
+    tx=nx*4;ty=ny*3;tr=nx*0.3; // subtle rotation max ±0.3deg
     const rect=title.getBoundingClientRect();
     if(rect.top<window.innerHeight&&rect.bottom>0){
       const dist=Math.hypot(e.clientX-(rect.left+rect.width/2),e.clientY-(rect.top+rect.height/2));
