@@ -41,31 +41,23 @@ nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 5%;display:
 .eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);box-shadow:0 0 6px var(--orange);animation:blink 2.2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
 
-/* ── FIXED HERO TITLE: gradient text with Vercel-safe properties ── */
-.hero-title{
-  font-family:'Syne',sans-serif;
-  font-weight:800;
-  font-size:clamp(46px,8vw,100px);
-  line-height:.93;
-  letter-spacing:-3.5px;
-  color:transparent;
-  background:linear-gradient(148deg,#ffffff 0%,#f0d0c0 35%,#e8806a 62%,#c04020 88%);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  isolation:isolate;
-  position:relative;
-  z-index:1;
-  margin-bottom:18px;
+/* ── SVG HERO TITLE — 100% gradient-safe, no background-clip needed ── */
+.hero-title-wrap{
+  display:block;
+  width:100%;
+  max-width:900px;
+  margin:0 auto 18px;
   animation:fadeUp .65s .13s ease both;
   will-change:transform;
-  display:inline-block;
-  filter:drop-shadow(0 0 28px rgba(192,57,43,0.12));
+  filter:drop-shadow(0 0 28px rgba(192,57,43,0.14));
   transition:filter .4s ease;
-  /* Extra Vercel/Safari compatibility */
-  -webkit-box-decoration-break:clone;
-  box-decoration-break:clone;
-  padding:4px 0;
+  cursor:default;
+}
+.hero-title-svg{
+  width:100%;
+  height:auto;
+  display:block;
+  overflow:visible;
 }
 
 .hero-sub{font-size:clamp(16px,2.2vw,24px);font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:16px;letter-spacing:-.25px;animation:fadeUp .65s .25s ease both;}
@@ -346,7 +338,31 @@ footer{padding:68px 8% 34px;border-top:1px solid var(--border);position:relative
 <!-- HERO -->
 <section id="hero">
   <div class="hero-eyebrow"><div class="eyebrow-dot"></div>PREMIUM CONTENT AGENCY</div>
-  <h1 class="hero-title" id="brig-title">BRIG MEDIA</h1>
+
+  <!-- SVG TITLE: gradient baked into SVG — works 100% on Vercel, Safari, Chrome, Firefox -->
+  <div class="hero-title-wrap" id="brig-title">
+    <svg class="hero-title-svg" viewBox="0 0 860 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BRIG MEDIA">
+      <defs>
+        <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%"   stop-color="#ffffff"/>
+          <stop offset="30%"  stop-color="#f0d0c0"/>
+          <stop offset="62%"  stop-color="#e8806a"/>
+          <stop offset="100%" stop-color="#c04020"/>
+        </linearGradient>
+      </defs>
+      <text
+        x="50%"
+        y="88"
+        text-anchor="middle"
+        font-family="Syne, sans-serif"
+        font-weight="800"
+        font-size="96"
+        letter-spacing="-4"
+        fill="url(#titleGrad)"
+      >BRIG MEDIA</text>
+    </svg>
+  </div>
+
   <p class="hero-sub">We create content that drives real business results.</p>
   <p class="hero-desc">Premium video production, content systems, and social media growth for brands ready to scale.</p>
   <div class="hero-btns">
@@ -419,38 +435,32 @@ footer{padding:68px 8% 34px;border-top:1px solid var(--border);position:relative
   </div>
   <div class="why-grid">
     <div class="why-card reveal">
-      <div class="why-num">01</div>
-      <div class="why-icon">⚡</div>
+      <div class="why-num">01</div><div class="why-icon">⚡</div>
       <h3>Fast Turnaround Time</h3>
       <p>Rapid delivery without compromising on the premium quality your brand deserves. Speed is a feature, not a compromise.</p>
     </div>
     <div class="why-card reveal reveal-delay-1">
-      <div class="why-num">02</div>
-      <div class="why-icon">🎯</div>
+      <div class="why-num">02</div><div class="why-icon">🎯</div>
       <h3>Direct Founder Support</h3>
       <p>You don't talk to account managers. You work directly with the people who built the strategy and own the results.</p>
     </div>
     <div class="why-card reveal reveal-delay-2">
-      <div class="why-num">03</div>
-      <div class="why-icon">💎</div>
+      <div class="why-num">03</div><div class="why-icon">💎</div>
       <h3>Premium Editing Standards</h3>
       <p>Every frame is crafted with cinematic precision. Our editing standards are borrowed from the best in the industry.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-num">04</div>
-      <div class="why-icon">📅</div>
+      <div class="why-num">04</div><div class="why-icon">📅</div>
       <h3>Reliable Monthly Delivery</h3>
       <p>Consistent, on-time content delivery every single month. Never miss a posting schedule again.</p>
     </div>
     <div class="why-card reveal reveal-delay-1">
-      <div class="why-num">05</div>
-      <div class="why-icon">📈</div>
+      <div class="why-num">05</div><div class="why-icon">📈</div>
       <h3>Growth-Focused Strategy</h3>
       <p>Every piece of content we create is engineered to drive measurable growth — not just views, but revenue and reach.</p>
     </div>
     <div class="why-card reveal reveal-delay-2">
-      <div class="why-num">06</div>
-      <div class="why-icon">🎬</div>
+      <div class="why-num">06</div><div class="why-icon">🎬</div>
       <h3>Video Editing & Post Production</h3>
       <p>Cinematic edits that elevate brand perception and retention.</p>
     </div>
@@ -499,36 +509,12 @@ footer{padding:68px 8% 34px;border-top:1px solid var(--border);position:relative
   <div class="section-label">✦ Impact</div>
   <h2 class="section-title reveal">What We Help <span>You Achieve</span></h2>
   <div class="results-grid">
-    <div class="result-card reveal">
-      <div class="result-icon">🚀</div>
-      <h3>More Reach</h3>
-      <p>Content built to spread. Engineered for the algorithm, crafted for humans.</p>
-    </div>
-    <div class="result-card reveal reveal-delay-1">
-      <div class="result-icon">🎯</div>
-      <h3>Better Leads</h3>
-      <p>Qualified enquiries that convert. Your content becomes your best salesperson.</p>
-    </div>
-    <div class="result-card reveal reveal-delay-2">
-      <div class="result-icon">💎</div>
-      <h3>Premium Brand Image</h3>
-      <p>Look like the leader in your space. Premium visuals command premium prices.</p>
-    </div>
-    <div class="result-card reveal">
-      <div class="result-icon">📈</div>
-      <h3>Consistent Growth</h3>
-      <p>Month on month progress. Not viral spikes — sustainable upward momentum.</p>
-    </div>
-    <div class="result-card reveal reveal-delay-1">
-      <div class="result-icon">⏱</div>
-      <h3>Save Time & Stay Focused</h3>
-      <p>Let us run content. You run the business. More time for what actually matters.</p>
-    </div>
-    <div class="result-card reveal reveal-delay-2">
-      <div class="result-icon">🎬</div>
-      <h3>Stronger Retention</h3>
-      <p>Content structured to improve engagement, consistency, and long-term brand recall.</p>
-    </div>
+    <div class="result-card reveal"><div class="result-icon">🚀</div><h3>More Reach</h3><p>Content built to spread. Engineered for the algorithm, crafted for humans.</p></div>
+    <div class="result-card reveal reveal-delay-1"><div class="result-icon">🎯</div><h3>Better Leads</h3><p>Qualified enquiries that convert. Your content becomes your best salesperson.</p></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-icon">💎</div><h3>Premium Brand Image</h3><p>Look like the leader in your space. Premium visuals command premium prices.</p></div>
+    <div class="result-card reveal"><div class="result-icon">📈</div><h3>Consistent Growth</h3><p>Month on month progress. Not viral spikes — sustainable upward momentum.</p></div>
+    <div class="result-card reveal reveal-delay-1"><div class="result-icon">⏱</div><h3>Save Time & Stay Focused</h3><p>Let us run content. You run the business. More time for what actually matters.</p></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-icon">🎬</div><h3>Stronger Retention</h3><p>Content structured to improve engagement, consistency, and long-term brand recall.</p></div>
   </div>
 </section>
 
@@ -541,28 +527,19 @@ footer{padding:68px 8% 34px;border-top:1px solid var(--border);position:relative
       <div class="testi-quote-mark">"</div>
       <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testi-text">Better enquiries started coming after BRIG MEDIA handled our reels. The quality completely transformed how clients perceive our studio.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">FS</div>
-        <div><div class="testi-name">Fitness Studio Owner</div><div class="testi-role">Premium Fitness Brand · Bangalore</div></div>
-      </div>
+      <div class="testi-author"><div class="testi-avatar">FS</div><div><div class="testi-name">Fitness Studio Owner</div><div class="testi-role">Premium Fitness Brand · Bangalore</div></div></div>
     </div>
     <div class="testi-card reveal reveal-delay-1">
       <div class="testi-quote-mark">"</div>
       <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testi-text">Our brand finally looked premium online. We were posting before, but now we're actually converting. BRIG MEDIA changed everything.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">CB</div>
-        <div><div class="testi-name">Clothing Brand Founder</div><div class="testi-role">D2C Fashion Label · India</div></div>
-      </div>
+      <div class="testi-author"><div class="testi-avatar">CB</div><div><div class="testi-name">Clothing Brand Founder</div><div class="testi-role">D2C Fashion Label · India</div></div></div>
     </div>
     <div class="testi-card reveal reveal-delay-2">
       <div class="testi-quote-mark">"</div>
       <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="testi-text">Consistent growth month after month. I stopped worrying about our online presence. BRIG MEDIA just handles it and the numbers keep going up.</p>
-      <div class="testi-author">
-        <div class="testi-avatar">CÉ</div>
-        <div><div class="testi-name">Café Owner</div><div class="testi-role">Independent Restaurant · Bangalore</div></div>
-      </div>
+      <div class="testi-author"><div class="testi-avatar">CÉ</div><div><div class="testi-name">Café Owner</div><div class="testi-role">Independent Restaurant · Bangalore</div></div></div>
     </div>
   </div>
 </section>
@@ -726,7 +703,7 @@ footer{padding:68px 8% 34px;border-top:1px solid var(--border);position:relative
   function animDots(ts){
     if(!st)st=ts;const t=(ts-st)/1000;
     dots.forEach(({el,cfg})=>{
-      const cycle=((t+cfg.phase||t+cfg.delay)%cfg.dur)/cfg.dur;
+      const cycle=((t+cfg.delay)%cfg.dur)/cfg.dur;
       const dy=Math.sin(cycle*Math.PI*2)*18,dx=Math.cos(cycle*Math.PI*1.3)*10;
       const fade=Math.sin(cycle*Math.PI)*0.9;
       el.style.transform=`translate(${dx}px,${dy}px)`;el.style.opacity=Math.max(0,fade).toFixed(3);
@@ -746,22 +723,22 @@ document.querySelectorAll('button,a,.faq-q,.service-card,.result-card,.testi-car
 
 /* ══ HERO TITLE PARALLAX + GLOW ══ */
 (function(){
-  const title=document.getElementById('brig-title');if(!title)return;
+  const wrap=document.getElementById('brig-title');if(!wrap)return;
   let cx=0,cy=0,cr=0,tx=0,ty=0,tr=0;
   document.addEventListener('mousemove',e=>{
     const nx=(e.clientX/window.innerWidth-0.5)*2,ny=(e.clientY/window.innerHeight-0.5)*2;
     tx=nx*4;ty=ny*3;tr=nx*0.3;
-    const rect=title.getBoundingClientRect();
+    const rect=wrap.getBoundingClientRect();
     if(rect.top<window.innerHeight&&rect.bottom>0){
       const dist=Math.hypot(e.clientX-(rect.left+rect.width/2),e.clientY-(rect.top+rect.height/2));
       const prox=Math.max(0,1-dist/320);
       const gpx=28+prox*28,gop=(0.10+prox*0.22).toFixed(2);
-      title.style.filter=`drop-shadow(0 0 ${gpx}px rgba(192,57,43,${gop}))`;
+      wrap.style.filter=`drop-shadow(0 0 ${gpx}px rgba(192,57,43,${gop}))`;
     }
   });
   (function loop(){
     cx+=(tx-cx)*0.072;cy+=(ty-cy)*0.072;cr+=(tr-cr)*0.072;
-    title.style.transform=`translate(${cx.toFixed(2)}px,${cy.toFixed(2)}px) rotate(${cr.toFixed(3)}deg)`;
+    wrap.style.transform=`translate(${cx.toFixed(2)}px,${cy.toFixed(2)}px) rotate(${cr.toFixed(3)}deg)`;
     requestAnimationFrame(loop);
   })();
 })();
@@ -799,9 +776,7 @@ async function submitForm(){
       method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
       body:JSON.stringify({
-        name,
-        brand:document.getElementById('f-brand').value.trim(),
-        email,
+        name,brand:document.getElementById('f-brand').value.trim(),email,
         phone:document.getElementById('f-phone').value.trim(),
         service:document.getElementById('f-service').value,
         industry:document.getElementById('f-industry').value.trim(),
@@ -812,14 +787,9 @@ async function submitForm(){
     if(res.ok){
       document.getElementById('modal-form-content').style.display='none';
       document.getElementById('modal-success-msg').style.display='block';
-    } else {
-      alert('Something went wrong. Please try again or reach us on WhatsApp.');
-    }
-  } catch(e){
-    alert('Network error. Please check your connection and try again.');
-  } finally{
-    btn.textContent='Submit Enquiry →';btn.disabled=false;
-  }
+    } else {alert('Something went wrong. Please try again or reach us on WhatsApp.');}
+  } catch(e){alert('Network error. Please check your connection and try again.');}
+  finally{btn.textContent='Submit Enquiry →';btn.disabled=false;}
 }
 document.getElementById('modal-overlay').addEventListener('click',function(e){if(e.target===this)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
@@ -829,20 +799,6 @@ function openWhatsApp(){
   const msg=encodeURIComponent('Hi BRIG MEDIA, I want to work with you');
   window.open('https://wa.me/919844219781?text='+msg,'_blank');
 }
-
-/* ══ GRADIENT TEXT VERCEL FIX ══ */
-/* Force repaint on load to ensure background-clip:text renders correctly */
-(function(){
-  window.addEventListener('load', function(){
-    const title = document.getElementById('brig-title');
-    if(!title) return;
-    // Trigger a repaint by briefly toggling a property
-    title.style.opacity = '0.99';
-    requestAnimationFrame(function(){
-      title.style.opacity = '1';
-    });
-  });
-})();
 </script>
 </body>
 </html>
