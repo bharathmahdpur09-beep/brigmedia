@@ -75,7 +75,22 @@ nav,section,footer,#floating-dots{position:relative;z-index:2;}
 .hero-chips{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;animation:fadeUp .65s .58s ease both;}
 .chip{display:flex;align-items:center;gap:6px;background:rgba(15,4,4,0.65);border:1px solid var(--border);border-radius:100px;padding:6px 15px;font-size:12px;color:var(--muted);backdrop-filter:blur(10px);transition:all .22s;font-weight:500;}
 .chip:hover{border-color:var(--border2);color:var(--orange);}
-.chip-icon{font-size:12px;}
+.chip-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,rgba(230,126,34,0.16),rgba(192,57,43,0.12));border:1px solid rgba(255,255,255,0.08);color:var(--orange);font-size:14px;font-weight:700;position:relative;}
+.why-icon,.service-card-icon,.result-icon{display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:linear-gradient(135deg,rgba(230,126,34,0.18),rgba(192,57,43,0.18));border:1px solid rgba(255,255,255,0.08);color:var(--white);box-shadow:0 12px 28px rgba(0,0,0,0.14);position:relative;}
+.why-icon{width:48px;height:48px;font-size:18px;margin-bottom:18px;}
+.service-card-icon{width:56px;height:56px;font-size:20px;margin-bottom:22px;box-shadow:0 0 20px rgba(192,57,43,0.22);}
+.result-icon{width:48px;height:48px;font-size:18px;margin-bottom:12px;}
+.icon::before{display:block;}
+.icon-video::before{content:'▶';color:var(--orange);}
+.icon-flash::before{content:'↗';color:var(--orange);}
+.icon-phone::before{content:'⌘';}
+.icon-edit::before{content:'✂';}
+.icon-ring::before{content:'◉';}
+.icon-event::before{content:'◬';}
+.icon-target::before{content:'◈';}
+.icon-growth::before{content:'⬡';}
+.icon-premium::before{content:'⌘';}
+.icon-clock::before{content:'⏱';}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
 #trusted{padding:32px 8%;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:transparent;}
@@ -345,7 +360,7 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
       </div>
     </div>
     <div class="modal-success" id="modal-success-msg">
-      <div class="modal-success-icon">🎯</div>
+      <div class="modal-success-icon icon-target"></div>
       <h3>We've Got Your Details!</h3>
       <p>Thanks for reaching out. Our team will review your project and get back to you within 48 hours with a custom proposal.</p>
     </div>
@@ -397,15 +412,15 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
   <p class="hero-desc">Premium video production, content systems, and social media growth for brands ready to scale.</p>
   <div class="hero-btns reveal reveal-delay-2">
     <button class="btn-primary" onclick="openModal()">Get Started →</button>
-    <button class="btn-outline" onclick="openWhatsApp()">💬 WhatsApp Us</button>
+    <button class="btn-outline" onclick="openWhatsApp()">WhatsApp Us</button>
   </div>
   <div class="hero-chips reveal reveal-delay-3">
-    <div class="chip"><span class="chip-icon">🎥</span> Video Production</div>
-    <div class="chip"><span class="chip-icon">⚡</span> Content Creation</div>
-    <div class="chip"><span class="chip-icon">📱</span> Social Media Management</div>
-    <div class="chip"><span class="chip-icon">✂️</span> Video Editing</div>
-    <div class="chip"><span class="chip-icon">💍</span> Wedding Content</div>
-    <div class="chip"><span class="chip-icon">🎉</span> Event Production</div>
+    <div class="chip"><span class="chip-icon icon-video"></span> Video Production</div>
+    <div class="chip"><span class="chip-icon icon-flash"></span> Content Creation</div>
+    <div class="chip"><span class="chip-icon icon-phone"></span> Social Media Management</div>
+    <div class="chip"><span class="chip-icon icon-edit"></span> Video Editing</div>
+    <div class="chip"><span class="chip-icon icon-ring"></span> Wedding Content</div>
+    <div class="chip"><span class="chip-icon icon-event"></span> Event Production</div>
   </div>
 </section>
 
@@ -467,32 +482,32 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
   </div>
   <div class="why-grid">
     <div class="why-card reveal">
-      <div class="why-num">01</div><div class="why-icon">⚡</div>
+      <div class="why-num">01</div><div class="why-icon icon-flash"></div>
       <h3>Fast Turnaround Time</h3>
       <p>Rapid delivery without compromising on the premium quality your brand deserves. Speed is a feature, not a compromise.</p>
     </div>
     <div class="why-card reveal reveal-delay-1">
-      <div class="why-num">02</div><div class="why-icon">🎯</div>
+      <div class="why-num">02</div><div class="why-icon icon-target"></div>
       <h3>Direct Founder Support</h3>
       <p>You don't talk to account managers. You work directly with the people who built the strategy and own the results.</p>
     </div>
     <div class="why-card reveal reveal-delay-2">
-      <div class="why-num">03</div><div class="why-icon">💎</div>
+      <div class="why-num">03</div><div class="why-icon icon-premium"></div>
       <h3>Premium Editing Standards</h3>
       <p>Every frame is crafted with cinematic precision. Our editing standards are borrowed from the best in the industry.</p>
     </div>
     <div class="why-card reveal">
-      <div class="why-num">04</div><div class="why-icon">📅</div>
+      <div class="why-num">04</div><div class="why-icon icon-clock"></div>
       <h3>Reliable Monthly Delivery</h3>
       <p>Consistent, on-time content delivery every single month. Never miss a posting schedule again.</p>
     </div>
     <div class="why-card reveal reveal-delay-1">
-      <div class="why-num">05</div><div class="why-icon">📈</div>
+      <div class="why-num">05</div><div class="why-icon icon-growth"></div>
       <h3>Growth-Focused Strategy</h3>
       <p>Every piece of content we create is engineered to drive measurable growth — not just views, but revenue and reach.</p>
     </div>
     <div class="why-card reveal reveal-delay-2">
-      <div class="why-num">06</div><div class="why-icon">🎬</div>
+      <div class="why-num">06</div><div class="why-icon icon-video"></div>
       <h3>Video Editing & Post Production</h3>
       <p>Cinematic edits that elevate brand perception and retention.</p>
     </div>
@@ -508,37 +523,37 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
   <p class="section-desc reveal reveal-delay-1">Six powerful pillars that cover everything your brand needs to dominate attention and drive demand.</p>
   <div class="services-grid">
     <div class="service-card reveal">
-      <div class="service-card-icon">🎥</div>
+      <div class="service-card-icon icon-video"></div>
       <h3>Video Production</h3>
       <p>Films, reels, ads, and visuals that make brands impossible to ignore. From concept to final cut — every second is crafted to capture, hold, and convert attention.</p>
       <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal reveal-delay-1">
-      <div class="service-card-icon">⚡</div>
+      <div class="service-card-icon icon-flash"></div>
       <h3>Content Creation</h3>
       <p>High-performing content built for reach, trust, and growth. We build complete content systems that run on autopilot while your brand stays top of mind.</p>
       <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal reveal-delay-2">
-      <div class="service-card-icon">📈</div>
+      <div class="service-card-icon icon-growth"></div>
       <h3>Social Media Management</h3>
       <p>Systems that turn consistent posting into measurable growth — because brands that stay visible stay ahead. We run your social presence so you can run your business.</p>
       <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal reveal-delay-3">
-      <div class="service-card-icon">✂️</div>
+      <div class="service-card-icon icon-edit"></div>
       <h3>Video Editing</h3>
       <p>High-retention edits designed to keep viewers watching and engaged. Clean pacing, strong hooks, and storytelling that drives results.</p>
       <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal">
-      <div class="service-card-icon">💍</div>
+      <div class="service-card-icon icon-ring"></div>
       <h3>Wedding Content Creation</h3>
       <p>Cinematic storytelling for weddings and celebrations, from hero films to social-ready highlights that preserve the emotion and energy of the day.</p>
       <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal reveal-delay-1">
-      <div class="service-card-icon">🎉</div>
+      <div class="service-card-icon icon-event"></div>
       <h3>Event Production</h3>
       <p>End-to-end event video and content production for launches, conferences, and live experiences that keep your brand front and center.</p>
       <a href="#cta" class="service-link">Explore Service →</a>
@@ -553,12 +568,12 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
   <div class="section-label">✦ Impact</div>
   <h2 class="section-title reveal">What We Help <span>You Achieve</span></h2>
   <div class="results-grid">
-    <div class="result-card reveal"><div class="result-icon">🚀</div><h3>More Reach</h3><p>Content built to spread. Engineered for the algorithm, crafted for humans.</p></div>
-    <div class="result-card reveal reveal-delay-1"><div class="result-icon">🎯</div><h3>Better Leads</h3><p>Qualified enquiries that convert. Your content becomes your best salesperson.</p></div>
-    <div class="result-card reveal reveal-delay-2"><div class="result-icon">💎</div><h3>Premium Brand Image</h3><p>Look like the leader in your space. Premium visuals command premium prices.</p></div>
-    <div class="result-card reveal"><div class="result-icon">📈</div><h3>Consistent Growth</h3><p>Month on month progress. Not viral spikes — sustainable upward momentum.</p></div>
-    <div class="result-card reveal reveal-delay-1"><div class="result-icon">⏱</div><h3>Save Time & Stay Focused</h3><p>Let us run content. You run the business. More time for what actually matters.</p></div>
-    <div class="result-card reveal reveal-delay-2"><div class="result-icon">🎬</div><h3>Stronger Retention</h3><p>Content structured to improve engagement, consistency, and long-term brand recall.</p></div>
+    <div class="result-card reveal"><div class="result-icon icon-growth"></div><h3>More Reach</h3><p>Content built to spread. Engineered for the algorithm, crafted for humans.</p></div>
+    <div class="result-card reveal reveal-delay-1"><div class="result-icon icon-target"></div><h3>Better Leads</h3><p>Qualified enquiries that convert. Your content becomes your best salesperson.</p></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-icon icon-premium"></div><h3>Premium Brand Image</h3><p>Look like the leader in your space. Premium visuals command premium prices.</p></div>
+    <div class="result-card reveal"><div class="result-icon icon-growth"></div><h3>Consistent Growth</h3><p>Month on month progress. Not viral spikes — sustainable upward momentum.</p></div>
+    <div class="result-card reveal reveal-delay-1"><div class="result-icon icon-clock"></div><h3>Save Time & Stay Focused</h3><p>Let us run content. You run the business. More time for what actually matters.</p></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-icon icon-video"></div><h3>Stronger Retention</h3><p>Content structured to improve engagement, consistency, and long-term brand recall.</p></div>
   </div>
 </section>
 
@@ -607,7 +622,7 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
     </div>
     <div class="plans-btns">
       <button class="btn-primary" onclick="openModal()">Get Custom Proposal →</button>
-      <button class="btn-outline" onclick="openWhatsApp()">💬 WhatsApp Us</button>
+      <button class="btn-outline" onclick="openWhatsApp()">WhatsApp Us</button>
     </div>
   </div>
 </section>
@@ -620,8 +635,8 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
     <h2 class="cta-title reveal">Ready To Scale<br><span style="background:linear-gradient(135deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;">Your Brand?</span></h2>
     <p class="cta-sub reveal reveal-delay-1">Let BRIG MEDIA become your growth content partner. One call is all it takes.</p>
     <div class="hero-btns reveal reveal-delay-2">
-      <button class="btn-primary" style="font-size:15px;padding:15px 42px;" onclick="openModal()">📞 Get Started</button>
-      <button class="btn-outline" style="font-size:15px;padding:15px 42px;" onclick="openWhatsApp()">💬 WhatsApp Us</button>
+      <button class="btn-primary" style="font-size:15px;padding:15px 42px;" onclick="openModal()">Get Started</button>
+      <button class="btn-outline" style="font-size:15px;padding:15px 42px;" onclick="openWhatsApp()">WhatsApp Us</button>
     </div>
     <div class="cta-note reveal reveal-delay-3"><div class="cta-dot"></div>Currently onboarding limited monthly clients — spots fill fast.</div>
   </div>
