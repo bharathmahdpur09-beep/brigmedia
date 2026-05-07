@@ -19,32 +19,28 @@ html{scroll-behavior:smooth;}
 body{font-family:'Inter',sans-serif;color:var(--white);overflow-x:hidden;cursor:none;background:#0f0f0f;min-height:100vh;}
 
 #bg-canvas{position:fixed;inset:0;z-index:0;width:100%;height:100%;pointer-events:none;}
-body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.032;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:190px 190px;}
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.032;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:190px 190px;animation:noiseAnim 20s linear infinite;}
 nav,section,footer,#floating-dots{position:relative;z-index:2;}
 #floating-dots{position:fixed;inset:0;z-index:3;pointer-events:none;}
 
 #cursor{position:fixed;width:9px;height:9px;background:#e67e22;border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s;mix-blend-mode:screen;}
 #cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(192,57,43,0.42);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .26s,height .26s,border-color .26s;}
 
-.premium-navbar{position:fixed;top:12px;left:50%;transform:translateX(-50%);width:88%;max-width:1200px;padding:10px 20px 28px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,4,4,0.78);border:1px solid rgba(192,57,43,0.15);border-radius:22px;backdrop-filter:blur(16px);z-index:9999;box-shadow:0 10px 30px rgba(0,0,0,0.22),inset 0 0 0.5px rgba(255,255,255,0.06);}
-.nav-logo{color:var(--orange);font-size:16px;font-weight:700;letter-spacing:1px;text-shadow:0 0 10px rgba(230,126,34,0.22);}
-.nav-menu{display:flex;align-items:center;gap:32px;list-style:none;position:absolute;left:50%;transform:translateX(-50%);}
-.nav-menu a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;transition:color .3s ease;}
+.premium-navbar{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:88%;max-width:1200px;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,4,4,0.78);border:1px solid rgba(192,57,43,0.15);border-radius:24px;backdrop-filter:blur(16px);z-index:9999;box-shadow:0 12px 40px rgba(0,0,0,0.25),inset 0 0 0.5px rgba(255,255,255,0.06);}
+.nav-logo{color:var(--orange);font-size:18px;font-weight:700;letter-spacing:1px;text-shadow:0 0 12px rgba(230,126,34,0.22);}
+.nav-menu{display:flex;align-items:center;gap:40px;list-style:none;position:absolute;left:50%;transform:translateX(-50%);}
+.nav-menu a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s ease;}
 .nav-menu a:hover{color:var(--orange);}
-.lang-switcher{display:flex;align-items:center;gap:8px;position:absolute;left:24px;bottom:-52px;}
-.lang-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);color:var(--white);font-size:12px;padding:8px 12px;border-radius:999px;cursor:pointer;transition:all .25s;}
-.lang-btn.active, .lang-btn:hover{background:rgba(230,126,34,0.18);border-color:rgba(230,126,34,0.3);color:var(--orange);}
-.nav-btn{border:none;outline:none;background:linear-gradient(135deg,var(--orange),var(--red));color:#fff;padding:10px 24px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;}
-.nav-btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(192,57,43,0.35);}
+.nav-btn{border:none;outline:none;background:linear-gradient(135deg,var(--orange),var(--red));color:#fff;padding:12px 28px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;transition:transform .3s ease,box-shadow .3s ease;}
+.nav-btn:hover{transform:translateY(-2px);box-shadow:0 12px 25px rgba(192,57,43,0.35);}
 @media(max-width:900px){
-  .premium-navbar{padding:10px 16px 26px;width:94%;}
+  .premium-navbar{padding:14px 18px;width:94%;}
   .nav-menu{display:none;}
-  .nav-logo{font-size:15px;}
-  .lang-switcher{left:18px;bottom:-44px;}
-  .nav-btn{padding:10px 18px;font-size:13px;}
+  .nav-logo{font-size:16px;}
+  .nav-btn{padding:10px 20px;font-size:13px;}
 }
 
-#hero{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 5% 30px;text-align:center;overflow:hidden;background:transparent;}
+#hero{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 5% 30px;text-align:center;overflow:hidden;background:transparent;}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(15,4,4,0.7);border:1px solid var(--border);border-radius:100px;padding:7px 17px;font-size:10.5px;color:var(--orange);letter-spacing:2.2px;text-transform:uppercase;margin-bottom:20px;backdrop-filter:blur(12px);animation:fadeUp .65s ease both;font-weight:600;}
 .eyebrow-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);box-shadow:0 0 6px var(--orange);animation:blink 2.2s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
@@ -85,17 +81,18 @@ nav,section,footer,#floating-dots{position:relative;z-index:2;}
 .service-card-icon{width:56px;height:56px;font-size:20px;margin-bottom:22px;box-shadow:0 0 20px rgba(192,57,43,0.22);}
 .result-icon{width:48px;height:48px;font-size:18px;margin-bottom:12px;}
 .icon::before{display:block;}
-.icon-video::before{content:'▶';color:var(--orange);}
-.icon-flash::before{content:'↗';color:var(--orange);}
-.icon-phone::before{content:'⌘';}
-.icon-edit::before{content:'✂';}
-.icon-ring::before{content:'◉';}
-.icon-event::before{content:'◬';}
-.icon-target::before{content:'◈';}
-.icon-growth::before{content:'⬡';}
-.icon-premium::before{content:'⌘';}
-.icon-clock::before{content:'⏱';}
+.icon-video::before{content:'🎥';color:var(--orange);}
+.icon-flash::before{content:'⚡';color:var(--orange);}
+.icon-phone::before{content:'📱';color:var(--orange);}
+.icon-edit::before{content:'✂️';color:var(--orange);}
+.icon-ring::before{content:'💍';color:var(--orange);}
+.icon-event::before{content:'🎉';color:var(--orange);}
+.icon-target::before{content:'🎯';color:var(--orange);}
+.icon-growth::before{content:'📈';color:var(--orange);}
+.icon-premium::before{content:'💎';color:var(--orange);}
+.icon-clock::before{content:'⏰';color:var(--orange);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes noiseAnim{0%{background-position:0 0;}100%{background-position:190px 190px;}}
 
 #trusted{padding:32px 8%;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:transparent;}
 .trusted-header{text-align:center;margin-bottom:20px;}
@@ -293,21 +290,7 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
   body{cursor:auto;}
   #cursor,#cursor-ring{display:none;}
 }
-@media(max-width:600px){
-  .nav-links{display:none;}
-  .services-grid,.testimonials-inner,.results-grid{grid-template-columns:1fr;}
-  .plans-grid{grid-template-columns:1fr;}
-  .plans-box{padding:34px 20px;}
-  .footer-bottom{flex-direction:column;text-align:center;}
-  .form-row{grid-template-columns:1fr;}
-  .modal-box{padding:32px 22px;}
-  .hero-chips{display:none;}
-  #trusted,#showreel,#testimonials,#plans,#faq,.line-divider{display:none !important;}
-  #hero{padding:70px 5% 20px;}
-  #why{padding-top:40px;}
-  #services{padding-top:40px;}
-  #results{padding-top:30px;}
-}
+@media(max-width:600px){.nav-links{display:none;}.services-grid,.testimonials-inner,.results-grid{grid-template-columns:1fr;}.plans-grid{grid-template-columns:1fr;}.plans-box{padding:34px 20px;}.footer-bottom{flex-direction:column;text-align:center;}.form-row{grid-template-columns:1fr;}.modal-box{padding:32px 22px;}}
 </style>
 </head>
 <body>
@@ -379,8 +362,8 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
     </div>
     <div class="modal-success" id="modal-success-msg">
       <div class="modal-success-icon icon-target"></div>
-      <h3 data-i18n="modal.successTitle">We've Got Your Details!</h3>
-      <p data-i18n="modal.successDesc">Thanks for reaching out. Our team will review your project and get back to you within 48 hours with a custom proposal.</p>
+      <h3>We've Got Your Details!</h3>
+      <p>Thanks for reaching out. Our team will review your project and get back to you within 48 hours with a custom proposal.</p>
     </div>
   </div>
 </div>
@@ -389,23 +372,18 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 <nav id="navbar" class="premium-navbar">
   <div class="nav-logo">BRIG MEDIA</div>
   <ul class="nav-menu">
-    <li><a href="#why" data-i18n="nav.whyUs">Why Us</a></li>
-    <li><a href="#services" data-i18n="nav.services">Services</a></li>
-    <li><a href="#results" data-i18n="nav.results">Results</a></li>
-    <li><a href="#trusted" data-i18n="nav.clients">Clients</a></li>
-    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#trusted">Clients</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
-  <div class="lang-switcher" aria-label="Language switcher">
-    <button type="button" class="lang-btn active" data-lang="en">EN</button>
-    <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
-    <button type="button" class="lang-btn" data-lang="kn">ಕನ್ನಡ</button>
-  </div>
-  <button class="nav-btn" onclick="openModal()" data-i18n="nav.getStarted">Get Started</button>
+  <button class="nav-btn" onclick="openModal()">Get Started</button>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-eyebrow"><div class="eyebrow-dot"></div><span data-i18n="hero.eyebrow">PREMIUM CONTENT AGENCY</span></div>
+  <div class="hero-eyebrow"><div class="eyebrow-dot"></div>PREMIUM CONTENT AGENCY</div>
 
   <!-- SVG HERO TITLE — gradient baked into SVG, #0a0505 start, Vercel-safe -->
   <div class="hero-title-wrap" id="brig-title">
@@ -431,27 +409,19 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
     </svg>
   </div>
 
-  <p class="hero-sub" data-i18n="hero.sub">We create content that drives real business results.</p>
-  <p class="hero-desc" data-i18n="hero.desc">Premium video production, content systems, and social media growth for brands ready to scale.</p>
+  <p class="hero-sub">We create content that drives real business results.</p>
+  <p class="hero-desc">Premium video production, content systems, and social media growth for brands ready to scale.</p>
   <div class="hero-btns reveal reveal-delay-2">
-    <button class="btn-primary" onclick="openModal()" data-i18n="hero.ctaPrimary">Get Started →</button>
-    <button class="btn-outline" onclick="openWhatsApp()" data-i18n="hero.ctaSecondary">WhatsApp Us</button>
-  </div>
-  <div class="hero-chips reveal reveal-delay-3">
-    <div class="chip"><span class="chip-icon icon-video"></span><span class="chip-label" data-i18n="chip.videoProduction">Video Production</span></div>
-    <div class="chip"><span class="chip-icon icon-flash"></span><span class="chip-label" data-i18n="chip.contentCreation">Content Creation</span></div>
-    <div class="chip"><span class="chip-icon icon-phone"></span><span class="chip-label" data-i18n="chip.socialMediaManagement">Social Media Management</span></div>
-    <div class="chip"><span class="chip-icon icon-edit"></span><span class="chip-label" data-i18n="chip.videoEditing">Video Editing</span></div>
-    <div class="chip"><span class="chip-icon icon-ring"></span><span class="chip-label" data-i18n="chip.weddingContent">Wedding Content</span></div>
-    <div class="chip"><span class="chip-icon icon-event"></span><span class="chip-label" data-i18n="chip.eventProduction">Event Production</span></div>
+    <button class="btn-primary" onclick="openModal()">Get Started →</button>
+    <button class="btn-outline" onclick="openWhatsApp()">WhatsApp Us</button>
   </div>
 </section>
 
 <!-- TRUSTED -->
 <section id="trusted">
   <div class="trusted-header">
-    <h2 data-i18n="trusted.title">TRUSTED BY GROWING BRANDS</h2>
-    <p data-i18n="trusted.desc">Helping ambitious brands build stronger presence, better content, and measurable growth.</p>
+    <h2>TRUSTED BY GROWING BRANDS</h2>
+    <p>Helping ambitious brands build stronger presence, better content, and measurable growth.</p>
   </div>
   <div class="logo-ticker">
     <div class="ticker-track">
@@ -492,7 +462,7 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
       </div>
     </div>
   </div>
-  <div class="showreel-btn"><button class="btn-outline reveal reveal-delay-3" data-i18n="showreel.button">Watch Our Work →</button></div>
+  <div class="showreel-btn"><button class="btn-outline reveal reveal-delay-3">Watch Our Work →</button></div>
 </section>
 
 <div class="line-divider"></div>
@@ -500,39 +470,24 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 <!-- WHY -->
 <section id="why">
   <div class="why-header">
-    <div class="section-label" data-i18n="why.sectionLabel">✦ Why BRIG MEDIA</div>
-    <h2 class="section-title reveal" data-i18n="why.title">Most agencies make content.<br><span>We make content that gets results.</span></h2>
+    <div class="section-label">✦ Why BRIG MEDIA</div>
+    <h2 class="section-title reveal">Most agencies make content.<br><span>We make content that gets results.</span></h2>
   </div>
   <div class="why-grid">
     <div class="why-card reveal">
       <div class="why-num">01</div><div class="why-icon icon-flash"></div>
-      <h3 data-i18n="why.card1.title">Fast Turnaround Time</h3>
-      <p data-i18n="why.card1.desc">Rapid delivery without compromising on the premium quality your brand deserves. Speed is a feature, not a compromise.</p>
+      <h3>Fast Execution & Founder-Led Strategy</h3>
+      <p>We move fast without compromising cinematic quality. Work directly with the people building your content strategy — no layers, no delays, no communication gaps.</p>
     </div>
     <div class="why-card reveal reveal-delay-1">
-      <div class="why-num">02</div><div class="why-icon icon-target"></div>
-      <h3 data-i18n="why.card2.title">Direct Founder Support</h3>
-      <p data-i18n="why.card2.desc">You don't talk to account managers. You work directly with the people who built the strategy and own the results.</p>
+      <div class="why-num">02</div><div class="why-icon icon-video"></div>
+      <h3>Cinematic Production That Builds Brand Perception</h3>
+      <p>From editing to post-production, every frame is crafted with premium visual standards designed to elevate attention, trust, and overall brand positioning.</p>
     </div>
     <div class="why-card reveal reveal-delay-2">
-      <div class="why-num">03</div><div class="why-icon icon-premium"></div>
-      <h3 data-i18n="why.card3.title">Premium Editing Standards</h3>
-      <p data-i18n="why.card3.desc">Every frame is crafted with cinematic precision. Our editing standards are borrowed from the best in the industry.</p>
-    </div>
-    <div class="why-card reveal">
-      <div class="why-num">04</div><div class="why-icon icon-clock"></div>
-      <h3 data-i18n="why.card4.title">Reliable Monthly Delivery</h3>
-      <p data-i18n="why.card4.desc">Consistent, on-time content delivery every single month. Never miss a posting schedule again.</p>
-    </div>
-    <div class="why-card reveal reveal-delay-1">
-      <div class="why-num">05</div><div class="why-icon icon-growth"></div>
-      <h3 data-i18n="why.card5.title">Growth-Focused Strategy</h3>
-      <p data-i18n="why.card5.desc">Every piece of content we create is engineered to drive measurable growth — not just views, but revenue and reach.</p>
-    </div>
-    <div class="why-card reveal reveal-delay-2">
-      <div class="why-num">06</div><div class="why-icon icon-video"></div>
-      <h3 data-i18n="why.card6.title">Video Editing & Post Production</h3>
-      <p data-i18n="why.card6.desc">Cinematic edits that elevate brand perception and retention.</p>
+      <div class="why-num">03</div><div class="why-icon icon-growth"></div>
+      <h3>Consistent Content Engineered For Growth</h3>
+      <p>We don’t create random content. Every deliverable is planned to increase visibility, audience retention, engagement, and long-term brand growth consistently.</p>
     </div>
   </div>
 </section>
@@ -541,45 +496,45 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 
 <!-- SERVICES -->
 <section id="services">
-  <div class="section-label" data-i18n="services.sectionLabel">✦ What We Do</div>
-  <h2 class="section-title reveal" data-i18n="services.title">Our <span>Services</span></h2>
-  <p class="section-desc reveal reveal-delay-1" data-i18n="services.desc">Six powerful pillars that cover everything your brand needs to dominate attention and drive demand.</p>
+  <div class="section-label">✦ What We Do</div>
+  <h2 class="section-title reveal">Our <span>Services</span></h2>
+  <p class="section-desc reveal reveal-delay-1">Six powerful pillars that cover everything your brand needs to dominate attention and drive demand.</p>
   <div class="services-grid">
     <div class="service-card reveal">
       <div class="service-card-icon icon-video"></div>
-      <h3 data-i18n="service.video.title">Video Production</h3>
-      <p data-i18n="service.video.desc">Films, reels, ads, and visuals that make brands impossible to ignore. From concept to final cut — every second is crafted to capture, hold, and convert attention.</p>
-      <a href="#cta" class="service-link" data-i18n="service.link">Explore Service →</a>
+      <h3>Video Production</h3>
+      <p>Films, reels, ads, and visuals that make brands impossible to ignore. From concept to final cut — every second is crafted to capture, hold, and convert attention.</p>
+      <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <div class="service-card-icon icon-flash"></div>
-      <h3 data-i18n="service.content.title">Content Creation</h3>
-      <p data-i18n="service.content.desc">High-performing content built for reach, trust, and growth. We build complete content systems that run on autopilot while your brand stays top of mind.</p>
-      <a href="#cta" class="service-link" data-i18n="service.link">Explore Service →</a>
+      <h3>Content Creation</h3>
+      <p>High-performing content built for reach, trust, and growth. We build complete content systems that run on autopilot while your brand stays top of mind.</p>
+      <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal reveal-delay-2">
       <div class="service-card-icon icon-growth"></div>
-      <h3 data-i18n="service.social.title">Social Media Management</h3>
-      <p data-i18n="service.social.desc">Systems that turn consistent posting into measurable growth — because brands that stay visible stay ahead. We run your social presence so you can run your business.</p>
-      <a href="#cta" class="service-link" data-i18n="service.link">Explore Service →</a>
+      <h3>Social Media Management</h3>
+      <p>Systems that turn consistent posting into measurable growth — because brands that stay visible stay ahead. We run your social presence so you can run your business.</p>
+      <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal reveal-delay-3">
       <div class="service-card-icon icon-edit"></div>
-      <h3 data-i18n="service.editing.title">Video Editing</h3>
-      <p data-i18n="service.editing.desc">High-retention edits designed to keep viewers watching and engaged. Clean pacing, strong hooks, and storytelling that drives results.</p>
-      <a href="#cta" class="service-link" data-i18n="service.link">Explore Service →</a>
+      <h3>Video Editing</h3>
+      <p>High-retention edits designed to keep viewers watching and engaged. Clean pacing, strong hooks, and storytelling that drives results.</p>
+      <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal">
       <div class="service-card-icon icon-ring"></div>
-      <h3 data-i18n="service.wedding.title">Wedding Content Creation</h3>
-      <p data-i18n="service.wedding.desc">Cinematic storytelling for weddings and celebrations, from hero films to social-ready highlights that preserve the emotion and energy of the day.</p>
-      <a href="#cta" class="service-link" data-i18n="service.link">Explore Service →</a>
+      <h3>Wedding Content Creation</h3>
+      <p>Cinematic storytelling for weddings and celebrations, from hero films to social-ready highlights that preserve the emotion and energy of the day.</p>
+      <a href="#cta" class="service-link">Explore Service →</a>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <div class="service-card-icon icon-event"></div>
-      <h3 data-i18n="service.event.title">Event Production</h3>
-      <p data-i18n="service.event.desc">End-to-end event video and content production for launches, conferences, and live experiences that keep your brand front and center.</p>
-      <a href="#cta" class="service-link" data-i18n="service.link">Explore Service →</a>
+      <h3>Event Production</h3>
+      <p>End-to-end event video and content production for launches, conferences, and live experiences that keep your brand front and center.</p>
+      <a href="#cta" class="service-link">Explore Service →</a>
     </div>
   </div>
 </section>
@@ -588,15 +543,15 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 
 <!-- RESULTS -->
 <section id="results">
-  <div class="section-label" data-i18n="results.sectionLabel">✦ Impact</div>
-  <h2 class="section-title reveal" data-i18n="results.title">What We Help <span>You Achieve</span></h2>
+  <div class="section-label">✦ Impact</div>
+  <h2 class="section-title reveal">What We Help <span>You Achieve</span></h2>
   <div class="results-grid">
-    <div class="result-card reveal"><div class="result-icon icon-growth"></div><h3 data-i18n="result.reach.title">More Reach</h3><p data-i18n="result.reach.desc">Content built to spread. Engineered for the algorithm, crafted for humans.</p></div>
-    <div class="result-card reveal reveal-delay-1"><div class="result-icon icon-target"></div><h3 data-i18n="result.leads.title">Better Leads</h3><p data-i18n="result.leads.desc">Qualified enquiries that convert. Your content becomes your best salesperson.</p></div>
-    <div class="result-card reveal reveal-delay-2"><div class="result-icon icon-premium"></div><h3 data-i18n="result.brand.title">Premium Brand Image</h3><p data-i18n="result.brand.desc">Look like the leader in your space. Premium visuals command premium prices.</p></div>
-    <div class="result-card reveal"><div class="result-icon icon-growth"></div><h3 data-i18n="result.growth.title">Consistent Growth</h3><p data-i18n="result.growth.desc">Month on month progress. Not viral spikes — sustainable upward momentum.</p></div>
-    <div class="result-card reveal reveal-delay-1"><div class="result-icon icon-clock"></div><h3 data-i18n="result.focus.title">Save Time & Stay Focused</h3><p data-i18n="result.focus.desc">Let us run content. You run the business. More time for what actually matters.</p></div>
-    <div class="result-card reveal reveal-delay-2"><div class="result-icon icon-video"></div><h3 data-i18n="result.retention.title">Stronger Retention</h3><p data-i18n="result.retention.desc">Content structured to improve engagement, consistency, and long-term brand recall.</p></div>
+    <div class="result-card reveal"><div class="result-icon icon-growth"></div><h3>More Reach</h3><p>Content built to spread. Engineered for the algorithm, crafted for humans.</p></div>
+    <div class="result-card reveal reveal-delay-1"><div class="result-icon icon-target"></div><h3>Better Leads</h3><p>Qualified enquiries that convert. Your content becomes your best salesperson.</p></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-icon icon-premium"></div><h3>Premium Brand Image</h3><p>Look like the leader in your space. Premium visuals command premium prices.</p></div>
+    <div class="result-card reveal"><div class="result-icon icon-growth"></div><h3>Consistent Growth</h3><p>Month on month progress. Not viral spikes — sustainable upward momentum.</p></div>
+    <div class="result-card reveal reveal-delay-1"><div class="result-icon icon-clock"></div><h3>Save Time & Stay Focused</h3><p>Let us run content. You run the business. More time for what actually matters.</p></div>
+    <div class="result-card reveal reveal-delay-2"><div class="result-icon icon-video"></div><h3>Stronger Retention</h3><p>Content structured to improve engagement, consistency, and long-term brand recall.</p></div>
   </div>
 </section>
 
@@ -654,12 +609,12 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 <section id="cta">
   <div class="cta-bg"></div>
   <div class="cta-inner">
-    <div class="cta-badge"><div class="cta-dot"></div><span data-i18n="cta.badge">NOW ONBOARDING NEW CLIENTS</span></div>
-    <h2 class="cta-title reveal" data-i18n="cta.title">Ready To Scale<br><span style="background:linear-gradient(135deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;">Your Brand?</span></h2>
-    <p class="cta-sub reveal reveal-delay-1" data-i18n="cta.sub">Let BRIG MEDIA become your growth content partner. One call is all it takes.</p>
+    <div class="cta-badge"><div class="cta-dot"></div>NOW ONBOARDING NEW CLIENTS</div>
+    <h2 class="cta-title reveal">Ready To Scale<br><span style="background:linear-gradient(135deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;">Your Brand?</span></h2>
+    <p class="cta-sub reveal reveal-delay-1">Let BRIG MEDIA become your growth content partner. One call is all it takes.</p>
     <div class="hero-btns reveal reveal-delay-2">
-      <button class="btn-primary" style="font-size:15px;padding:15px 42px;" onclick="openModal()" data-i18n="cta.primary">Get Started</button>
-      <button class="btn-outline" style="font-size:15px;padding:15px 42px;" onclick="openWhatsApp()" data-i18n="cta.secondary">WhatsApp Us</button>
+      <button class="btn-primary" style="font-size:15px;padding:15px 42px;" onclick="openModal()">Get Started</button>
+      <button class="btn-outline" style="font-size:15px;padding:15px 42px;" onclick="openWhatsApp()">WhatsApp Us</button>
     </div>
     <div class="cta-note reveal reveal-delay-3"><div class="cta-dot"></div>Currently onboarding limited monthly clients — spots fill fast.</div>
   </div>
@@ -730,55 +685,6 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 </footer>
 
 <script>
-const translations={
-  en:{
-    'nav.whyUs':'Why Us','nav.services':'Services','nav.results':'Results','nav.clients':'Clients','nav.faq':'FAQ','nav.getStarted':'Get Started',
-    'hero.eyebrow':'PREMIUM CONTENT AGENCY','hero.sub':'We create content that drives real business results.','hero.desc':'Premium video production, content systems, and social media growth for brands ready to scale.','hero.ctaPrimary':'Get Started →','hero.ctaSecondary':'WhatsApp Us',
-    'chip.videoProduction':'Video Production','chip.contentCreation':'Content Creation','chip.socialMediaManagement':'Social Media Management','chip.videoEditing':'Video Editing','chip.weddingContent':'Wedding Content','chip.eventProduction':'Event Production',
-    'trusted.title':'TRUSTED BY GROWING BRANDS','trusted.desc':'Helping ambitious brands build stronger presence, better content, and measurable growth.',
-    'why.sectionLabel':'✦ Why BRIG MEDIA','why.title':'Most agencies make content.<br><span>We make content that gets results.</span>','why.card1.title':'Fast Turnaround Time','why.card1.desc':'Rapid delivery without compromising on the premium quality your brand deserves. Speed is a feature, not a compromise.','why.card2.title':'Direct Founder Support','why.card2.desc':'You don\'t talk to account managers. You work directly with the people who built the strategy and own the results.','why.card3.title':'Premium Editing Standards','why.card3.desc':'Every frame is crafted with cinematic precision. Our editing standards are borrowed from the best in the industry.','why.card4.title':'Reliable Monthly Delivery','why.card4.desc':'Consistent, on-time content delivery every single month. Never miss a posting schedule again.','why.card5.title':'Growth-Focused Strategy','why.card5.desc':'Every piece of content we create is engineered to drive measurable growth — not just views, but revenue and reach.','why.card6.title':'Video Editing & Post Production','why.card6.desc':'Cinematic edits that elevate brand perception and retention.',
-    'services.sectionLabel':'✦ What We Do','services.title':'Our <span>Services</span>','services.desc':'Six powerful pillars that cover everything your brand needs to dominate attention and drive demand.','service.video.title':'Video Production','service.video.desc':'Films, reels, ads, and visuals that make brands impossible to ignore. From concept to final cut — every second is crafted to capture, hold, and convert attention.','service.content.title':'Content Creation','service.content.desc':'High-performing content built for reach, trust, and growth. We build complete content systems that run on autopilot while your brand stays top of mind.','service.social.title':'Social Media Management','service.social.desc':'Systems that turn consistent posting into measurable growth — because brands that stay visible stay ahead. We run your social presence so you can run your business.','service.editing.title':'Video Editing','service.editing.desc':'High-retention edits designed to keep viewers watching and engaged. Clean pacing, strong hooks, and storytelling that drives results.','service.wedding.title':'Wedding Content Creation','service.wedding.desc':'Cinematic storytelling for weddings and celebrations, from hero films to social-ready highlights that preserve the emotion and energy of the day.','service.event.title':'Event Production','service.event.desc':'End-to-end event video and content production for launches, conferences, and live experiences that keep your brand front and center.','service.link':'Explore Service →',
-    'results.sectionLabel':'✦ Impact','results.title':'What We Help <span>You Achieve</span>','result.reach.title':'More Reach','result.reach.desc':'Content built to spread. Engineered for the algorithm, crafted for humans.','result.leads.title':'Better Leads','result.leads.desc':'Qualified enquiries that convert. Your content becomes your best salesperson.','result.brand.title':'Premium Brand Image','result.brand.desc':'Look like the leader in your space. Premium visuals command premium prices.','result.growth.title':'Consistent Growth','result.growth.desc':'Month on month progress. Not viral spikes — sustainable upward momentum.','result.focus.title':'Save Time & Stay Focused','result.focus.desc':'Let us run content. You run the business. More time for what actually matters.','result.retention.title':'Stronger Retention','result.retention.desc':'Content structured to improve engagement, consistency, and long-term brand recall.',
-    'showreel.button':'Watch Our Work →','cta.badge':'NOW ONBOARDING NEW CLIENTS','cta.title':'Ready To Scale<br><span>Your Brand?</span>','cta.sub':'Let BRIG MEDIA become your growth content partner. One call is all it takes.','cta.primary':'Get Started','cta.secondary':'WhatsApp Us','modal.successTitle':'We\'ve Got Your Details!','modal.successDesc':'Thanks for reaching out. Our team will review your project and get back to you within 48 hours with a custom proposal.','whatsappMessage':'Hi BRIG MEDIA, I want to work with you'
-  },
-  hi:{
-    'nav.whyUs':'क्यों हमें','nav.services':'सेवाएँ','nav.results':'परिणाम','nav.clients':'क्लाइंट','nav.faq':'FAQ','nav.getStarted':'शुरू करें',
-    'hero.eyebrow':'प्रीमियम कंटेंट एजेंसी','hero.sub':'हम ऐसी सामग्री बनाते हैं जो वास्तविक व्यावसायिक परिणाम लाती है।','hero.desc':'ब्रांड्स के लिए प्रीमियम वीडियो प्रोडक्शन, कंटेंट सिस्टम और सोशल मीडिया ग्रोथ।','hero.ctaPrimary':'शुरू करें →','hero.ctaSecondary':'व्हाट्सऐप करें',
-    'chip.videoProduction':'वीडियो प्रोडक्शन','chip.contentCreation':'कंटेंट क्रिएशन','chip.socialMediaManagement':'सोशल मीडिया मैनेजमेंट','chip.videoEditing':'वीडियो एडिटिंग','chip.weddingContent':'वेडिंग कंटेंट','chip.eventProduction':'इवेंट प्रोडक्शन',
-    'trusted.title':'विकासशील ब्रांडों द्वारा भरोसा','trusted.desc':'महत्वाकांक्षी ब्रांडों की मदद जो मजबूत उपस्थिति, बेहतर कंटेंट और मापनीय विकास चाहती हैं।',
-    'why.sectionLabel':'✦ क्यों BRIG MEDIA','why.title':'अधिकांश एजेंसियां कंटेंट बनाती हैं।<br><span>हम ऐसा कंटेंट बनाते हैं जो परिणाम देता है।</span>','why.card1.title':'तेज़ टर्नअराउंड','why.card1.desc':'तेज़ डिलीवरी बिना प्रीमियम क्वालिटी से समझौता किए। स्पीड एक फीचर है, समझौता नहीं।','why.card2.title':'डायरेक्ट फाउंडर सपोर्ट','why.card2.desc':'आप अकाउंट मैनेजर से नहीं बात करते। आप सीधे उन्हीं से काम करते हैं जिन्होंने रणनीति बनाई है।','why.card3.title':'प्रीमियम एडिटिंग स्टैंडर्ड','why.card3.desc':'हर फ्रेम सिनेमाई परिशुद्धता से तैयार होता है। हमारी एडिटिंग इंडस्ट्री के सर्वश्रेष्ठ से ली गई है।','why.card4.title':'भरोसेमंद मासिक डिलीवरी','why.card4.desc':'हर महीने समय पर कंटेंट डिलीवरी। कभी पोस्टिंग शेड्यूल मिस न करें।','why.card5.title':'ग्रोथ-फोकस्ड स्ट्रैटेजी','why.card5.desc':'हम जो कंटेंट बनाते हैं वह मात्र व्यूज़ नहीं, बल्कि राजस्व और पहुंच भी बढ़ाता है।','why.card6.title':'वीडियो एडिटिंग और पोस्ट प्रोडक्शन','why.card6.desc':'सिनेमाई एडिट जो ब्रांड की धारणा और रिटेंशन को बढ़ाते हैं।',
-    'services.sectionLabel':'✦ हम क्या करते हैं','services.title':'हमारी <span>सेवाएँ</span>','services.desc':'छह शक्तिशाली स्तंभ जो आपके ब्रांड को ध्यान जीतने और मांग पैदा करने के लिए चाहिए।','service.video.title':'वीडियो प्रोडक्शन','service.video.desc':'फिल्में, रील्स, विज्ञापन, और ऐसे visuals जो ब्रांड को नजरअंदाज करना असंभव बनाते हैं।','service.content.title':'कंटेंट क्रिएशन','service.content.desc':'उच्च प्रदर्शन करने वाला कंटेंट जो पहुंच, भरोसा, और विकास के लिए बना है।','service.social.title':'सोशल मीडिया मैनेजमेंट','service.social.desc':'लगातार पोस्टिंग को मापने योग्य विकास में बदलते सिस्टम।','service.editing.title':'वीडियो एडिटिंग','service.editing.desc':'उच्च-दृश्यता वाले एडिट जो दर्शकों को जोड़े रखते हैं।','service.wedding.title':'वेडिंग कंटेंट क्रिएशन','service.wedding.desc':'शादी और समारोहों के लिए सिनेमाई स्टोरीटेलिंग।','service.event.title':'इवेंट प्रोडक्शन','service.event.desc':'लॉन्च, कॉन्फ्रेंस, और लाइव अनुभवों के लिए एंड-टू-एंड प्रोडक्शन।','service.link':'सर्विस देखें →',
-    'results.sectionLabel':'✦ प्रभाव','results.title':'हम आपकी <span>विकास में मदद करते हैं</span>','result.reach.title':'ज़्यादा पहुंच','result.reach.desc':'ऐसा कंटेंट जो फैलने के लिए बनता है।','result.leads.title':'बेहतर लीड्स','result.leads.desc':'क्वालिफ़ाइड पूछताछ जो कन्वर्ट करती हैं।','result.brand.title':'प्रीमियम ब्रांड इमेज','result.brand.desc':'नेतृत्व दिखाने के लिए लीड करें।','result.growth.title':'लगातार विकास','result.growth.desc':'महीना दर महीना प्रगति।','result.focus.title':'समय बचाएं और ध्यान केंद्रित रखें','result.focus.desc':'हम कंटेंट संभालते हैं। आप बिजनेस चलाएं।','result.retention.title':'मजबूत रिटेंशन','result.retention.desc':'ऐसा कंटेंट जो एंगेजमेंट और याददाश्त बढ़ाता है।',
-    'showreel.button':'हमारा काम देखें →','cta.badge':'अब नए क्लाइंट ऑनबोर्डिंग','cta.title':'स्केल करने के लिए तैयार हैं?<br><span>आपका ब्रांड?</span>','cta.sub':'BRIG MEDIA को अपना ग्रोथ कंटेंट पार्टनर बनाएं। एक कॉल काफी है।','cta.primary':'शुरू करें','cta.secondary':'व्हाट्सऐप करें','modal.successTitle':'हमने आपकी जानकारी ले ली है!','modal.successDesc':'धन्यवाद! हमारी टीम आपकी प्रोजेक्ट जानकारी देखेगी और 48 घंटे के भीतर प्रस्ताव भेजेगी।','whatsappMessage':'हाय BRIG MEDIA, मैं आपके साथ काम करना चाहता/चाहती हूँ।'
-  },
-  kn:{
-    'nav.whyUs':'ನಮ್ಮನ್ನು ಏಕೆ','nav.services':'ಸೇವೆಗಳು','nav.results':'ಫಲಿತಾಂಶ','nav.clients':'ಗ್ರಾಹಕರು','nav.faq':'FAQ','nav.getStarted':'ಪ್ರಾರಂಭಿಸಿ',
-    'hero.eyebrow':'ಪ್ರೀಮಿಯಂ ಕಂಟೆಂಟ್ ಏಜೆನ್ಸಿ','hero.sub':'ನಾವು ನಿಜವಾದ ವ್ಯಾಪಾರಿಕ ಫಲಿತಾಂಶಗಳನ್ನು ತರುತ್ತಿರುವ ಕಂಟೆಂಟ್ ಸೃಷ್ಟಿಸುತ್ತೇವೆ.','hero.desc':'ಬ್ರಾಂಡ್‌ಗಳು ಪ್ರೀಮಿಯಂ ವೀಡಿಯೊ ಉತ್ಪಾದನೆ, ಕಂಟೆಂಟ್ ವ್ಯವಸ್ಥೆಗಳು ಮತ್ತು ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ ಬೆಳವಣಿಗೆಗಾಗಿ ರೆಡಿ.','hero.ctaPrimary':'ಪ್ರಾರಂಭಿಸಿ →','hero.ctaSecondary':'ವಾಟ್ಸಪ್ ಮಾಡಿ',
-    'chip.videoProduction':'ವೀಡಿಯೊ ಉತ್ಪಾದನೆ','chip.contentCreation':'ಕಂಟೆಂಟ್ ಸೃಷ್ಟಿ','chip.socialMediaManagement':'ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ ನಿರ್ವಹಣೆ','chip.videoEditing':'ವೀಡಿಯೊ ಸಂಪಾದನೆ','chip.weddingContent':'ಮದುವೆ ಕಂಟೆಂಟ್','chip.eventProduction':'ಇವೆಂಟ್ ಉತ್ಪಾದನೆ',
-    'trusted.title':'ಬೆಳೆಸುತ್ತಿರುವ ಬ್ರಾಂಡ್‌ಗಳಿಂದ ನಂಬಿಕೆ','trusted.desc':'ಬಲಿಷ್ಠ ಪ್ರಸ್ತುತಿಯನ್ನು, ಉತ್ತಮ ಕಂಟೆಂಟ್ ಅನ್ನು ಮತ್ತು ಮಾಪನీయ ಬೆಳವಣಿಗೆಯನ್ನು ಬಯಸುವ ಮಹತ್ವಾಕಾಂಕ್ಷಿಗಳ ಬ್ರಾಂಡ್‌ಗಳಿಗೆ ಸಹಾಯ.',
-    'why.sectionLabel':'✦ ಏಕೆ BRIG MEDIA','why.title':'ಅಧಿಕಾಂಶ ಏಜೆನ್ಸಿಗಳು ಕಂಟೆಂಟ್ ಅನ್ನು ರಚಿಸುತ್ತವೆ.<br><span>ನಾವು ಫಲಿತಾಂಶದನ್ನು ನೀಡುವ ಕಂಟೆಂಟ್ ಅನ್ನು ನಿರ್ಮಿಸುತ್ತೇವೆ.</span>','why.card1.title':'ವೇಗದ ಟರ್ನ್‌ಇರುಂಡು ಸಮಯ','why.card1.desc':'ಪ್ರೀಮಿಯಂ ಗುಣಮಟ್ಟತೊಂದಿಗೆ ಹೊಂದಾಣಿಕೆ ಮಾಡದೆ ವೇಗದ ವಿತರಣೆಯು. ವೇಗವು ವೈಶಿಷ್ಟ್ಯ, ಕಡಿಮೆ ಸ್ಥಾನವೇ ಅಲ್ಲ.', 'why.card2.title':'ನೇರ ಫೌಂಡರ್ ಬೆಂಬಲ','why.card2.desc':'ನೀವು ಖಾತೆ ನಿರ್ವಾಹಕರಿಗೆ ಮಾತನಾಡುವುದಿಲ್ಲ. ನೀವು ನೇರವಾಗಿ ತಂತ್ರವನ್ನು ರಚಿಸಿದವರೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುತ್ತೀರಿ.', 'why.card3.title':'ಪ್ರೀಮಿಯಂ ಸಂಪಾದನಾ ಮಾನದಂಡಗಳು','why.card3.desc':'ಪ್ರತಿ ಫ್ರೇಮ್ ಸಿನೆಮಾಟಿಕ್ ನಿಖರತೆಯಿಂದ ತಯಾರಿಸಲಾಗುತ್ತದೆ. ನಮ್ಮ ಸಂಪಾದನಾ ಮಾನದಂಡಗಳು ಕೈಗಾರಿಕೆಯ ಉತ್ತಮರಿಂದ ಪಡೆದದ್ದು.', 'why.card4.title':'ಭರವಸೆಯ ಮಾಸಿಕ ವಿತರಣೆ','why.card4.desc':'ಪ್ರತಿ ತಿಂಗಳು ಸಮಯಕ್ಕೆ ಕಂಟೆಂಟ್ ವಿತರಣೆ. ಪೋಸ್ಟಿಂಗ್ ವೇಳಾಪಟ್ಟಿ ತಪ್ಪಿಸಿಕೊಳ್ಳಬೇಡಿ.', 'why.card5.title':'ವೃದ್ಧಿ-ಕೇಂದ್ರಿತ ತಂತ್ರ','why.card5.desc':'ನಾವು ಸೃಷ್ಟಿಸುವ ಪ್ರತಿಯೊಂದು ಕಂಟೆಂಟ್ ಮಾಪನೀಯ ಬೆಳವಣಿಗೆಯನ್ನು ಉದ್ದೇಶಿಸುತ್ತದೆ — ಕೇವಲ ವೀಕ್ಷಣೆಗಳು ಅಲ್ಲ, ಆದಾಯ ಮತ್ತು ಏರಿಕೆ.', 'why.card6.title':'ವೀಡಿಯೊ ಸಂಪಾದನೆ ಮತ್ತು ಪೋಸ್ಟ್ ಪ್ರೊಡಕ್ಷನ್','why.card6.desc':'ಸಿನೆಮಾಟಿಕ್ ಸಂಪಾದನೆಗಳು ಬ್ರಾಂಡ್ ಗ್ರಹಿಕೆಯನ್ನು ಮತ್ತು ಪದ್ದತಿಯನ್ನು ಹೆಚ್ಚಿಸುತ್ತವೆ.',
-    'services.sectionLabel':'✦ ನಾವು ಏನು ಮಾಡುತ್ತೇವೆ','services.title':'ನಮ್ಮ <span>ಸೇವೆಗಳು</span>','services.desc':'ನಿಮ್ಮ ಬ್ರಾಂಡ್‌ಗಾಗಿ ಗಮನವನ್ನು ಗೆಲ್ಲಲು ಮತ್ತು ಬೇಡಿಕೆಯನ್ನು ಚಾಲನೆ ಮಾಡಲು ಅಗತ್ಯವಿರುವ ಆರು ಶಕ್ತಿಶಾಲಿ ಶಿಲೆಗಳು.','service.video.title':'ವೀಡಿಯೊ ಉತ್ಪಾದನೆ','service.video.desc':'ಬ್ರಾಂಡ್‌ಗಳನ್ನು ನಿರ್ಲಕ್ಷಿಸಬಹುದಾದದಾಗಿ ಮಾಡುತ್ತಿರುವ ಚಿತ್ರಗಳು, ರೀಲ್ಸ್, ಜಾಹೀರಾತುಗಳು ಮತ್ತು ವೀಕ್ಷಣೆಗಳು.','service.content.title':'ಕಂಟೆಂಟ್ ಸೃಷ್ಟಿ','service.content.desc':'ಪ್ರಾಪ್ತಿಗೆ, ನಂಬಿಕೆಗೆ ಮತ್ತು ಬೆಳವಣಿಗೆಗೆ ನಿರ್ಮಿಸಲಾದ ಉನ್ನತ ಪ್ರದರ್ಶನದ ಕಂಟೆಂಟ್.','service.social.title':'ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ ನಿರ್ವಹಣೆ','service.social.desc':'ನಿರಂತರ ಪೋಸ್ಟಿಂಗ್ ಅನ್ನು ಮಾಪನೀಯ ಬೆಳವಣಿಗೆಯಲ್ಲಿ ಪರಿವರ್ತಿಸುವ ವ್ಯವಸ್ಥೆಗಳು.','service.editing.title':'ವೀಡಿಯೊ ಸಂಪಾದನೆ','service.editing.desc':'ದರ್ಶಕರನ್ನು ಕಟ್ಟಿ ಇಡುವ ಉನ್ನತ-ದೃಷ್ಟಿಯ ಸಂಪಾದನೆಗಳು.','service.wedding.title':'ಮದುವೆ ಕಂಟೆಂಟ್ ಸೃಷ್ಟಿ','service.wedding.desc':'ಮದುವೆ ಮತ್ತು ಸಂಭ್ರಮಗಳಿಗಾಗಿ ಸಿನೆಮಾಟಿಕ್ ಸ್ಟೋರಿಟೆಲಿಂಗ್.', 'service.event.title':'ಇವೆಂಟ್ ಉತ್ಪಾದನೆ','service.event.desc':'ಲಾಂಚ್‌ಗಳು, ಕಾನ್ಫರೆನ್ಸ್‌ಗಳು ಮತ್ತು ಲೈವ್ ಅನುಭವಗಳಿಗಾಗಿ ಎಂಡ್-ಟು-ಎಂಡ್ ಉತ್ಪಾದನೆ.','service.link':'ಸೇವೆಯನ್ನು ಅನ್ವೇಷಿಸು →',
-    'results.sectionLabel':'✦ ಪರಿಣಾಮ','results.title':'ನಾವು ನಿಮ್ಮ <span>ಬೆಳವಣಿಗೆಯಲ್ಲಿ</span> ಸಹಾಯ ಮಾಡುವುದೇನು','result.reach.title':'ಹೆಚ್ಚಿನ ಪ್ರಾಪ್ತಿ','result.reach.desc':'ವಿತರಿಸಲು ನಿರ್ಮಿಸಲಾದ ಕಂಟೆಂಟ್.','result.leads.title':'ಉತ್ತಮ ಮುಖಪುಟಗಳು','result.leads.desc':'ರೂಪಾಂತರಗೊಳ್ಳುವ ಅರ್ಹವಾದ ವಿಚಾರಣೆಗಳು.','result.brand.title':'ಪ್ರೀಮಿಯಂ ಬ್ರಾಂಡ್ ಇಮೇಜ್','result.brand.desc':'ನಿಮ್ಮ ಸ್ಥಳದಲ್ಲಿ ನಾಯಕನಂತೆ ಕಾಣಿರಿ.', 'result.growth.title':'ಸಾಂಕೇತಿಕ ಬೆಳವಣಿಗೆ','result.growth.desc':'ತಿಂಗಳು ತೋರಿನ ಮೇಲೆ ಪ್ರಗತಿ.','result.focus.title':'ಸಮಯವನ್ನು ಉಳಿಸಿ ಮತ್ತು ಗಮನವನ್ನು ಕೇಂದ್ರೀಕರಿಸಿ','result.focus.desc':'ನಾವು ಕಂಟೆಂಟ್ ಹ್ಯಾಂಡಲ್ ಮಾಡೋಣ. ನೀವು ವ್ಯವಹಾರವನ್ನು ನಡೆಸಿ.', 'result.retention.title':'ದೃಢ ಹಿಡಿತ','result.retention.desc':'ಎಂಗೇಜ್‌ಮೆಂಟ್ ಮತ್ತು ದೀರ್ಘಕಾಲದ ಮರುಕುರಿತು ಹೆಚ್ಚಿಸುವ ಕಂಟೆಂಟ್.',
-    'showreel.button':'ನಮ್ಮ ಕೆಲಸವನ್ನು ವೀಕ್ಷಿಸಿ →','cta.badge':'ಈಗ ಹೊಸ ಗ್ರಾಹಕರನ್ನು ಸೇರಿಸುತ್ತಿದೆ','cta.title':'ವೃದ್ಧಿಸಬೇಕೆಂದಿರುತ್ತೀರಾ?<br><span>ನಿಮ್ಮ ಬ್ರ್ಯಾಂಡ್?</span>','cta.sub':'BRIG MEDIA ಅನ್ನು ನಿಮ್ಮ ಬೆಳವಣಿಗೆಯ ಕಂಟೆಂಟ್ ಪಾಲುದಾರನಾಗಿರಿಸಿ. ಒಂದು ಕರೆ ಸಾಕು.','cta.primary':'ಪ್ರಾರಂಭಿಸಿ','cta.secondary':'ವಾಟ್ಸಪ್ ಮಾಡಿ','modal.successTitle':'ನಾವು ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಪಡೆದಿದ್ದೇವೆ!','modal.successDesc':'ಧನ್ಯವಾದಗಳು! ನಮ್ಮ ತಂಡ ನಿಮ್ಮ ಪ್ರಾಜೆಕ್ಟ್ ವಿವರಗಳನ್ನು ಪರಿಶೀಲಿಸಿ 48 ಗಂಟೆಗಳೊಳಗೆ ಪ್ರಸ್ತಾಪ ಕಳುಹಿಸುತ್ತದೆ.','whatsappMessage':'ಹಾಯ್ BRIG MEDIA, ನಾನು ನಿಮ್ಮೊಡನೆ ಕೆಲಸ ಮಾಡಲು ಇಚ್ಛಿಸುತ್ತಿದ್ದೇನೆ.'
-  }
-};
-let currentLang='en';
-function setLanguage(lang){
-  if(!translations[lang])lang='en';
-  currentLang=lang;
-  document.documentElement.lang=lang;
-  localStorage.setItem('preferredLang',lang);
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.dataset.i18n; if(translations[lang][key]) el.innerHTML=translations[lang][key];});
-  document.querySelectorAll('.lang-switcher button').forEach(btn=>btn.classList.toggle('active',btn.dataset.lang===lang));
-}
-function initLanguage(){
-  const stored=localStorage.getItem('preferredLang');
-  const browser=navigator.language.toLowerCase();
-  const defaultLang=stored|| (browser.startsWith('hi')?'hi':browser.startsWith('kn')?'kn':'en');
-  setLanguage(defaultLang);
-  document.querySelectorAll('.lang-switcher button').forEach(btn=>btn.addEventListener('click',()=>setLanguage(btn.dataset.lang)));
-}
-initLanguage();
 /* ══ SHADER BACKGROUND ══ */
 (function(){
   const canvas=document.getElementById('bg-canvas');
@@ -927,7 +833,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
 /* ══ WHATSAPP ══ */
 function openWhatsApp(){
-  const msg=encodeURIComponent(translations[currentLang]?.whatsappMessage || 'Hi BRIG MEDIA, I want to work with you');
+  const msg=encodeURIComponent('Hi BRIG MEDIA, I want to work with you');
   window.open('https://wa.me/919353964663?text='+msg,'_blank');
 }
 </script>
