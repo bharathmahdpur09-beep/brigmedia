@@ -10,7 +10,7 @@
   "@type": "Organization",
   "name": "Brig Media",
   "url": "https://brigmedia.in",
-  "logo": "https://brigmedia.in/favicon.png"
+  "logo": "https://brigmedia.in/logo.png"
 }
 </script>
 <meta name="application-name" content="Brig Media">
@@ -18,8 +18,9 @@
 <meta property="og:title" content="Brig Media">
 <meta name="twitter:title" content="Brig Media">
 <meta name="description" content="Premium video production, content systems, and social media growth for brands ready to scale.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="shortcut icon" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
@@ -43,7 +44,7 @@ nav,section,footer,#floating-dots{position:relative;z-index:2;}
 #cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(192,57,43,0.42);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .26s,height .26s,border-color .26s;}
 
 .premium-navbar{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:88%;max-width:1200px;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,4,4,0.78);border:1px solid rgba(192,57,43,0.15);border-radius:24px;backdrop-filter:blur(16px);z-index:9999;box-shadow:0 12px 40px rgba(0,0,0,0.25),inset 0 0 0.5px rgba(255,255,255,0.06);}
-.nav-logo{color:var(--orange);font-size:18px;font-weight:700;letter-spacing:1px;text-shadow:0 0 12px rgba(230,126,34,0.22);}
+.nav-logo img{height:42px;}
 .nav-menu{display:flex;align-items:center;gap:40px;list-style:none;position:absolute;left:50%;transform:translateX(-50%);}
 .nav-menu a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;transition:color .3s ease;}
 .nav-menu a:hover{color:var(--orange);}
@@ -52,7 +53,7 @@ nav,section,footer,#floating-dots{position:relative;z-index:2;}
 @media(max-width:900px){
   .premium-navbar{padding:14px 18px;width:94%;}
   .nav-menu{display:none;}
-  .nav-logo{font-size:16px;}
+  .nav-logo img{height:36px;}
   .nav-btn{padding:10px 20px;font-size:13px;}
 }
 
@@ -279,7 +280,7 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 @media(max-width:960px){.testimonials-inner{grid-template-columns:1fr 1fr;}.results-grid{grid-template-columns:repeat(3,1fr);}.plans-grid{grid-template-columns:1fr 1fr;}.footer-top{grid-template-columns:1fr;}}
 @media(max-width:800px){
   nav{padding:14px 4%;}
-  .nav-logo{font-size:15px;}
+  .nav-logo img{height:32px;}
   .nav-cta{padding:10px 18px;font-size:12.5px;}
   .hero-title-wrap{max-width:100%;padding-inline:12px;}
   .hero-desc{max-width:100%;margin-bottom:18px;}
@@ -289,7 +290,7 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 }
 @media(max-width:500px){
   nav{padding:12px 4%;}
-  .nav-logo{font-size:14px;}
+  .nav-logo img{height:28px;}
   .hero-eyebrow{margin-bottom:16px;}
   .hero-title-wrap{margin-bottom:14px;}
   .hero-btns{flex-direction:column;gap:10px;}
@@ -387,7 +388,9 @@ footer{padding:48px 8% 28px;border-top:1px solid var(--border);position:relative
 
 <!-- NAV -->
 <nav id="navbar" class="premium-navbar">
-  <div class="nav-logo">BRIG MEDIA</div>
+  <div class="nav-logo">
+    <img src="logo.png" alt="Brig Media" style="height:42px;">
+  </div>
   <ul class="nav-menu">
     <li><a href="#why">Why Us</a></li>
     <li><a href="#services">Services</a></li>
