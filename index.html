@@ -59,7 +59,8 @@
   .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:40px 0 60px}
   @media (max-width:900px){.features-grid{grid-template-columns:1fr}}
   .fcard{background:var(--bg-soft);border:1.5px solid var(--ink);border-radius:24px;padding:32px;box-shadow:5px 5px 0 var(--ink);text-align:center}
-  .blob{width:140px;height:140px;border-radius:50%;margin:0 auto 22px}
+  .blob{width:140px;height:140px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;color:var(--ink)}
+  .blob svg{width:70px;height:70px;stroke:currentColor;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
   .b1{background:var(--mint)}.b2{background:var(--pink)}.b3{background:var(--lilac)}
   .fcard h3{font-family:'Bricolage Grotesque',serif;font-size:24px;margin-bottom:10px}
   .fcard p{color:var(--ink-soft);line-height:1.55}
@@ -608,9 +609,42 @@ img,video,canvas,svg{max-width:100%;height:auto}
 
 <section class="container">
   <div class="features-grid">
-    <div class="fcard reveal"><div class="blob b1"></div><h3>Fast and Reliable Delivery</h3><p>We move at the speed of creativity — and caffeine. Your deadlines won't even see us coming.</p></div>
-    <div class="fcard reveal"><div class="blob b2"></div><h3>Clear, No-Surprise Pricing</h3><p>No hidden fees, no sneaky charges — just clear, honest pricing and work that makes you wonder.</p></div>
-    <div class="fcard reveal"><div class="blob b3"></div><h3>Everything, Under One Roof</h3><p>Video, content, social, editing, events. One team, premium output, full ownership of your brand story.</p></div>
+    <div class="fcard reveal">
+      <div class="blob b1" aria-hidden="true">
+        <svg viewBox="0 0 72 72">
+          <path d="M12 43h35V24H22" />
+          <path d="M47 31h9l7 8v4H47" />
+          <path d="M8 30h18" />
+          <path d="M6 38h14" />
+          <circle cx="24" cy="49" r="5" />
+          <circle cx="54" cy="49" r="5" />
+        </svg>
+      </div>
+      <h3>Fast and Reliable Delivery</h3><p>We move at the speed of creativity — and caffeine. Your deadlines won't even see us coming.</p>
+    </div>
+    <div class="fcard reveal">
+      <div class="blob b2" aria-hidden="true">
+        <svg viewBox="0 0 72 72">
+          <path d="M20 14h24l12 12v32H20z" />
+          <path d="M44 14v12h12" />
+          <path d="M28 36h16" />
+          <path d="M28 46h11" />
+          <path d="M25 25h8" />
+        </svg>
+      </div>
+      <h3>Clear, No-Surprise Pricing</h3><p>No hidden fees, no sneaky charges — just clear, honest pricing and work that makes you wonder.</p>
+    </div>
+    <div class="fcard reveal">
+      <div class="blob b3" aria-hidden="true">
+        <svg viewBox="0 0 72 72">
+          <path d="M13 35 36 16l23 19" />
+          <path d="M19 33v25h34V33" />
+          <path d="M28 58V44h16v14" />
+          <path d="M27 31h18" />
+        </svg>
+      </div>
+      <h3>Everything, Under One Roof</h3><p>Video, content, social, editing, events. One team, premium output, full ownership of your brand story.</p>
+    </div>
   </div>
 </section>
 
