@@ -302,16 +302,15 @@
     <div class="reveal mb-10">
       <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Selected Work</div>
       <h2 class="font-display text-5xl sm:text-7xl text-balance max-w-3xl leading-[0.98]">
-        Films, campaigns, <span class="italic" style="color:var(--crimson-soft)">moments.</span>
+        Films, reels, <span class="italic" style="color:var(--crimson-soft)">moments.</span>
       </h2>
       <p class="mt-8 max-w-2xl text-white/65 text-base sm:text-lg leading-relaxed">
-        A living archive of brand films, campaigns, weddings, events and editorial work built to create attention.
+        A living archive of brand films, weddings, events and editorial work built to create attention.
       </p>
     </div>
     <div class="reveal mb-12 flex flex-wrap gap-3">
       <button data-filter="All" onclick="filterPortfolio('All')" class="portfolio-filter btn-primary rounded-full px-5 py-3 text-sm font-medium">All</button>
       <button data-filter="Brand Film" onclick="filterPortfolio('Brand Film')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Brand Film</button>
-      <button data-filter="Campaign" onclick="filterPortfolio('Campaign')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Campaign</button>
       <button data-filter="Wedding" onclick="filterPortfolio('Wedding')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Wedding</button>
       <button data-filter="Event" onclick="filterPortfolio('Event')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Event</button>
       <button data-filter="Photography" onclick="filterPortfolio('Photography')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Photography</button>
@@ -470,31 +469,38 @@ document.getElementById('services-grid').innerHTML = services.map(s => `
   </div>
 `).join('');
 
+function videoThumbnail(videoUrl) {
+  if (!videoUrl) return '';
+  return videoUrl
+    .replace('/video/upload/', '/video/upload/so_0.1/')
+    .replace(/\.mp4$/i, '.jpg');
+}
+
 // Work data
 const projects = [
   {
-    title: "Island Cafe - Brand Reel",
+    title: "Island Cafe",
     tag: "Brand Film",
     category: "Brand Film",
     meta: "Island Cafe",
     video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084511/2026_05_12_23_20_IMG_8153_prbjbn.mp4"
   },
   {
-    title: "HOD Pub - Brand Reel",
+    title: "HOD Pub",
     tag: "Brand Film",
     category: "Brand Film",
     meta: "HOD Pub",
     video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084792/hod-4K_knvpmv.mp4"
   },
   {
-    title: "Posture Gym - Brand Reel",
+    title: "Posture Gym",
     tag: "Brand Film",
     category: "Brand Film",
     meta: "Posture Gym",
     video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781083893/2026_06_02_20_04_IMG_8156_menvqp.mp4"
   },
   {
-    title: "Saloon - Brand Reel",
+    title: "Saloon",
     tag: "Brand Film",
     category: "Brand Film",
     meta: "Saloon",
@@ -535,19 +541,32 @@ const projects = [
     meta: "Saloon",
     video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084047/2026_05_18_22_36_IMG_8155_bpv9ao.mp4"
   },
+  {
+    title: "Spin Event Promo",
+    tag: "Reels",
+    category: "Reels",
+    meta: "Event Promo",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781092311/SPIN_DOCTOR-PROMO_rdtcrf.mp4"
+  },
+  {
+    title: "Kushi Influencer",
+    tag: "Reels",
+    category: "Reels",
+    meta: "Influencer Reel",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781092263/khushi_zodiac_sign_xipvwr.mp4"
+  },
   { title: "Maison Sera — Atelier Film", tag: "Brand Film", meta: "Fashion · Mumbai" },
   { title: "Foundry Labs — Launch Campaign", tag: "Campaign", meta: "Tech · Bangalore" },
 ];
 const portfolioProjects = projects.filter(p => !p.title.includes('Maison Sera') && !p.title.includes('Foundry Labs'));
 
 function projectCard(p, i) {
+  const thumbnail = p.video ? videoThumbnail(p.video) : '';
   return `
   <div class="reveal group cursor-pointer" ${p.video ? `onclick="openVideo('${p.video}', '${p.title.replace(/'/g, "\\'")}')"` : ''}>
     <div class="relative aspect-[4/5] rounded-3xl overflow-hidden glass">
       ${p.video ? `
-        <video class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" muted loop playsinline preload="metadata">
-          <source src="${p.video}" type="video/mp4">
-        </video>
+        <img src="${thumbnail}" alt="${p.title}" class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" loading="lazy" decoding="async">
       ` : `
         <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105" style="background-image: radial-gradient(ellipse at ${30 + i * 20}% 40%, oklch(0.55 0.24 25 / 0.45), transparent 60%), linear-gradient(135deg, oklch(0.15 0.04 20), oklch(0.05 0.01 20));"></div>
       `}
@@ -578,7 +597,7 @@ document.getElementById('portfolio-grid').innerHTML = portfolioProjects.map(proj
 function openPortfolio() {
   const portfolio = document.getElementById('portfolio');
   portfolio.classList.remove('hidden');
-  portfolio.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  portfolio.scrollIntoView({ behavior: 'auto', block: 'start' });
   document.querySelectorAll('#portfolio .reveal').forEach(el => el.classList.add('in'));
 }
 
