@@ -456,7 +456,6 @@ const services = [
   { num: "05", title: "Event Production & Coverage", desc: "End-to-end production for launches, concerts, weddings, and large-scale moments." },
   { num: "06", title: "Brig Haus", desc: "Instant reel studio — we shoot, edit, and deliver ready-to-post content on location." },
 ];
-const portfolioProjects = projects.filter(p => !p.title.includes('Maison Sera') && !p.title.includes('Foundry Labs'));
 document.getElementById('services-grid').innerHTML = services.map(s => `
   <div class="reveal group glass rounded-3xl p-7 card-hover relative overflow-hidden">
     <div class="absolute -top-24 -right-24 h-48 w-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="background:oklch(0.55 0.24 25 / 0.18)"></div>
@@ -522,9 +521,24 @@ const projects = [
     meta: "DSU Event",
     video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781091324/2026_05_12_08_58_IMG_7544_jk46yw.mp4"
   },
+  {
+    title: "Swift - Reel",
+    tag: "Reels",
+    category: "Reels",
+    meta: "Swift",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084113/2026_05_22_18_54_IMG_7998_tf3qxy.mp4"
+  },
+  {
+    title: "Saloon - Reel",
+    tag: "Reels",
+    category: "Reels",
+    meta: "Saloon",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084047/2026_05_18_22_36_IMG_8155_bpv9ao.mp4"
+  },
   { title: "Maison Sera — Atelier Film", tag: "Brand Film", meta: "Fashion · Mumbai" },
   { title: "Foundry Labs — Launch Campaign", tag: "Campaign", meta: "Tech · Bangalore" },
 ];
+const portfolioProjects = projects.filter(p => !p.title.includes('Maison Sera') && !p.title.includes('Foundry Labs'));
 
 function projectCard(p, i) {
   return `
