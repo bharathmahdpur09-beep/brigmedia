@@ -160,9 +160,17 @@
 </head>
 <body>
 
+<!-- Video background -->
+<div class="fixed inset-0 pointer-events-none" style="z-index:-20">
+  <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover">
+    <source src="https://res.cloudinary.com/dkkfzrysh/video/upload/q_auto:low,w_1280,vc_auto/v1781109070/136726-764934405_q0kc89.mp4" type="video/mp4">
+  </video>
+  <div class="absolute inset-0 bg-black/45"></div>
+</div>
+
 <!-- Canvas background -->
 <div class="fixed inset-0 pointer-events-none" style="z-index:-10">
-  <canvas id="sphere" class="w-full h-full block"></canvas>
+  <canvas id="sphere" class="w-full h-full block" aria-hidden="true" style="display:none;"></canvas>
   <div class="absolute inset-0 grain scanlines"></div>
 </div>
 
@@ -956,199 +964,12 @@ function submitWhatsapp() {
   waOpen(lines);
 }
 
-// Sphere Canvas
+// Sphere Canvas disabled to keep the page responsive.
 (() => {
   const canvas = document.getElementById('sphere');
-  const ctx = canvas.getContext('2d', { alpha: true });
-  const backgroundImage = new Image();
-  backgroundImage.src = 'backgroundphoto.png?v=' + Date.now();
-  let dpr = Math.min(window.devicePixelRatio || 1, 2);
-  let w = 0, h = 0;
-  let targetScale = 1;
-  let currentScale = 1;
-
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = window.innerWidth; h = window.innerHeight;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  if (canvas) {
+    canvas.remove();
   }
-  function onScroll() {
-    const y = window.scrollY;
-    const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
-    const p = Math.min(y / max, 1);
-    targetScale = 1 + p * 0.28;
-  }
-
-  function drawCameraGlyph(x, y, radius) {
-    const bodyW = radius * 1.35;
-    const bodyH = radius * 0.78;
-    const lensR = radius * 0.34;
-
-    ctx.save();
-    ctx.translate(x, y);
-
-    const bodyGrad = ctx.createLinearGradient(-bodyW * 0.52, -bodyH * 0.45, bodyW * 0.52, bodyH * 0.45);
-    bodyGrad.addColorStop(0, 'rgba(19,23,28,0.98)');
-    bodyGrad.addColorStop(0.35, 'rgba(46,52,61,0.98)');
-    bodyGrad.addColorStop(0.65, 'rgba(18,20,25,0.98)');
-    bodyGrad.addColorStop(1, 'rgba(8,10,12,0.98)');
-
-    ctx.shadowColor = 'rgba(0,0,0,0.45)';
-    ctx.shadowBlur = 28;
-    ctx.fillStyle = bodyGrad;
-    ctx.beginPath();
-    ctx.roundRect(-bodyW * 0.48, -bodyH * 0.42, bodyW * 0.96, bodyH * 0.86, 18);
-    ctx.fill();
-
-    ctx.shadowBlur = 0;
-
-    // top plate / grip
-    ctx.fillStyle = 'rgba(25,29,35,0.98)';
-    ctx.beginPath();
-    ctx.roundRect(-bodyW * 0.17, -bodyH * 0.20, bodyW * 0.34, bodyH * 0.26, 12);
-    ctx.fill();
-
-    ctx.fillStyle = 'rgba(37,43,51,0.98)';
-    ctx.beginPath();
-    ctx.moveTo(-bodyW * 0.43, bodyH * 0.16);
-    ctx.lineTo(-bodyW * 0.05, bodyH * 0.16);
-    ctx.lineTo(-bodyW * 0.18, bodyH * 0.40);
-    ctx.lineTo(-bodyW * 0.55, bodyH * 0.40);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.fillStyle = 'rgba(255,255,255,0.10)';
-    ctx.beginPath();
-    ctx.roundRect(-bodyW * 0.32, -bodyH * 0.08, bodyW * 0.18, bodyH * 0.10, 8);
-    ctx.fill();
-
-    ctx.fillStyle = 'rgba(255,255,255,0.08)';
-    ctx.beginPath();
-    ctx.roundRect(-bodyW * 0.18, -bodyH * 0.33, bodyW * 0.20, bodyH * 0.08, 6);
-    ctx.fill();
-
-    // lens housing
-    const lensBase = ctx.createLinearGradient(bodyW * 0.10, -bodyH * 0.25, bodyW * 0.66, bodyH * 0.25);
-    lensBase.addColorStop(0, 'rgba(18,22,28,0.98)');
-    lensBase.addColorStop(0.5, 'rgba(41,48,58,0.98)');
-    lensBase.addColorStop(1, 'rgba(12,14,18,0.98)');
-    ctx.fillStyle = lensBase;
-    ctx.beginPath();
-    ctx.roundRect(bodyW * 0.02, -bodyH * 0.32, bodyW * 0.52, bodyH * 0.64, 18);
-    ctx.fill();
-
-    const lensGrad = ctx.createRadialGradient(bodyW * 0.28, 0, 0, bodyW * 0.28, 0, lensR * 1.05);
-    lensGrad.addColorStop(0, 'rgba(7,9,12,1)');
-    lensGrad.addColorStop(0.35, 'rgba(35,42,52,1)');
-    lensGrad.addColorStop(0.7, 'rgba(12,15,19,1)');
-    lensGrad.addColorStop(1, 'rgba(3,4,6,1)');
-    ctx.fillStyle = lensGrad;
-    ctx.beginPath();
-    ctx.arc(bodyW * 0.28, 0, lensR, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.strokeStyle = 'rgba(255,255,255,0.10)';
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(bodyW * 0.28, 0, lensR * 0.52, 0, Math.PI * 2);
-    ctx.stroke();
-
-    const lensRing = ctx.createLinearGradient(bodyW * 0.08, -lensR * 0.3, bodyW * 0.48, lensR * 0.3);
-    lensRing.addColorStop(0, 'rgba(70,80,92,0.95)');
-    lensRing.addColorStop(1, 'rgba(18,22,27,0.95)');
-    ctx.fillStyle = lensRing;
-    ctx.beginPath();
-    ctx.roundRect(bodyW * 0.08, -lensR * 0.30, bodyW * 0.40, lensR * 0.60, 8);
-    ctx.fill();
-
-    ctx.fillStyle = 'rgba(255,255,255,0.18)';
-    ctx.beginPath();
-    ctx.arc(bodyW * 0.28, 0, lensR * 0.28, 0, Math.PI * 2);
-    ctx.fill();
-
-    // viewfinder / top controls
-    ctx.fillStyle = 'rgba(10,12,16,0.99)';
-    ctx.beginPath();
-    ctx.roundRect(-bodyW * 0.12, -bodyH * 0.38, bodyW * 0.18, bodyH * 0.18, 8);
-    ctx.fill();
-
-    ctx.fillStyle = 'rgba(255,255,255,0.85)';
-    ctx.beginPath();
-    ctx.arc(-bodyW * 0.02, -bodyH * 0.29, bodyH * 0.03, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(-bodyW * 0.05, bodyH * 0.08);
-    ctx.lineTo(bodyW * 0.54, bodyH * 0.08);
-    ctx.stroke();
-
-    ctx.fillStyle = 'rgba(255,0,0,0.75)';
-    ctx.beginPath();
-    ctx.arc(-bodyW * 0.22, -bodyH * 0.12, bodyH * 0.04, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.fillStyle = 'rgba(255,255,255,0.06)';
-    ctx.beginPath();
-    ctx.roundRect(-bodyW * 0.48, bodyH * 0.18, bodyW * 0.84, bodyH * 0.08, 8);
-    ctx.fill();
-
-    ctx.restore();
-  }
-
-  resize();
-  onScroll();
-  window.addEventListener('resize', resize, { passive: true });
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  function draw(now) {
-    currentScale += (targetScale - currentScale) * 0.12;
-    ctx.clearRect(0, 0, w, h);
-
-    if (backgroundImage.complete && backgroundImage.naturalWidth > 0) {
-      const imgAspect = backgroundImage.naturalWidth / backgroundImage.naturalHeight;
-      const canvasAspect = w / h;
-      let sx = 0;
-      let sy = 0;
-      let sw = backgroundImage.naturalWidth;
-      let sh = backgroundImage.naturalHeight;
-
-      if (imgAspect > canvasAspect) {
-        sh = backgroundImage.naturalHeight;
-        sw = sh * canvasAspect;
-        sx = (backgroundImage.naturalWidth - sw) / 2;
-      } else {
-        sw = backgroundImage.naturalWidth;
-        sh = sw / canvasAspect;
-        sy = (backgroundImage.naturalHeight - sh) / 2;
-      }
-
-      ctx.save();
-      ctx.translate(w / 2, h / 2);
-      ctx.scale(currentScale, currentScale);
-      ctx.translate(-w / 2, -h / 2);
-      ctx.drawImage(backgroundImage, sx, sy, sw, sh, 0, 0, w, h);
-      ctx.restore();
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
-      ctx.fillRect(0, 0, w, h);
-    } else {
-      const bg = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w,h)*0.8);
-      bg.addColorStop(0, 'rgba(20,4,6,1)');
-      bg.addColorStop(0.4, 'rgba(12,2,4,1)');
-      bg.addColorStop(0.75, 'rgba(6,1,2,1)');
-      bg.addColorStop(1, 'rgba(0,0,0,1)');
-      ctx.fillStyle = bg; ctx.fillRect(0,0,w,h);
-    }
-
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-    ctx.fillRect(0, 0, w, h);
-
-    requestAnimationFrame(draw);
-  }
-  requestAnimationFrame(draw);
 })();
 </script>
 </body>
