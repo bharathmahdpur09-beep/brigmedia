@@ -1,1291 +1,796 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BRIG MEDIA — Seen, Heard, and Remembered</title>
-<meta name="description" content="BRIG MEDIA is a cinematic content studio building video, social, and brand systems for growth-stage brands." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<title>Brig Media — We Create Attention</title>
+<meta name="description" content="Creative media agency. Cinematic films, photography, content, and the Brig Haus instant reel studio." />
+<meta name="theme-color" content="#0a0203" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-  :root{
-    --bg:#fbf3d8; --bg-soft:#fff8e1; --ink:#2a0c08; --ink-soft:#5a3a32;
-    --pink:#f8b4bd; --mint:#b9eed1; --lilac:#c9b6ff; --yellow:#ffd84d;
+  :root {
+    --crimson: oklch(0.55 0.24 25);
+    --crimson-bright: oklch(0.7 0.24 25);
+    --crimson-soft: oklch(0.78 0.18 25);
+    --foreground: oklch(0.98 0.01 60);
+    --background: oklch(0.06 0.02 20);
+    --font-display: 'Instrument Serif', serif;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  a{color:inherit;text-decoration:none}
-  .container{max-width:1280px;margin:0 auto;padding:0 24px}
-
-  .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:18px 28px}
-  .brand{font-family:'Archivo Black',sans-serif;font-size:18px}
-  .nav-pill{display:flex;gap:6px;background:var(--bg-soft);border:1.5px solid var(--ink);border-radius:999px;padding:8px 10px;box-shadow:3px 3px 0 var(--ink)}
-  .nav-pill a{padding:8px 16px;border-radius:999px;font-weight:600;font-size:14px;transition:.2s}
-  .nav-pill a:hover{background:var(--ink);color:var(--bg)}
-  .menu-btn{display:inline-flex;background:var(--mint);border:1.5px solid var(--ink);border-radius:999px;padding:10px 22px;font-weight:700;box-shadow:3px 3px 0 var(--ink);cursor:pointer;font-family:inherit}
-  @media (max-width:820px){
-    .nav-pill{display:none}
-    .nav.open .nav-pill{
-      position:absolute;
-      top:calc(100% + 8px);
-      left:18px;
-      right:18px;
-      display:flex;
-      flex-direction:column;
-      border-radius:20px;
-    }
-    .nav.open .nav-pill a{text-align:center}
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: var(--foreground);
+    background: transparent;
+    overflow-x: hidden;
+    margin: 0;
   }
-
-  .hero{position:relative;text-align:center;padding:80px 16px 60px;overflow:hidden}
-  .hero-rings{position:absolute;inset:0;z-index:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
-  .ring{position:absolute;border:1px solid rgba(232,140,160,.5);border-radius:50%}
-  .hero-inner{position:relative;z-index:2}
-  .hero h1{font-family:'Archivo Black',sans-serif;font-size:clamp(72px,17vw,260px);line-height:.86;letter-spacing:0}
-  .tag{position:absolute;border:1.5px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;box-shadow:2px 2px 0 var(--ink)}
-  .tag.t1{background:var(--mint);top:18%;left:14%;--r:-10deg}
-  .tag.t2{background:var(--pink);top:6%;left:48%;--r:-4deg}
-  .tag.t3{background:var(--lilac);top:32%;right:10%;--r:8deg}
-  @keyframes float{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-8px) rotate(var(--r,0deg))}}
-  .tag{animation:float 5.5s ease-in-out infinite}
-  .hero-sub{margin-top:36px;font-family:'Bricolage Grotesque',serif;font-weight:700;font-size:clamp(28px,4.4vw,56px);line-height:1.05;letter-spacing:0}
-  .hero-sub em{font-style:italic;font-weight:800}
-  .cta-row{margin-top:34px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;border:1.5px solid var(--ink);font-weight:700;font-size:15px;box-shadow:4px 4px 0 var(--ink);cursor:pointer;background:var(--bg-soft);transition:.15s}
-  .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
-  .btn-primary{background:var(--yellow)}
-
-  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:40px 0 60px}
-  @media (max-width:900px){.features-grid{grid-template-columns:1fr}}
-  .fcard{background:var(--bg-soft);border:1.5px solid var(--ink);border-radius:24px;padding:32px;box-shadow:5px 5px 0 var(--ink);text-align:center}
-  .blob{width:140px;height:140px;border-radius:50%;margin:0 auto 22px;display:grid;place-items:center;color:var(--ink)}
-  .blob svg{width:70px;height:70px;stroke:currentColor;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-  .b1{background:var(--mint)}.b2{background:var(--pink)}.b3{background:var(--lilac)}
-  .fcard h3{font-family:'Bricolage Grotesque',serif;font-size:24px;margin-bottom:10px}
-  .fcard p{color:var(--ink-soft);line-height:1.55}
-
-  .marquee-section{padding:50px 0;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);background:var(--bg-soft)}
-  .eyebrow{text-align:center;font-weight:800;letter-spacing:.18em;font-size:13px;margin-bottom:22px}
-  .marquee{overflow:hidden;white-space:nowrap}
-  .marquee-track{display:inline-flex;gap:48px;animation:scroll 28s linear infinite;font-family:'Archivo Black',sans-serif;font-size:28px}
-  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-  .section{padding:90px 0}
-  .label{display:inline-block;font-weight:800;letter-spacing:.18em;font-size:12px;padding:6px 14px;border:1.5px solid var(--ink);border-radius:999px;background:var(--bg-soft)}
-  .section h2{font-family:'Bricolage Grotesque',serif;font-size:clamp(36px,5.5vw,72px);line-height:1.02;letter-spacing:0;margin:18px 0 50px;max-width:900px}
-
-  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media (max-width:1000px){.services{grid-template-columns:repeat(2,1fr)}}
-  @media (max-width:640px){.services{grid-template-columns:1fr}}
-  .scard{background:var(--bg-soft);border:1.5px solid var(--ink);border-radius:24px;padding:28px;box-shadow:5px 5px 0 var(--ink);transition:.2s}
-  .scard:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
-  .scard h3{font-family:'Bricolage Grotesque',serif;font-size:26px;margin-bottom:10px}
-  .scard p{color:var(--ink-soft);line-height:1.55;margin-bottom:18px}
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font-size:12px;font-weight:700;padding:6px 12px;border:1.5px solid var(--ink);border-radius:999px;background:var(--bg)}
-
-  .why-list{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  @media (max-width:900px){.why-list{grid-template-columns:1fr}}
-  .why-item{display:flex;gap:18px;background:var(--bg-soft);border:1.5px solid var(--ink);border-radius:24px;padding:26px;box-shadow:5px 5px 0 var(--ink)}
-  .why-item .n{font-family:'Archivo Black',sans-serif;font-size:32px;color:var(--ink-soft);min-width:50px}
-  .why-item h4{font-family:'Bricolage Grotesque',serif;font-size:20px;margin-bottom:6px}
-  .why-item p{color:var(--ink-soft);line-height:1.55;font-size:15px}
-
-  .testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media (max-width:900px){.testimonials{grid-template-columns:1fr}}
-  .tcard{background:var(--bg-soft);border:1.5px solid var(--ink);border-radius:24px;padding:28px;box-shadow:5px 5px 0 var(--ink)}
-  .stars{color:#e6a700;margin-bottom:12px;font-size:18px;letter-spacing:2px}
-  .tcard blockquote{font-family:'Bricolage Grotesque',serif;font-size:18px;line-height:1.45;margin-bottom:20px}
-  .tperson{display:flex;align-items:center;gap:12px}
-  .avatar{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:14px}
-  .pname{font-weight:700}.pmeta{font-size:13px;color:var(--ink-soft)}
-
-  .pricing-card{background:var(--bg-soft);border:1.5px solid var(--ink);border-radius:32px;padding:50px;box-shadow:6px 6px 0 var(--ink)}
-  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0}
-  @media (max-width:700px){.pricing-grid{grid-template-columns:repeat(2,1fr)}}
-  .pitem{display:flex;align-items:center;gap:10px;padding:14px;border:1.5px solid var(--ink);border-radius:14px;background:var(--bg);font-weight:600}
-  .check{width:22px;height:22px;border-radius:50%;background:var(--mint);border:1.5px solid var(--ink);display:grid;place-items:center;font-size:13px;font-weight:800}
-
-  details{background:var(--bg-soft);border:1.5px solid var(--ink);border-radius:18px;padding:20px 24px;box-shadow:4px 4px 0 var(--ink);margin-bottom:14px;cursor:pointer}
-  details summary{list-style:none;display:flex;justify-content:space-between;align-items:center;font-family:'Bricolage Grotesque',serif;font-size:19px;font-weight:600}
-  details summary::-webkit-details-marker{display:none}
-  details summary::after{content:"+";font-family:'Archivo Black',sans-serif;font-size:24px}
-  details[open] summary::after{content:"−"}
-  details p{margin-top:14px;color:var(--ink-soft);line-height:1.6}
-
-  .final-cta{text-align:center;padding:90px 24px;background:var(--bg-soft);color:var(--ink);border:2px solid var(--ink);border-radius:32px;margin:40px 0;box-shadow:8px 8px 0 var(--ink)}
-  .final-cta .label{background:var(--bg);color:var(--ink);border-color:var(--ink)}
-  .final-cta h2{color:var(--ink);margin:18px auto 16px;max-width:760px}
-  .connect-word{color:#c04020}
-  .connect-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:38px auto 0;max-width:980px}
-  .connect-card{position:relative;overflow:hidden;min-height:210px;padding:28px 22px;border:1.5px solid var(--ink);border-radius:24px;background:#fffdf2;color:var(--ink);box-shadow:5px 5px 0 var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:.18s ease}
-  .connect-card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}
-  .connect-card::after{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-70px;top:-70px;background:var(--accent,var(--yellow));opacity:.42}
-  .connect-icon{width:74px;height:74px;border:1.5px solid var(--ink);border-radius:50%;background:var(--accent,var(--yellow));display:grid;place-items:center;font-family:'Archivo Black',sans-serif;font-size:26px;box-shadow:3px 3px 0 var(--ink)}
-  .connect-card h3{font-family:'Bricolage Grotesque',serif;font-size:26px;line-height:1}
-  .connect-card p{color:var(--ink-soft);font-weight:700;line-height:1.45}
-  .connect-card.whatsapp{--accent:var(--mint)}
-  .connect-card.email{--accent:var(--yellow)}
-  .connect-card.instagram{--accent:var(--pink)}
-
-  footer{padding:40px 0;text-align:center;color:var(--ink-soft);font-size:14px;border-top:1.5px solid var(--ink)}
-
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s ease}
-  .reveal.in{opacity:1;transform:none}
-  /* MODAL */
-
-#modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(42,12,8,.62);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  opacity:0;
-  pointer-events:none;
-  transition:.3s;
-  backdrop-filter:blur(8px);
-}
-
-#modal-overlay.active{
-  opacity:1;
-  pointer-events:all;
-}
-
-.modal-box{
-  width:90%;
-  max-width:760px;
-  max-height:90vh;
-  overflow:auto;
-  background:var(--bg-soft);
-  color:var(--ink);
-  border:2px solid var(--ink);
-  border-radius:24px;
-  padding:50px;
-  position:relative;
-  box-shadow:8px 8px 0 var(--ink), 0 24px 90px rgba(42,12,8,.25);
-}
-
-.modal-close{
-  position:absolute;
-  top:20px;
-  right:20px;
-  border:1.5px solid var(--ink);
-  background:var(--yellow);
-  color:var(--ink);
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  font-size:22px;
-  cursor:pointer;
-  font-weight:400;
-}
-
-.modal-kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:18px;
-  padding:7px 15px;
-  border:1.5px solid var(--ink);
-  border-radius:999px;
-  background:var(--pink);
-  color:var(--ink);
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.22em;
-}
-
-.modal-kicker::before{
-  content:"";
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:var(--ink);
-  box-shadow:none;
-}
-
-.modal-title{
-  font-family:'Bricolage Grotesque',serif;
-  font-size:38px;
-  line-height:1.05;
-  margin-bottom:10px;
-}
-
-.modal-desc{
-  margin-bottom:34px;
-  color:var(--ink-soft);
-  font-size:17px;
-  line-height:1.55;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:22px 18px;
-}
-
-.form-group{
-  margin-bottom:0;
-}
-
-.form-group.full{
-  grid-column:1/-1;
-}
-
-.form-group label{
-  display:block;
-  margin-bottom:9px;
-  color:var(--ink-soft);
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;
-  padding:15px 18px;
-  border-radius:13px;
-  border:1.5px solid var(--ink);
-  background:#fffdf2;
-  color:var(--ink);
-  font-family:inherit;
-  font-size:16px;
-  outline:none;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder{
-  color:#947a72;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-  border-color:var(--ink);
-  box-shadow:3px 3px 0 var(--ink);
-}
-
-.form-group textarea{
-  min-height:112px;
-  resize:vertical;
-}
-
-.modal-btns{
-  display:grid;
-  grid-template-columns:1fr 114px;
-  gap:16px;
-  margin-top:30px;
-}
-
-.submit-btn{
-  width:100%;
-  padding:17px;
-  border:none;
-  border-radius:14px;
-  background:var(--yellow);
-  color:var(--ink);
-  font-weight:800;
-  font-size:16px;
-  cursor:pointer;
-  border:1.5px solid var(--ink);
-  box-shadow:4px 4px 0 var(--ink);
-}
-
-.cancel-btn{
-  padding:17px;
-  border-radius:14px;
-  border:1.5px solid var(--ink);
-  background:var(--bg);
-  color:var(--ink);
-  font-family:inherit;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.modal-success{
-  display:none;
-  text-align:center;
-}
-
-.modal-success h3{
-  font-size:30px;
-  margin-bottom:12px;
-}
-
-.modal-success p{
-  color:var(--ink-soft);
-}
-
-.work-head{
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  margin-bottom:34px;
-}
-
-.work-head h2{
-  margin:0;
-  max-width:900px;
-  line-height:1.05;
-  text-align:center;
-}
-
-.work-head h2 span{
-  color:#c04020;
-}
-
-.work-copy{
-  max-width:760px;
-  margin-top:24px;
-  color:var(--ink-soft);
-  font-size:20px;
-  line-height:1.7;
-  text-align:center;
-}
-
-.work-lab{
-  position:relative;
-  overflow:hidden;
-  border:2px solid var(--ink);
-  border-radius:34px;
-  background:#140302;
-  box-shadow:8px 8px 0 var(--ink);
-  padding:34px;
-}
-
-.work-lab::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  opacity:.45;
-  background:
-    radial-gradient(circle at 16% 8%, rgba(255,216,77,.22), transparent 24%),
-    radial-gradient(circle at 82% 16%, rgba(248,180,189,.16), transparent 28%),
-    linear-gradient(rgba(255,248,225,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,248,225,.04) 1px, transparent 1px);
-  background-size:auto, auto, 44px 44px, 44px 44px;
-  pointer-events:none;
-}
-
-.work-tabs{
-  position:relative;
-  z-index:1;
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:30px;
-}
-
-.work-tab{
-  border:1.5px solid rgba(255,248,225,.42);
-  border-radius:999px;
-  background:rgba(255,248,225,.08);
-  color:var(--bg-soft);
-  font-family:inherit;
-  font-weight:800;
-  padding:11px 22px;
-  cursor:pointer;
-  transition:.18s ease;
-}
-
-.work-tab:hover,
-.work-tab.active{
-  background:var(--yellow);
-  color:var(--ink);
-  border-color:var(--ink);
-  box-shadow:3px 3px 0 var(--pink);
-}
-
-.work-grid{
-  position:relative;
-  z-index:1;
-  display:grid;
-  grid-template-columns:1.15fr .85fr .85fr;
-  gap:18px;
-}
-
-.work-card{
-  position:relative;
-  min-height:245px;
-  overflow:hidden;
-  border:1.5px solid rgba(255,216,77,.42);
-  border-radius:22px;
-  color:var(--bg-soft);
-  background:var(--work-bg, linear-gradient(135deg,#32100c,#7b2619));
-  box-shadow:0 18px 46px rgba(0,0,0,.28);
-  display:flex;
-  align-items:flex-end;
-  padding:22px;
-  isolation:isolate;
-}
-
-.work-card.featured{
-  grid-row:span 2;
-  min-height:510px;
-}
-
-.work-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.72)),
-    radial-gradient(circle at 78% 18%, rgba(255,255,255,.22), transparent 17%);
-  z-index:-1;
-}
-
-.work-card::after{
-  content:"BRIG";
-  position:absolute;
-  right:-18px;
-  top:12px;
-  color:rgba(255,248,225,.08);
-  font-family:'Archivo Black',sans-serif;
-  font-size:90px;
-  line-height:1;
-  z-index:-1;
-}
-
-.work-card[hidden]{
-  display:none;
-}
-
-.work-meta{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.work-type{
-  width:max-content;
-  padding:6px 12px;
-  border:1.5px solid var(--ink);
-  border-radius:999px;
-  background:var(--mint);
-  color:var(--ink);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-}
-
-.work-card:nth-child(3n) .work-type{background:var(--pink)}
-.work-card:nth-child(4n) .work-type{background:var(--lilac)}
-
-.work-card h3{
-  max-width:420px;
-  font-family:'Archivo Black',sans-serif;
-  font-size:clamp(26px,3vw,46px);
-  line-height:.98;
-}
-
-.work-card p{
-  max-width:430px;
-  color:rgba(255,248,225,.82);
-  line-height:1.5;
-  font-weight:600;
-}
-
-.work-link{
-  display:none;
-}
-
-.work-note{
-  display:none;
-}
-
-.legacy-work{
-  display:none;
-}
-
-/* Responsive polish */
-html,body{width:100%}
-section{width:100%}
-img,video,canvas,svg{max-width:100%;height:auto}
-
-@media screen and (max-width:768px){
-  .container{width:calc(100% - 36px);padding:0;margin-left:auto;margin-right:auto}
-  .nav{width:calc(100% - 28px);margin:10px auto 0;padding:12px 14px;gap:12px;border:1.5px solid var(--ink);border-radius:20px;background:var(--bg);box-shadow:3px 3px 0 var(--ink)}
-  .brand{font-size:16px}
-  .menu-btn{padding:9px 16px;font-size:12px;box-shadow:2px 2px 0 var(--ink)}
-  .hero{padding:56px 0 44px}
-  .hero-inner{width:calc(100% - 36px);padding:0;margin-left:auto;margin-right:auto}
-  .hero h1{font-size:clamp(64px,25vw,150px);line-height:.9}
-  .hero-sub{font-size:clamp(24px,8vw,38px);line-height:1.12;margin-top:26px}
-  .tag{font-size:11px;padding:5px 10px}
-  .tag.t1{top:12%;left:2%}
-  .tag.t2{top:-4%;left:43%}
-  .tag.t3{top:28%;right:-2%}
-  .cta-row{width:100%;gap:12px;margin-top:26px}
-  .cta-row .btn{width:min(100%,320px);justify-content:center}
-  .section{padding:64px 0}
-  .section h2{font-size:clamp(34px,9vw,46px);line-height:1.1;margin-bottom:32px;max-width:100%}
-  .features-grid{padding:28px 0 44px}
-  .fcard,.scard,.tcard,.why-item{padding:24px 20px;border-radius:20px;box-shadow:4px 4px 0 var(--ink)}
-  .blob{width:110px;height:110px}
-  .pricing-grid{grid-template-columns:1fr}
-  .why-item{gap:14px}
-  .why-item .n{font-size:26px;min-width:38px}
-  .marquee-section{padding:34px 0}
-  .marquee-track{font-size:22px;gap:32px}
-  .work-frame{min-height:380px!important;border-radius:22px!important;box-shadow:4px 4px 0 var(--ink)!important}
-  .work-copy{font-size:16px!important;line-height:1.55!important}
-  .work-lab{padding:22px;border-radius:24px;box-shadow:4px 4px 0 var(--ink)}
-  .work-tabs{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px}
-  .work-tab{white-space:nowrap;padding:10px 18px}
-  .work-grid{grid-template-columns:1fr}
-  .work-card,.work-card.featured{min-height:310px;grid-row:auto}
-  .pricing-card{padding:28px 20px;border-radius:22px;box-shadow:4px 4px 0 var(--ink)}
-  .pricing-card .cta-row{justify-content:center!important}
-  details{padding:18px;box-shadow:3px 3px 0 var(--ink)}
-  details summary{align-items:flex-start;gap:14px;font-size:17px}
-  .final-cta{padding:58px 18px;border-radius:22px}
-  .connect-grid{grid-template-columns:1fr;gap:14px;margin-top:28px}
-  .connect-card{min-height:170px;padding:24px 18px;border-radius:20px;box-shadow:4px 4px 0 var(--bg)}
-  .modal-box{width:calc(100% - 32px);padding:34px 18px 22px;border-radius:18px;max-height:88vh;overflow:auto}
-  .modal-title{font-size:28px;padding-right:42px}
-  .modal-desc{font-size:15px;margin-bottom:24px}
-  .form-grid{grid-template-columns:1fr;gap:16px}
-  .modal-btns{grid-template-columns:1fr;gap:12px}
-}
-
-@media screen and (max-width:480px){
-  .container,.hero-inner{width:calc(100% - 32px);padding:0}
-  .nav{width:calc(100% - 24px)}
-  .hero{padding-top:44px}
-  .tag{position:static;display:inline-block;margin:0 4px 10px;animation:none}
-  .hero h1{font-size:clamp(58px,24vw,110px)}
-  .hero-sub{font-size:22px}
-  .btn{font-size:13px;padding:12px 18px}
-  .label{font-size:10px;letter-spacing:.12em}
-  .section{padding:52px 0}
-  .section h2{font-size:clamp(30px,8.5vw,38px)}
-  .work-frame{min-height:310px!important}
-  .work-lab{padding:16px}
-  .work-card,.work-card.featured{min-height:265px;padding:18px}
-  .work-card h3{font-size:28px}
-  .pricing-card p{font-size:16px!important}
-}
+  ::selection { background: oklch(0.55 0.24 25 / 0.4); color: white; }
+  .font-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; }
+  .text-balance { text-wrap: balance; }
+  .glass {
+    background: linear-gradient(135deg, oklch(1 0 0 / 0.04), oklch(1 0 0 / 0.01));
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid oklch(1 0 0 / 0.08);
+  }
+  .glass-strong {
+    background: linear-gradient(135deg, oklch(0.12 0.03 20 / 0.7), oklch(0.08 0.02 20 / 0.5));
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid oklch(1 0 0 / 0.08);
+  }
+  .crimson-glow { box-shadow: 0 0 40px -10px oklch(0.6 0.24 25 / 0.6), 0 0 100px -30px oklch(0.6 0.24 25 / 0.4); }
+  .text-gradient-crimson {
+    background: linear-gradient(135deg, oklch(0.98 0.01 60), oklch(0.78 0.18 25));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .grain::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    opacity: 0.06; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .scanlines::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, oklch(0 0 0 / 0.08) 3px, transparent 4px);
+    opacity: 0.4;
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee { animation: marquee 60s linear infinite; }
+  @keyframes float-glow { 0%,100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.05); } }
+  .animate-float-glow { animation: float-glow 8s ease-in-out infinite; }
+  @keyframes pulse-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+  @keyframes reveal-in { from { opacity: 0; transform: translateY(24px); filter: blur(8px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+  .reveal { opacity: 0; }
+  .reveal.in { animation: reveal-in 0.9s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .accordion-body { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.4s ease; }
+  .accordion-body.open { max-height: 400px; opacity: 1; }
+  .rotate-icon { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+  .rotate-icon.open { transform: rotate(45deg); }
+  .modal-backdrop { background: rgba(0,0,0,0.8); backdrop-filter: blur(12px); }
+  @keyframes slide-up { from { transform: translateY(60px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-panel { animation: slide-up 0.5s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; left: 1rem; right: 1rem; bottom: -2px; height: 1px;
+    background: var(--crimson-bright); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .nav-link:hover::after { transform: scaleX(1); }
+  .btn-primary {
+    background: var(--foreground); color: var(--background);
+    transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .btn-primary:hover {
+    background: var(--crimson-bright); color: #fff;
+    box-shadow: 0 20px 60px -15px oklch(0.7 0.24 25 / 0.8);
+    transform: translateY(-2px);
+  }
+  .arrow-rot { transition: transform 0.4s ease; }
+  .group:hover .arrow-rot { transform: rotate(45deg); }
+  .card-hover { transition: all 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .card-hover:hover { transform: translateY(-4px); background: rgba(255,255,255,0.05); }
+  input, textarea, select {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; padding: 12px 16px; color: var(--foreground); width: 100%;
+    font-family: inherit; font-size: 14px;
+    box-sizing: border-box;
+  }
+  input:focus, textarea:focus, select:focus { outline: none; border-color: var(--crimson-bright); }
+  select option { background: #1a0608; color: var(--foreground); }
+  label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.6); display: block; margin-bottom: 8px; }
+  /* Modal overlay */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 80;
+    align-items: flex-end; justify-content: center;
+    padding: 0;
+  }
+  @media (min-width: 640px) {
+    .modal-overlay { align-items: center; padding: 1.5rem; }
+  }
+  .modal-overlay.active { display: flex; }
+  /* Mobile menu overlay */
+  .menu-overlay { display: none; position: fixed; inset: 0; z-index: 60; }
+  .menu-overlay.active { display: block; }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="brand">BRIG MEDIA</div>
-  <div class="nav-pill" id="primary-nav">
-    <a href="#services">Services</a><a href="#work">Work</a>
-    <a href="#why">Why Us</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
-  </div>
-  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primary-nav" onclick="toggleMenu(this)">MENU</button>
-</nav>
-
-<section class="hero">
-  <div class="hero-rings" id="rings"></div>
-  <div class="hero-inner container">
-    <div style="position:relative;display:inline-block">
-      <span class="tag t1">Timeless</span>
-      <span class="tag t2">Cinematic</span>
-      <span class="tag t3">Edgy</span>
-      <h1>BRIG<br>MEDIA</h1>
-    </div>
-    <p class="hero-sub">Your brand deserves to be<br><em>Seen, Heard,</em> and Remembered</p>
-    <div class="cta-row">
-      <button class="btn btn-primary" onclick="openModal()">
-  Get Started →
-</button>
-      <a href="https://wa.me/919353964663" class="btn">WhatsApp Us</a>
-    </div>
-  </div>
-</section>
-
-<section class="container">
-  <div class="features-grid">
-    <div class="fcard reveal">
-      <div class="blob b1" aria-hidden="true">
-        <svg viewBox="0 0 72 72">
-          <path d="M12 43h35V24H22" />
-          <path d="M47 31h9l7 8v4H47" />
-          <path d="M8 30h18" />
-          <path d="M6 38h14" />
-          <circle cx="24" cy="49" r="5" />
-          <circle cx="54" cy="49" r="5" />
-        </svg>
-      </div>
-      <h3>Fast and Reliable Delivery</h3><p>We move at the speed of creativity — and caffeine. Your deadlines won't even see us coming.</p>
-    </div>
-    <div class="fcard reveal">
-      <div class="blob b2" aria-hidden="true">
-        <svg viewBox="0 0 72 72">
-          <path d="M20 14h24l12 12v32H20z" />
-          <path d="M44 14v12h12" />
-          <path d="M28 36h16" />
-          <path d="M28 46h11" />
-          <path d="M25 25h8" />
-        </svg>
-      </div>
-      <h3>Clear, No-Surprise Pricing</h3><p>No hidden fees, no sneaky charges — just clear, honest pricing and work that makes you wonder.</p>
-    </div>
-    <div class="fcard reveal">
-      <div class="blob b3" aria-hidden="true">
-        <svg viewBox="0 0 72 72">
-          <path d="M13 35 36 16l23 19" />
-          <path d="M19 33v25h34V33" />
-          <path d="M28 58V44h16v14" />
-          <path d="M27 31h18" />
-        </svg>
-      </div>
-      <h3>Everything, Under One Roof</h3><p>Video, content, social, editing, events. One team, premium output, full ownership of your brand story.</p>
-    </div>
-  </div>
-</section>
-
-<section class="marquee-section">
-  <div class="eyebrow">✦ TRUSTED BY GROWING BRANDS</div>
-  <div class="marquee"><div class="marquee-track">
-    <span>ELEVATE STUDIO ✦ NOVA BRANDS ✦ RISE COLLECTIVE ✦ APEX MEDIA ✦ LUMINARY CO ✦ VANTAGE LABS ✦ FORMA AGENCY ✦ ECHO VENTURES ✦&nbsp;</span>
-    <span>ELEVATE STUDIO ✦ NOVA BRANDS ✦ RISE COLLECTIVE ✦ APEX MEDIA ✦ LUMINARY CO ✦ VANTAGE LABS ✦ FORMA AGENCY ✦ ECHO VENTURES ✦&nbsp;</span>
-  </div></div>
-</section>
-
-<!-- OUR WORK -->
-<section id="work" class="section container">
-  <div class="work-head">
-    <span class="label" style="margin-bottom:18px;">OUR WORK</span>
-    <h2>See What We <span>Create</span></h2>
-    <p class="work-copy">
-      A living wall of films, launches, reels, wedding stories, and brand moments shaped for attention and recall.
-    </p>
-  </div>
-
-  <div class="work-lab">
-    <div class="work-tabs" role="tablist" aria-label="Work categories">
-      <button class="work-tab active" type="button" data-work-tab="events">Events</button>
-      <button class="work-tab" type="button" data-work-tab="brand">Brand</button>
-      <button class="work-tab" type="button" data-work-tab="wedding">Wedding Content</button>
-      <button class="work-tab" type="button" data-work-tab="reels">Reels</button>
-      <button class="work-tab" type="button" data-work-tab="photos">Photos</button>
-    </div>
-
-    <div class="work-grid">
-      <a class="work-card featured" href="#" target="_blank" data-work-card="events" style="--work-bg:linear-gradient(135deg,#21114a,#ff6b1a 140%)">
-        <div class="work-meta">
-          <span class="work-type">YouTube </span>
-          <h3>Launch Nights & Aftermovies</h3>
-          <p>Event films built like a highlight trailer: crowd energy, stage moments, sponsor visibility, and a clean closing punch.</p>
-          <span class="work-link">Add Events video →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="events" style="--work-bg:linear-gradient(135deg,#17332d,#ffd84d 150%)">
-        <div class="work-meta">
-          <span class="work-type">Event Recap</span>
-          <h3>Corporate Recaps</h3>
-          <p>Premium coverage for launches, conferences, workshops, and branded gatherings.</p>
-          <span class="work-link">Add YouTube URL →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="events" style="--work-bg:linear-gradient(135deg,#4a130d,#f8b4bd 145%)">
-        <div class="work-meta">
-          <span class="work-type">Event Social</span>
-          <h3>Same-Day Buzz Cuts</h3>
-          <p>Fast vertical edits for stories and reels while the event is still fresh.</p>
-          <span class="work-link">Add reel URL →</span>
-        </div>
-      </a>
-
-      <a class="work-card featured" href="#" target="_blank" data-work-card="brand" hidden style="--work-bg:linear-gradient(135deg,#35100b,#b9eed1 145%)">
-        <div class="work-meta">
-          <span class="work-type">Brand Film</span>
-          <h3>Identity Films That Feel Expensive</h3>
-          <p>Founder stories, product worlds, and campaign films shaped to make the brand feel trusted before the first enquiry.</p>
-          <span class="work-link">Add Brand video →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="brand" hidden style="--work-bg:linear-gradient(135deg,#2a0c08,#c9b6ff 145%)">
-        <div class="work-meta">
-          <span class="work-type">Campaign</span>
-          <h3>Product Story Cuts</h3>
-          <p>Short visual narratives for launches, ads, and landing pages.</p>
-          <span class="work-link">Add YouTube URL →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="brand" hidden style="--work-bg:linear-gradient(135deg,#0e2d25,#f8b4bd 145%)">
-        <div class="work-meta">
-          <span class="work-type">Social Set</span>
-          <h3>Content Systems</h3>
-          <p>Consistent branded assets made for recurring posts and campaign drops.</p>
-          <span class="work-link">Add portfolio link →</span>
-        </div>
-      </a>
-
-      <a class="work-card featured" href="#" target="_blank" data-work-card="wedding" hidden style="--work-bg:linear-gradient(135deg,#070707,#c04020 135%)">
-        <div class="work-meta">
-          <span class="work-type">Wedding Content</span>
-          <h3>Celebrations With Memory</h3>
-          <p>Cinematic wedding reels, highlight films, candid moments, and story-first edits for couples and celebrations.</p>
-          <span class="work-link">Add wedding video →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="wedding" hidden style="--work-bg:linear-gradient(135deg,#2b1a45,#ffd84d 145%)">
-        <div class="work-meta">
-          <span class="work-type">Highlight Film</span>
-          <h3>Wedding Highlights</h3>
-          <p>Compact films built around the best emotions, details, entries, rituals, and dance floor energy.</p>
-          <span class="work-link">Add YouTube URL →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="wedding" hidden style="--work-bg:linear-gradient(135deg,#16302b,#c9b6ff 145%)">
-        <div class="work-meta">
-          <span class="work-type">Wedding Reels</span>
-          <h3>Instant Social Moments</h3>
-          <p>Vertical edits for Instagram, families, friends, and same-week celebration recaps.</p>
-          <span class="work-link">Add Instagram  →</span>
-        </div>
-      </a>
-
-      <a class="work-card featured" href="#" target="_blank" data-work-card="reels" hidden style="--work-bg:linear-gradient(135deg,#240505,#ff6b1a 135%)">
-        <div class="work-meta">
-          <span class="work-type">Instagram Link</span>
-          <h3>Reels That Move Fast</h3>
-          <p>Scroll-stopping hooks, strong pacing, captions, sound design, and retention-focused story structure.</p>
-          <span class="work-link">Add Instagram Reel →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="reels" hidden style="--work-bg:linear-gradient(135deg,#152a2a,#b9eed1 145%)">
-        <div class="work-meta">
-          <span class="work-type">Growth Reel</span>
-          <h3>Offer-Led Edits</h3>
-          <p>Built for services, studios, cafes, fashion, and local brand growth.</p>
-          <span class="work-link">Add reel URL →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="reels" hidden style="--work-bg:linear-gradient(135deg,#2d1236,#f8b4bd 145%)">
-        <div class="work-meta">
-          <span class="work-type">Story Reel</span>
-          <h3>Behind the Scenes</h3>
-          <p>Founder, process, and culture-led clips that make the brand human.</p>
-          <span class="work-link">Add Instagram URL →</span>
-        </div>
-      </a>
-
-      <a class="work-card featured" href="#" target="_blank" data-work-card="photos" hidden style="--work-bg:linear-gradient(135deg,#2a0c08,#ffd84d 135%)">
-        <div class="work-meta">
-          <span class="work-type">Photo </span>
-          <h3>Stills That Sell The Scene</h3>
-          <p>Campaign photos, event albums, portraits, product details, and visual banks ready for social and web.</p>
-          <span class="work-link">Add photo gallery →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="photos" hidden style="--work-bg:linear-gradient(135deg,#102b25,#c9b6ff 145%)">
-        <div class="work-meta">
-          <span class="work-type">Album</span>
-          <h3>Event Galleries</h3>
-          <p>Clean deliverables for clients, press, sponsors, and social drops.</p>
-          <span class="work-link">Add album link →</span>
-        </div>
-      </a>
-      <a class="work-card" href="#" target="_blank" data-work-card="photos" hidden style="--work-bg:linear-gradient(135deg,#42100a,#b9eed1 145%)">
-        <div class="work-meta">
-          <span class="work-type">Brand Stills</span>
-          <h3>Content Banks</h3>
-          <p>Reusable image sets for ads, websites, menus, product pages, and social.</p>
-          <span class="work-link">Add photo URL →</span>
-        </div>
-      </a>
-    </div>
-
-    <p class="work-note">Send the links later and replace each card's <strong>href="#"</strong> with the final URL.</p>
-  </div>
-</section>
-
-<section class="legacy-work" aria-hidden="true">
-
-  <div style="
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:50px;
-">
-
-  <span class="label" style="margin-bottom:18px;">
-    OUR WORK
-  </span>
-
-  <h2 style="
-    margin:0;
-    max-width:900px;
-    line-height:1.05;
-    text-align:center;
-  ">
-    See What We 
-    <span style="color:#c04020;">Create</span>
-  </h2>
-
-  <p class="work-copy" style="
-    max-width:760px;
-    margin-top:24px;
-    color:var(--ink-soft);
-    font-size:20px;
-    line-height:1.7;
-    text-align:center;
-  ">
-    30–45 seconds that show exactly why brands choose BRIG MEDIA
-    to lead their visual identity.
-  </p>
-
+<!-- Canvas background -->
+<div class="fixed inset-0 pointer-events-none" style="z-index:-10">
+  <canvas id="sphere" class="w-full h-full block"></canvas>
+  <div class="absolute inset-0 grain scanlines"></div>
 </div>
-  <div class="work-frame" style="
-    position:relative;
-    overflow:hidden;
-    border-radius:38px;
-    border:2px solid #2a0c08;
-    background:#180302;
-    min-height:620px;
-    box-shadow:8px 8px 0 #2a0c08;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  ">
 
-    <!-- GRID -->
-    <div style="
-      position:absolute;
-      inset:0;
-      background-image:
-      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
-      background-size:55px 55px;
-    "></div>
+<div class="relative" style="z-index:10">
 
-    <!-- GLOW DOTS -->
-    <div style="
-      position:absolute;
-      width:20px;
-      height:20px;
-      border-radius:50%;
-      background:#ff4d1f;
-      left:12%;
-      bottom:12%;
-      box-shadow:0 0 30px #ff4d1f;
-    "></div>
-
-    <div style="
-      position:absolute;
-      width:18px;
-      height:18px;
-      border-radius:50%;
-      background:#ff4d1f;
-      right:18%;
-      top:18%;
-      box-shadow:0 0 30px #ff4d1f;
-    "></div>
-
-    <!-- CENTER -->
-    <div style="
-      position:relative;
-      z-index:2;
-      text-align:center;
-    ">
-
-      <!-- PLAY BUTTON -->
-      <a href=""
-         target="_blank"
-         style="
-         width:95px;
-         height:95px;
-         border-radius:50%;
-         background:linear-gradient(135deg,#ff4d1f,#8b1200);
-         display:flex;
-         align-items:center;
-         justify-content:center;
-         margin:0 auto 30px;
-         box-shadow:0 0 45px rgba(255,70,20,.55);
-         text-decoration:none;
-      ">
-
-        <div style="
-          width:0;
-          height:0;
-          border-top:14px solid transparent;
-          border-bottom:14px solid transparent;
-          border-left:22px solid white;
-          margin-left:5px;
-        "></div>
-
-      </a>
-
-      <!-- TAGS -->
-      <div style="
-        display:flex;
-        gap:12px;
-        flex-wrap:wrap;
-        justify-content:center;
-      ">
-
-        <span class="chip">Brand Films</span>
-        <span class="chip">Reels</span>
-        <span class="chip">Commercials</span>
-        <span class="chip">Social Campaigns</span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <div style="text-align:center;margin-top:34px;">
-
-    <a href=""
-       target="_blank"
-       class="btn btn-primary">
-
-       Watch Our Work →
-
+<!-- Nav -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-4">
+  <div id="nav-bar" class="mx-auto max-w-6xl flex items-center justify-between rounded-full px-5 sm:px-6 py-3 glass transition-all duration-500">
+    <a href="#top" class="flex items-center gap-2">
+      <span class="relative inline-flex h-7 w-7 items-center justify-center rounded-full crimson-glow" style="background: linear-gradient(135deg, oklch(0.7 0.26 25), oklch(0.45 0.22 22));">
+        <span class="h-2 w-2 rounded-full bg-white/90"></span>
+      </span>
+      <span class="font-display text-xl tracking-tight">Brig<span class="italic" style="color:var(--crimson-soft)">Media</span></span>
     </a>
-
-  </div>
-
-</section>
-
-<section id="services" class="section container">
-  <span class="label">SERVICES</span>
-  <h2>What we do (and do really well)</h2>
-  <div class="services">
-    <div class="scard reveal"><h3>Video Production</h3><p>Films, reels, ads, and visuals that make brands impossible to ignore.</p><div class="chips"><span class="chip">Brand Films</span><span class="chip">Commercials</span><span class="chip">Reels</span><span class="chip">Ads</span></div></div>
-    <div class="scard reveal"><h3>Content Creation</h3><p>High-performing content built for reach, trust, and growth.</p><div class="chips"><span class="chip">Photography</span><span class="chip">Copywriting</span><span class="chip">Scriptwriting</span><span class="chip">Story Videos</span></div></div>
-    <div class="scard reveal"><h3>Social Media Management</h3><p>Systems that turn consistent posting into measurable growth.</p><div class="chips"><span class="chip">Strategy</span><span class="chip">Calendar</span><span class="chip">Community</span><span class="chip">Reporting</span></div></div>
-    <div class="scard reveal"><h3>Video Editing</h3><p>High-retention edits designed to keep viewers watching and engaged.</p><div class="chips"><span class="chip">Reels</span><span class="chip">Long-form</span><span class="chip">Color</span><span class="chip">Sound</span></div></div>
-    <div class="scard reveal"><h3>Wedding Content Creation</h3><p>Cinematic storytelling for weddings and celebrations.</p><div class="chips"><span class="chip">Films</span><span class="chip">Highlights</span><span class="chip">Reels</span><span class="chip">Stills</span></div></div>
-    <div class="scard reveal"><h3>Event Production</h3><p>End-to-end event video and content for launches, conferences, and live experiences.</p><div class="chips"><span class="chip">Launches</span><span class="chip">Conferences</span><span class="chip">Live</span><span class="chip">Recaps</span></div></div>
-  </div>
-</section>
-
-<section id="why" class="section container">
-  <span class="label">WHY BRIG MEDIA</span>
-  <h2>Most agencies make content. We make content that gets results.</h2>
-  <div class="why-list">
-    <div class="why-item reveal"><div class="n">01</div><div><h4>Fast Execution & Founder-Led Strategy</h4><p>Move fast without compromising cinematic quality. Work directly with strategy leads — no layers, no delays.</p></div></div>
-    <div class="why-item reveal"><div class="n">02</div><div><h4>Cinematic Production That Builds Brand Perception</h4><p>Every frame crafted with premium standards designed to elevate attention, trust, and positioning.</p></div></div>
-    <div class="why-item reveal"><div class="n">03</div><div><h4>Consistent Content Engineered For Growth</h4><p>Every deliverable planned to increase visibility, retention, engagement and long-term brand growth.</p></div></div>
-    <div class="why-item reveal"><div class="n">04</div><div><h4>Premium Brand Positioning</h4><p>Look like the leader in your industry with cinematic visuals and elevated storytelling.</p></div></div>
-    <div class="why-item reveal"><div class="n">05</div><div><h4>More Reach, Better Leads</h4><p>Content engineered to spread, attract qualified enquiries, and improve long-term recall.</p></div></div>
-    <div class="why-item reveal"><div class="n">06</div><div><h4>Growth Without Wasting Time</h4><p>We handle creative execution while you scale — consistent monthly growth and sustainable momentum.</p></div></div>
-  </div>
-</section>
-
-<section class="section container">
-  <span class="label">CLIENT RESULTS</span>
-  <h2>Real Brands. Real Results.</h2>
-  <div class="testimonials">
-    <div class="tcard reveal"><div class="stars">★★★★★</div><blockquote>"Better enquiries started coming after BRIG MEDIA handled our reels. The quality completely transformed how clients perceive our studio."</blockquote><div class="tperson"><div class="avatar" style="background:var(--mint)">FS</div><div><div class="pname">Fitness Studio Owner</div><div class="pmeta">Premium Fitness Brand · Bangalore</div></div></div></div>
-    <div class="tcard reveal"><div class="stars">★★★★★</div><blockquote>"Our brand finally looked premium online. We were posting before, but now we're actually converting."</blockquote><div class="tperson"><div class="avatar" style="background:var(--pink)">CB</div><div><div class="pname">Clothing Brand Founder</div><div class="pmeta">D2C Fashion Label · India</div></div></div></div>
-    <div class="tcard reveal"><div class="stars">★★★★★</div><blockquote>"Consistent growth month after month. BRIG MEDIA just handles it and the numbers keep going up."</blockquote><div class="tperson"><div class="avatar" style="background:var(--lilac)">CÉ</div><div><div class="pname">Café Owner</div><div class="pmeta">Independent Restaurant · Bangalore</div></div></div></div>
-  </div>
-</section>
-
-<section id="pricing" class="section container">
-  <span class="label">PRICING PHILOSOPHY</span>
-  <h2>Growth Plans Built Around Your Brand</h2>
-  <div class="pricing-card reveal">
-    <p style="font-size:18px;color:var(--ink-soft);max-width:680px">Every brand grows differently. We create custom monthly plans — not cookie-cutter packages.</p>
-    <p style="margin-top:24px;font-weight:700">Your plan is built around</p>
-    <div class="pricing-grid">
-      <div class="pitem"><div class="check">✓</div>Content Needs</div>
-      <div class="pitem"><div class="check">✓</div>Growth Targets</div>
-      <div class="pitem"><div class="check">✓</div>Platform Focus</div>
-      <div class="pitem"><div class="check">✓</div>Creative Direction</div>
-      <div class="pitem"><div class="check">✓</div>Budget Alignment</div>
-      <div class="pitem"><div class="check">✓</div>Post Production</div>
-    </div>
-    <div class="cta-row" style="justify-content:flex-start">
-      <button class="btn btn-primary" onclick="openModal()">
-  Get Custom Proposal →
-</button>
-       <a href="https://wa.me/919353964663" 
-   target="_blank" 
-   class="btn"
-   style="
-   background:#f5ecd7;
-   color:#2a0c08;
-   border:2px solid #2a0c08;
-   box-shadow:6px 6px 0 #2a0c08;
-   border-radius:999px;
-   padding:16px 34px;
-   font-weight:800;
-   text-decoration:none;
-   display:inline-flex;
-   align-items:center;
-   justify-content:center;
-   transition:0.2s ease;
-">
-   WhatsApp Us
-</a>
+    <nav class="hidden md:flex items-center gap-1">
+      <a href="#top" class="nav-link px-4 py-2 text-sm text-white/75 hover:text-white">Home</a>
+      <a href="#work" class="nav-link px-4 py-2 text-sm text-white/75 hover:text-white">Work</a>
+      <a href="#services" class="nav-link px-4 py-2 text-sm text-white/75 hover:text-white">Services</a>
+      <a href="#contact" class="nav-link px-4 py-2 text-sm text-white/75 hover:text-white">Contact</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button onclick="openModal('book')" class="hidden sm:inline-flex btn-primary items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium">Book Call</button>
+      <button onclick="openMobileMenu()" class="md:hidden h-10 w-10 inline-flex items-center justify-center rounded-full glass" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
     </div>
   </div>
-</section>
+</header>
 
-<section id="faq" class="section container">
-  <span class="label">✦ FAQ</span>
-  <h2>Frequently Asked Questions</h2>
-  <details open><summary>What types of brands does BRIG MEDIA work with?</summary><p>Ambitious growth-stage brands across fitness, retail, food & beverage, e-commerce, and service businesses.</p></details>
-  <details><summary>How does the custom plan process work?</summary><p>Discovery call, audit, then a monthly plan around your goals, platform mix, and budget.</p></details>
-  <details><summary>How fast will I see results?</summary><p>Most brands see lift within 30–60 days, with compounding growth as the system runs.</p></details>
-  <details><summary>Do you handle filming or only editing?</summary><p>Both. End-to-end production or plug into your existing footage.</p></details>
-  <details><summary>What makes BRIG MEDIA different?</summary><p>Founder-led strategy, cinematic quality, and content systems engineered for measurable growth.</p></details>
-</section>
+<!-- Mobile menu -->
+<div id="mobile-menu" class="menu-overlay">
+  <div class="absolute inset-0 modal-backdrop" onclick="closeMobileMenu()"></div>
+  <div class="absolute right-0 top-0 bottom-0 w-[85%] max-w-sm glass-strong p-6 flex flex-col modal-panel">
+    <div class="flex items-center justify-between mb-10">
+      <span class="font-display text-2xl">Menu</span>
+      <button onclick="closeMobileMenu()" class="h-10 w-10 inline-flex items-center justify-center rounded-full glass">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-1">
+      <a href="#top" onclick="closeMobileMenu()" class="block font-display text-4xl py-3 hover:text-[color:var(--crimson-soft)] transition-colors">Home</a>
+      <a href="#work" onclick="closeMobileMenu()" class="block font-display text-4xl py-3 hover:text-[color:var(--crimson-soft)] transition-colors">Work</a>
+      <a href="#services" onclick="closeMobileMenu()" class="block font-display text-4xl py-3 hover:text-[color:var(--crimson-soft)] transition-colors">Services</a>
+      <a href="#contact" onclick="closeMobileMenu()" class="block font-display text-4xl py-3 hover:text-[color:var(--crimson-soft)] transition-colors">Contact</a>
+    </nav>
+    <button onclick="closeMobileMenu(); openModal('book')" class="mt-auto rounded-full btn-primary py-4 font-medium">Book A Strategy Call</button>
+  </div>
+</div>
 
-<section id="cta" class="container">
-  <div class="final-cta reveal">
-    <span class="label">NOW ONBOARDING NEW CLIENTS</span>
-    <h2>Let's <span class="connect-word">Connect</span></h2>
-    <p style="opacity:.85;max-width:620px;margin:0 auto">Ready to create something people remember? Pick the channel that works best for you.</p>
-    <div class="connect-grid">
-      <a class="connect-card whatsapp" href="https://wa.me/919353964663" target="_blank">
-        <div class="connect-icon">W</div>
-        <h3>WhatsApp</h3>
-        <p>Chat with us instantly</p>
-      </a>
-      <a class="connect-card email" href="mailto:growwithbrig@gmail.com">
-        <div class="connect-icon">@</div>
-        <h3>Gmail</h3>
-        <p>growwithbrig@gmail.com</p>
-      </a>
-      <a class="connect-card instagram" href="https://www.instagram.com/brigmedia.in/?utm_source=ig_web_button_share_sheet" target="_blank">
-        <div class="connect-icon">IG</div>
-        <h3>Instagram</h3>
-        <p>@brigmedia.in</p>
+<main id="top">
+
+<!-- Hero -->
+<section class="relative min-h-[100svh] flex items-center justify-center px-4 sm:px-6 pt-32 pb-20">
+  <div class="max-w-5xl mx-auto text-center relative z-10">
+    <div class="reveal inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-white/70 mb-8">
+      <span class="h-1.5 w-1.5 rounded-full pulse-dot" style="background:var(--crimson-bright)"></span>
+      Creative Media Agency
+    </div>
+    <h1 class="font-display leading-[0.95] tracking-tight text-balance" style="font-size:clamp(3rem,10vw,8rem)">
+      <span class="reveal block">We Create</span>
+      <span class="reveal italic text-gradient-crimson block">Attention.</span>
+    </h1>
+    <p class="reveal mt-8 mx-auto max-w-2xl text-base sm:text-lg text-white/65 text-balance">
+      From brands and businesses to weddings, events, restaurants, creators, and special occasions —
+      we create content that captures attention and drives results.
+    </p>
+    <div class="reveal mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <button onclick="openModal('book')" class="group btn-primary inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-medium">
+        Book A Strategy Call
+        <svg class="arrow-rot" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </button>
+      <a href="#work" class="group inline-flex items-center gap-2 rounded-full glass px-7 py-4 text-sm font-medium hover:bg-white/10 transition-all duration-500 hover:-translate-y-0.5">
+        View Our Work
+        <svg class="arrow-rot" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<footer>© BRIG MEDIA — Seen, Heard, and Remembered.</footer>
+<!-- Impact -->
+<section class="px-4 sm:px-6 py-14 sm:py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-12">
+      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Impact</div>
+      <h2 class="font-display text-4xl sm:text-6xl text-balance max-w-2xl">
+        Numbers that <span class="italic" style="color:var(--crimson-soft)">speak</span> for the craft.
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="reveal group glass rounded-3xl p-8 sm:p-12 card-hover relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 h-60 w-60 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="background:oklch(0.55 0.24 25 / 0.15)"></div>
+        <div class="relative">
+          <div class="font-display text-7xl sm:text-8xl text-gradient-crimson" data-count="150" data-suffix="K+">0K+</div>
+          <div class="mt-6 text-white/60 text-sm uppercase tracking-[0.2em]">Views Generated</div>
+        </div>
+      </div>
+      <div class="reveal group glass rounded-3xl p-8 sm:p-12 card-hover relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 h-60 w-60 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="background:oklch(0.55 0.24 25 / 0.15)"></div>
+        <div class="relative">
+          <div class="font-display text-7xl sm:text-8xl text-gradient-crimson" data-count="4.9" data-suffix="/5" data-decimals="1">0.0/5</div>
+          <div class="mt-6 text-white/60 text-sm uppercase tracking-[0.2em]">Client Satisfaction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="px-4 sm:px-6 py-14 sm:py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal">
+      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Services</div>
+      <h2 class="font-display text-4xl sm:text-6xl text-balance max-w-3xl mb-14">
+        Every craft we offer, built to <span class="italic" style="color:var(--crimson-soft)">create attention.</span>
+      </h2>
+    </div>
+    <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+  </div>
+</section>
+
+<!-- Brig Haus -->
+<section class="px-4 sm:px-6 py-14 sm:py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal relative glass-strong rounded-[2rem] p-8 sm:p-16 overflow-hidden">
+      <div class="absolute inset-0 opacity-60 pointer-events-none">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[120%] w-[120%] rounded-full animate-float-glow" style="background: radial-gradient(ellipse at center, oklch(0.55 0.24 25 / 0.35), transparent 60%);"></div>
+      </div>
+      <div class="relative grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Brig Haus</div>
+          <h2 class="font-display text-5xl sm:text-7xl text-balance">
+            Instant Reel <span class="italic text-gradient-crimson">Studio.</span>
+          </h2>
+          <p class="mt-6 text-white/65 text-balance max-w-md">
+            We shoot, edit, and deliver ready-to-post content on location for weddings, brands,
+            events, launches, concerts, restaurants and much more.
+          </p>
+          <button class="mt-8 group btn-primary inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-medium">
+            Explore Brig Haus
+            <svg class="arrow-rot" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </button>
+        </div>
+        <div class="grid grid-cols-3 gap-3">
+          <div class="glass rounded-2xl aspect-[3/4] p-5 flex flex-col justify-between"><div class="text-[10px] tracking-[0.2em] text-white/40">01</div><div class="font-display text-2xl">Shoot</div></div>
+          <div class="glass rounded-2xl aspect-[3/4] p-5 flex flex-col justify-between"><div class="text-[10px] tracking-[0.2em] text-white/40">02</div><div class="font-display text-2xl">Edit</div></div>
+          <div class="glass rounded-2xl aspect-[3/4] p-5 flex flex-col justify-between"><div class="text-[10px] tracking-[0.2em] text-white/40">03</div><div class="font-display text-2xl">Deliver</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Selected Work -->
+<section id="work" class="px-4 sm:px-6 py-14 sm:py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal mb-12">
+      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Selected Work</div>
+      <h2 class="font-display text-4xl sm:text-6xl text-balance max-w-2xl">
+        Stories that <span class="italic" style="color:var(--crimson-soft)">stop the scroll.</span>
+      </h2>
+    </div>
+    <div id="work-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-14 sm:py-24 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-12">
+    <div class="reveal">
+      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Testimonials</div>
+      <h2 class="font-display text-4xl sm:text-6xl text-balance max-w-2xl">
+        Trusted by brands that <span class="italic" style="color:var(--crimson-soft)">obsess over craft.</span>
+      </h2>
+    </div>
+  </div>
+  <div class="relative">
+    <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+    <div id="testimonials-marquee" class="flex marquee w-max gap-5"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="px-4 sm:px-6 py-14 sm:py-24">
+  <div class="max-w-4xl mx-auto">
+    <div class="reveal">
+      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">FAQ</div>
+      <h2 class="font-display text-4xl sm:text-6xl text-balance mb-14">
+        Questions, <span class="italic" style="color:var(--crimson-soft)">answered.</span>
+      </h2>
+    </div>
+    <div id="faq-list" class="space-y-3"></div>
+    <div class="reveal mt-10 flex justify-center">
+      <button onclick="openModal('enquiry')" class="group inline-flex items-center gap-2 rounded-full glass px-7 py-4 text-sm font-medium hover:bg-white/10 transition-all duration-500 hover:-translate-y-0.5">
+        Start Enquiry
+        <svg class="arrow-rot" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="px-4 sm:px-6 py-14 sm:py-24">
+  <div class="max-w-5xl mx-auto">
+    <div class="reveal glass-strong rounded-[2rem] p-10 sm:p-20 text-center relative overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none opacity-70">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[150%] w-[150%] rounded-full animate-float-glow" style="background: radial-gradient(ellipse at center, oklch(0.55 0.24 25 / 0.3), transparent 60%);"></div>
+      </div>
+      <div class="relative">
+        <h2 class="font-display text-4xl sm:text-7xl leading-[1] text-balance">
+          Ready to become the brand <br class="hidden sm:block"> people <span class="italic text-gradient-crimson">remember?</span>
+        </h2>
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button onclick="openModal('book')" class="group btn-primary inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-medium">
+            Book Strategy Call
+            <svg class="arrow-rot" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </button>
+          <button onclick="openModal('whatsapp')" class="group inline-flex items-center gap-2 rounded-full glass px-7 py-4 text-sm font-medium hover:bg-white/10 transition-all duration-500 hover:-translate-y-0.5">
+            WhatsApp Us
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="px-4 sm:px-6 py-14 sm:py-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal">
+      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Contact</div>
+      <h2 class="font-display text-4xl sm:text-6xl text-balance max-w-2xl mb-14">
+        Let's <span class="italic" style="color:var(--crimson-soft)">talk.</span>
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+      <a href="https://www.instagram.com/brigmedia.in?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer" class="reveal group glass rounded-3xl p-8 card-hover flex flex-col justify-between min-h-[200px]">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--crimson-soft)"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+        <div>
+          <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-2">Instagram</div>
+          <div class="font-display text-2xl group-hover:text-[color:var(--crimson-soft)] transition-colors">@brigmedia</div>
+        </div>
+      </a>
+      <a href="mailto:growwithbrig@gmail.com" class="reveal group glass rounded-3xl p-8 card-hover flex flex-col justify-between min-h-[200px]">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--crimson-soft)"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-2">Email</div>
+          <div class="font-display text-2xl group-hover:text-[color:var(--crimson-soft)] transition-colors">growwithbrig@gmail.com</div>
+        </div>
+      </a>
+      <button onclick="openModal('whatsapp')" class="text-left reveal group glass rounded-3xl p-8 card-hover flex flex-col justify-between min-h-[200px] w-full">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--crimson-soft)"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <div>
+          <div class="text-xs uppercase tracking-[0.2em] text-white/50 mb-2">WhatsApp</div>
+          <div class="font-display text-2xl group-hover:text-[color:var(--crimson-soft)] transition-colors">Send a message</div>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="px-4 sm:px-6 py-10 border-t border-white/5 mt-10">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
+    <div>© <span id="year"></span> Brig Media. Creative Media Agency.</div>
+    <div class="uppercase tracking-[0.22em]">Crafted with attention.</div>
+  </div>
+</footer>
+
+</main>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="absolute inset-0 modal-backdrop" onclick="closeModal()"></div>
+  <div class="relative w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto glass-strong rounded-t-3xl sm:rounded-3xl p-6 sm:p-10 modal-panel">
+    <div class="flex items-start justify-between mb-6">
+      <h2 id="modal-title" class="font-display text-3xl sm:text-4xl text-balance pr-6"></h2>
+      <button onclick="closeModal()" class="h-10 w-10 inline-flex items-center justify-center rounded-full glass shrink-0" aria-label="Close modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
 
 <script>
-  (function(){
-    var rings = document.getElementById('rings');
-    for(var i=1;i<=10;i++){
-      var d = document.createElement('div');
-      d.className='ring';
-      var size = i*180;
-      d.style.width = size+'px'; d.style.height = size+'px';
-      d.style.opacity = Math.max(0.04, 0.22 - i*0.018);
-      rings.appendChild(d);
-    }
-  })();
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-  document.querySelectorAll('#primary-nav a').forEach(function(link){
-    link.addEventListener('click',function(){
-      var nav = document.querySelector('.nav');
-      var btn = document.querySelector('.menu-btn');
-      nav.classList.remove('open');
-      btn.setAttribute('aria-expanded','false');
-    });
-  });
-  document.querySelectorAll('[data-work-tab]').forEach(function(tab){
-    tab.addEventListener('click',function(){
-      var category = tab.getAttribute('data-work-tab');
-      document.querySelectorAll('[data-work-tab]').forEach(function(item){
-        item.classList.toggle('active', item === tab);
-      });
-      document.querySelectorAll('[data-work-card]').forEach(function(card){
-        card.hidden = card.getAttribute('data-work-card') !== category;
-      });
-    });
-  });
-  document.querySelectorAll('.work-card[href="#"]').forEach(function(card){
-    card.addEventListener('click',function(e){
-      e.preventDefault();
-    });
-  });
-  /* MODAL FUNCTIONS */
+// Year
+document.getElementById('year').textContent = new Date().getFullYear();
 
-function openModal(){
-  document.getElementById('modal-form-content').style.display='block';
-  document.getElementById('modal-success-msg').style.display='none';
-  document.getElementById('modal-overlay').classList.add('active');
+// Services data
+const services = [
+  { num: "01", title: "Video Production", desc: "Cinematic films, brand stories, commercials, and motion content engineered to move people." },
+  { num: "02", title: "Photography", desc: "Editorial campaigns, products, portraits and events shot with editorial precision." },
+  { num: "03", title: "Content Creation", desc: "Scroll-stopping reels, shorts, and social content built for reach and retention." },
+  { num: "04", title: "Digital Marketing & Social Media", desc: "Strategy, paid media, and full-funnel growth that turns attention into outcomes." },
+  { num: "05", title: "Event Production & Coverage", desc: "End-to-end production for launches, concerts, weddings, and large-scale moments." },
+  { num: "06", title: "Brig Haus", desc: "Instant reel studio — we shoot, edit, and deliver ready-to-post content on location." },
+];
+document.getElementById('services-grid').innerHTML = services.map(s => `
+  <div class="reveal group glass rounded-3xl p-7 card-hover relative overflow-hidden">
+    <div class="absolute -top-24 -right-24 h-48 w-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="background:oklch(0.55 0.24 25 / 0.18)"></div>
+    <div class="relative">
+      <div class="flex items-start justify-between mb-10">
+        <span class="text-xs text-white/40 tracking-[0.2em]">${s.num}</span>
+        <svg class="rotate-icon text-white/40 group-hover:text-[color:var(--crimson-soft)]" style="transition:all .5s" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <h3 class="font-display text-2xl sm:text-3xl mb-3">${s.title}</h3>
+      <p class="text-sm text-white/55 leading-relaxed">${s.desc}</p>
+    </div>
+  </div>
+`).join('');
+
+// Work data
+const projects = [
+  { title: "Maison Sera — Atelier Film", tag: "Brand Film", meta: "Fashion · Mumbai" },
+  { title: "Foundry Labs — Launch Campaign", tag: "Campaign", meta: "Tech · Bangalore" },
+];
+document.getElementById('work-grid').innerHTML = projects.map((p, i) => `
+  <div class="reveal group cursor-pointer">
+    <div class="relative aspect-[4/5] rounded-3xl overflow-hidden glass">
+      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105" style="background-image: radial-gradient(ellipse at ${30 + i * 20}% 40%, oklch(0.55 0.24 25 / 0.45), transparent 60%), linear-gradient(135deg, oklch(0.15 0.04 20), oklch(0.05 0.01 20));"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+      <div class="absolute top-5 left-5 right-5 flex items-center justify-between">
+        <span class="rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.18em]">${p.tag}</span>
+        <svg class="arrow-rot text-white/70" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </div>
+      <div class="absolute bottom-6 left-6 right-6">
+        <div class="font-display text-3xl sm:text-4xl mb-1">${p.title}</div>
+        <div class="text-xs text-white/60 uppercase tracking-[0.18em]">${p.meta}</div>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+// Testimonials
+const testimonials = [
+  { quote: "Brig translated our brand into film. Every frame felt intentional, every cut felt premium.", name: "Aanya R.", role: "Founder, Maison Sera" },
+  { quote: "Our launch reel hit 400K views in three days. The strategy and craft together are unmatched.", name: "Karan M.", role: "CMO, Foundry Labs" },
+  { quote: "Brig Haus turned our wedding into a series of films we'll show our grandkids.", name: "Priya & Devansh", role: "Wedding, Udaipur" },
+  { quote: "They don't shoot content. They shoot attention.", name: "Rohan S.", role: "Creator" },
+  { quote: "Calm, fast, premium. Exactly what a serious brand needs.", name: "Meera K.", role: "Director, Atlas&Co" },
+  { quote: "The editorial bar they hold is rare. Worth every rupee.", name: "Vikram J.", role: "Restaurateur" },
+];
+const loop = [...testimonials, ...testimonials];
+document.getElementById('testimonials-marquee').innerHTML = loop.map(t => `
+  <div class="glass rounded-3xl p-7 w-[340px] sm:w-[420px] shrink-0">
+    <div class="text-3xl font-display leading-none mb-3" style="color:var(--crimson-soft)">"</div>
+    <p class="text-white/80 text-base leading-relaxed">${t.quote}</p>
+    <div class="mt-6 pt-5 border-t border-white/10">
+      <div class="font-medium">${t.name}</div>
+      <div class="text-xs text-white/50 uppercase tracking-[0.18em] mt-0.5">${t.role}</div>
+    </div>
+  </div>
+`).join('');
+
+// FAQ
+const faqs = [
+  { q: "How does pricing work?", a: "Every brand is different. We scope each project around your goals, scale, and timeline, then send a clean, itemised proposal — no surprises." },
+  { q: "Do you offer monthly retainers?", a: "Yes. Most of our long-term partners run on monthly retainers covering production, content, and social — built around your calendar." },
+  { q: "What is Brig Haus?", a: "Brig Haus is our instant reel studio. We arrive on location, shoot, edit, and hand you ready-to-post content the same day." },
+  { q: "Do you travel for shoots?", a: "We travel anywhere in India and globally. Travel and stay are quoted transparently as part of the project." },
+  { q: "How quickly can projects start?", a: "For most projects we can kick off within a week. Brig Haus and rapid social work can start in 24–48 hours." },
+  { q: "How do we get started?", a: "Book a strategy call or send an enquiry. We'll align on goals, share a proposal, lock dates, and start production." },
+];
+document.getElementById('faq-list').innerHTML = faqs.map((f, i) => `
+  <div class="reveal glass rounded-2xl overflow-hidden">
+    <button onclick="toggleFAQ(${i})" class="w-full flex items-center justify-between text-left p-6 hover:bg-white/[0.03] transition-colors">
+      <span class="font-display text-xl sm:text-2xl pr-6">${f.q}</span>
+      <svg id="faq-icon-${i}" class="rotate-icon ${i===0?'open':''} shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+    <div id="faq-body-${i}" class="accordion-body ${i===0?'open':''}">
+      <p class="px-6 pb-6 text-white/65 leading-relaxed">${f.a}</p>
+    </div>
+  </div>
+`).join('');
+
+function toggleFAQ(i) {
+  document.getElementById('faq-body-' + i).classList.toggle('open');
+  document.getElementById('faq-icon-' + i).classList.toggle('open');
 }
 
-function closeModal(){
-  document.getElementById('modal-overlay').classList.remove('active');
-}
+// Scroll reveal
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { rootMargin: '-50px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-function toggleMenu(btn){
-  const nav = document.querySelector('.nav');
-  const isOpen = nav.classList.toggle('open');
-  btn.setAttribute('aria-expanded', String(isOpen));
-}
-
-async function submitForm(){
-
-  const name=document.getElementById('f-name').value.trim();
-  const email=document.getElementById('f-email').value.trim();
-  const brand=document.getElementById('f-brand').value.trim();
-  const phone=document.getElementById('f-phone').value.trim();
-  const service=document.getElementById('f-service').value;
-  const industry=document.getElementById('f-industry').value.trim();
-  const market=document.getElementById('f-market').value.trim();
-
-  if(!name){
-    alert('Please enter your name');
-    return;
-  }
-
-  if(!email){
-    alert('Please enter your email');
-    return;
-  }
-
-  if(!brand || !phone || !service || !industry || !market){
-    alert('Please complete all required fields');
-    return;
-  }
-
-  const btn=document.querySelector('.submit-btn');
-
-  btn.innerText='Sending...';
-  btn.disabled=true;
-
-  try{
-
-    const res=await fetch('https://formspree.io/f/xaqvnylr',{
-
-      method:'POST',
-
-      headers:{
-        'Content-Type':'application/json',
-        'Accept':'application/json'
-      },
-
-      body:JSON.stringify({
-        name:name,
-        brand:brand,
-        email:email,
-        phone:phone,
-        service:service,
-        industry:industry,
-        market:market,
-        details:document.getElementById('f-details').value
-      })
-
-    });
-
-    if(res.ok){
-
-      document.getElementById('modal-form-content').style.display='none';
-
-      document.getElementById('modal-success-msg').style.display='block';
-
-    }else{
-      alert('Something went wrong');
-    }
-
-  }catch(err){
-    alert('Network error');
-  }
-
-  btn.innerText='Submit Enquiry →';
-  btn.disabled=false;
-}
-
-/* CLOSE ON OUTSIDE CLICK */
-
-document.addEventListener('DOMContentLoaded',function(){
-  document.getElementById('modal-overlay').addEventListener('click',function(e){
-    if(e.target===this){
-      closeModal();
-    }
+// CountUp
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const end = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const decimals = parseInt(el.dataset.decimals || '0');
+    const duration = 2000;
+    const start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 4);
+      el.textContent = (end * eased).toFixed(decimals) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    countObserver.unobserve(el);
   });
+}, { rootMargin: '-50px' });
+document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+// Nav scroll
+const navBar = document.getElementById('nav-bar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 20) { navBar.classList.remove('glass'); navBar.classList.add('glass-strong'); }
+  else { navBar.classList.add('glass'); navBar.classList.remove('glass-strong'); }
+}, { passive: true });
+
+// Mobile menu
+function openMobileMenu() {
+  document.getElementById('mobile-menu').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Keyboard close support
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeModal(); closeMobileMenu(); }
 });
-</script>
-<!-- GET STARTED MODAL -->
-<div id="modal-overlay">
-  <div class="modal-box">
 
-    <button class="modal-close" onclick="closeModal()">✕</button>
+// Modal
+const WHATSAPP_NUMBER = "919353964663";
 
-    <div id="modal-form-content">
-      <div class="modal-kicker">LET'S WORK TOGETHER</div>
-      <h2 class="modal-title">Start Your Brand Journey</h2>
-      <p class="modal-desc">
-        Tell us about your brand and goals — we'll put together a custom proposal with a fast 12-hour turnaround.
-      </p>
+function openModal(type) {
+  const modal = document.getElementById('modal');
+  const title = document.getElementById('modal-title');
+  const body = document.getElementById('modal-body');
 
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="f-name">Full Name *</label>
-          <input type="text" placeholder="Your full name" id="f-name">
+  if (type === 'book') {
+    title.textContent = 'Book A Strategy Call';
+    body.innerHTML = `
+      <div class="space-y-5">
+        <div><label>Name</label><input id="f-name" placeholder="Your full name" /></div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label>Email</label><input id="f-email" type="email" placeholder="you@brand.com" /></div>
+          <div><label>Phone</label><input id="f-phone" placeholder="+91" /></div>
         </div>
-
-        <div class="form-group">
-          <label for="f-brand">Brand / Company *</label>
-          <input type="text" placeholder="Your brand name" id="f-brand">
+        <div><label>Brand / Company</label><input id="f-brand" placeholder="Brand name" /></div>
+        <div><label>What do you need?</label><textarea id="f-project" rows="4" placeholder="Tell us about your project"></textarea></div>
+        <button onclick="submitBook()" class="btn-primary w-full rounded-full py-4 text-sm font-medium mt-2">Send via WhatsApp</button>
+      </div>`;
+  } else if (type === 'enquiry') {
+    title.textContent = 'Start An Enquiry';
+    body.innerHTML = `
+      <div class="space-y-5">
+        <div><label>Name</label><input id="f-name" /></div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label>Email</label><input id="f-email" type="email" /></div>
+          <div><label>Phone</label><input id="f-phone" /></div>
         </div>
-
-        <div class="form-group">
-          <label for="f-email">Email Address *</label>
-          <input type="email" placeholder="you@company.com" id="f-email">
-        </div>
-
-        <div class="form-group">
-          <label for="f-phone">Phone Number *</label>
-          <input type="tel" placeholder="+91 XXXXX XXXXX" id="f-phone">
-        </div>
-
-        <div class="form-group full">
-          <label for="f-service">Services Required *</label>
+        <div><label>Service Interested In</label>
           <select id="f-service">
-            <option value="">Select a service</option>
-            <option>Video Production</option>
-            <option>Content Creation</option>
-            <option>Social Media Management</option>
-            <option>Video Editing</option>
-            <option>Wedding Content</option>
-            <option>Event Production</option>
+            <option>Video Production</option><option>Photography</option><option>Content Creation</option>
+            <option>Digital Marketing</option><option>Event Coverage</option><option>Brig Haus</option>
           </select>
         </div>
+        <div><label>Details</label><textarea id="f-details" rows="4"></textarea></div>
+        <button onclick="submitEnquiry()" class="btn-primary w-full rounded-full py-4 text-sm font-medium mt-2">Send via WhatsApp</button>
+      </div>`;
+  } else if (type === 'whatsapp') {
+    title.textContent = 'WhatsApp Us';
+    body.innerHTML = `
+      <div class="space-y-5">
+        <div><label>Name</label><input id="f-name" /></div>
+        <div><label>Your Message</label><textarea id="f-message" rows="5" placeholder="How can we help?"></textarea></div>
+        <button onclick="submitWhatsapp()" class="btn-primary w-full rounded-full py-4 text-sm font-medium mt-2">Open WhatsApp</button>
+      </div>`;
+  }
 
-        <div class="form-group">
-          <label for="f-industry">Industry Type *</label>
-          <input type="text" placeholder="e.g. Fitness, F&B, Fashion" id="f-industry">
-        </div>
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
 
-        <div class="form-group">
-          <label for="f-market">Target Market / Location *</label>
-          <input type="text" placeholder="e.g. Bangalore, India" id="f-market">
-        </div>
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+  document.body.style.overflow = '';
+}
 
-        <div class="form-group full">
-          <label for="f-details">Project Details</label>
-          <textarea placeholder="Brief us on your project, goals, or anything we should know..." id="f-details"></textarea>
-        </div>
-      </div>
+function waOpen(lines) {
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
+  closeModal();
+}
 
-      <div class="modal-btns">
-        <button class="submit-btn" onclick="submitForm()">Submit Enquiry →</button>
-        <button class="cancel-btn" onclick="closeModal()">Cancel</button>
-      </div>
-    </div>
+function submitBook() {
+  const name = document.getElementById('f-name').value;
+  const email = document.getElementById('f-email').value;
+  const phone = document.getElementById('f-phone').value;
+  const brand = document.getElementById('f-brand').value;
+  const project = document.getElementById('f-project').value;
+  if (!name || !phone) return;
+  const lines = ['*Strategy Call*', ''];
+  if (name) lines.push(`*Name:* ${name}`);
+  if (email) lines.push(`*Email:* ${email}`);
+  if (phone) lines.push(`*Phone:* ${phone}`);
+  if (brand) lines.push(`*Brand:* ${brand}`);
+  if (project) lines.push(`*Project:* ${project}`);
+  lines.push('', '_Sent via brigmedia.in_');
+  waOpen(lines);
+}
 
-    <div class="modal-success" id="modal-success-msg">
-      <h3>Thanks for reaching out!</h3>
-      <p>We'll contact you shortly.</p>
-    </div>
+function submitEnquiry() {
+  const name = document.getElementById('f-name').value;
+  const email = document.getElementById('f-email').value;
+  const phone = document.getElementById('f-phone').value;
+  const service = document.getElementById('f-service').value;
+  const details = document.getElementById('f-details').value;
+  const lines = ['*Enquiry*', ''];
+  if (name) lines.push(`*Name:* ${name}`);
+  if (email) lines.push(`*Email:* ${email}`);
+  if (phone) lines.push(`*Phone:* ${phone}`);
+  if (service) lines.push(`*Service:* ${service}`);
+  if (details) lines.push(`*Details:* ${details}`);
+  lines.push('', '_Sent via brigmedia.in_');
+  waOpen(lines);
+}
 
-  </div>
-</div>
+function submitWhatsapp() {
+  const name = document.getElementById('f-name').value;
+  const message = document.getElementById('f-message').value;
+  if (!message) return;
+  const lines = ['*WhatsApp Message*', ''];
+  if (name) lines.push(`*Name:* ${name}`);
+  if (message) lines.push(`*Message:* ${message}`);
+  lines.push('', '_Sent via brigmedia.in_');
+  waOpen(lines);
+}
+
+// Sphere Canvas
+(() => {
+  const canvas = document.getElementById('sphere');
+  const ctx = canvas.getContext('2d', { alpha: true });
+  let dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let w = 0, h = 0;
+  let targetScale = 1, currentScale = 1;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth; h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function onScroll() {
+    const y = window.scrollY;
+    const max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const p = Math.min(y / max, 1);
+    targetScale = 1.4 - p * 0.85;
+  }
+  resize(); onScroll();
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const start = performance.now();
+  function draw(now) {
+    const t = (now - start) / 1000;
+    currentScale += (targetScale - currentScale) * 0.06;
+    const scale = currentScale;
+    ctx.clearRect(0, 0, w, h);
+
+    const bg = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, Math.max(w,h)*0.8);
+    bg.addColorStop(0, 'rgba(20,4,6,1)');
+    bg.addColorStop(0.4, 'rgba(12,2,4,1)');
+    bg.addColorStop(0.75, 'rgba(6,1,2,1)');
+    bg.addColorStop(1, 'rgba(0,0,0,1)');
+    ctx.fillStyle = bg; ctx.fillRect(0,0,w,h);
+
+    const drift = Math.sin(t*0.15)*80, drift2 = Math.cos(t*0.12)*60;
+    const blobs = [
+      { x: w*0.2+drift, y: h*0.3+drift2, r: w*0.5, c: 'rgba(80,8,14,0.18)' },
+      { x: w*0.85-drift, y: h*0.75+drift2, r: w*0.55, c: 'rgba(60,6,12,0.22)' },
+      { x: w*0.5+drift2, y: h*0.1, r: w*0.45, c: 'rgba(40,4,8,0.18)' },
+    ];
+    for (const b of blobs) {
+      const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+      g.addColorStop(0, b.c); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+    }
+
+    const cx = w/2, cy = h/2;
+    const R = Math.min(w,h) * 0.22 * scale;
+
+    const bloomLayers = [
+      { r: R*3.2, c: 'rgba(180,20,30,0.05)' },
+      { r: R*2.4, c: 'rgba(200,25,35,0.09)' },
+      { r: R*1.8, c: 'rgba(220,30,40,0.16)' },
+      { r: R*1.35, c: 'rgba(240,40,50,0.28)' },
+    ];
+    for (const layer of bloomLayers) {
+      const g = ctx.createRadialGradient(cx, cy, R*0.6, cx, cy, layer.r);
+      g.addColorStop(0, layer.c); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+    }
+
+    const hx = cx + Math.sin(t*0.5)*R*0.12 - R*0.18;
+    const hy = cy + Math.cos(t*0.4)*R*0.1 - R*0.18;
+    const sg = ctx.createRadialGradient(hx, hy, R*0.05, cx, cy, R);
+    sg.addColorStop(0, 'rgba(255,140,130,1)');
+    sg.addColorStop(0.15, 'rgba(240,70,60,1)');
+    sg.addColorStop(0.45, 'rgba(180,25,30,1)');
+    sg.addColorStop(0.75, 'rgba(110,10,18,1)');
+    sg.addColorStop(1, 'rgba(50,4,8,1)');
+    ctx.fillStyle = sg;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.fill();
+
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.clip();
+    for (let i = 0; i < 4; i++) {
+      const phase = t*0.3 + i*1.7;
+      const fx = cx + Math.sin(phase)*R*0.5;
+      const fy = cy + Math.cos(phase*0.8)*R*0.5;
+      const fr = R * (0.5 + 0.2*Math.sin(phase*1.3));
+      const g = ctx.createRadialGradient(fx, fy, 0, fx, fy, fr);
+      const alpha = 0.18 + 0.08*Math.sin(phase*2);
+      g.addColorStop(0, `rgba(255,100,90,${alpha})`);
+      g.addColorStop(0.6, `rgba(200,30,40,${alpha*0.4})`);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(cx-R, cy-R, R*2, R*2);
+    }
+    for (let i = 0; i < 3; i++) {
+      const phase = t*0.4 + i*2.1;
+      const y = cy + Math.sin(phase)*R*0.7;
+      const grad = ctx.createLinearGradient(cx-R, y-R*0.15, cx-R, y+R*0.15);
+      grad.addColorStop(0, 'rgba(255,80,70,0)');
+      grad.addColorStop(0.5, `rgba(255,90,80,${0.12 + 0.05*Math.sin(phase*1.5)})`);
+      grad.addColorStop(1, 'rgba(255,80,70,0)');
+      ctx.fillStyle = grad; ctx.fillRect(cx-R, y-R*0.15, R*2, R*0.3);
+    }
+    ctx.restore();
+
+    const rim = ctx.createRadialGradient(cx, cy, R*0.92, cx, cy, R*1.08);
+    rim.addColorStop(0, 'rgba(0,0,0,0)');
+    rim.addColorStop(0.5, 'rgba(255,80,70,0.35)');
+    rim.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = rim;
+    ctx.beginPath(); ctx.arc(cx, cy, R*1.08, 0, Math.PI*2); ctx.fill();
+
+    const specR = R*0.35;
+    const spx = cx - R*0.28 + Math.sin(t*0.5)*R*0.05;
+    const spy = cy - R*0.32 + Math.cos(t*0.4)*R*0.04;
+    const spec = ctx.createRadialGradient(spx, spy, 0, spx, spy, specR);
+    spec.addColorStop(0, 'rgba(255,220,210,0.35)');
+    spec.addColorStop(1, 'rgba(255,220,210,0)');
+    ctx.fillStyle = spec;
+    ctx.beginPath(); ctx.arc(spx, spy, specR, 0, Math.PI*2); ctx.fill();
+
+    const vg = ctx.createRadialGradient(cx, cy, Math.min(w,h)*0.35, cx, cy, Math.max(w,h)*0.75);
+    vg.addColorStop(0, 'rgba(0,0,0,0)');
+    vg.addColorStop(1, 'rgba(0,0,0,0.7)');
+    ctx.fillStyle = vg; ctx.fillRect(0,0,w,h);
+
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
 </body>
 </html>
