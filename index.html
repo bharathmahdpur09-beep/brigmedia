@@ -100,6 +100,7 @@
     box-sizing: border-box;
   }
   input:focus, textarea:focus, select:focus { outline: none; border-color: var(--crimson-bright); }
+  input[type="checkbox"] { width: auto; padding: 0; accent-color: #e24a4a; }
   select option { background: #1a0608; color: var(--foreground); }
   label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.6); display: block; margin-bottom: 8px; }
   /* Modal overlay */
@@ -132,9 +133,6 @@
 <header id="nav" class="fixed top-0 inset-x-0 z-50 px-4 sm:px-6 pt-4">
   <div id="nav-bar" class="mx-auto max-w-6xl flex items-center justify-between rounded-full px-5 sm:px-6 py-3 glass transition-all duration-500">
     <a href="#top" class="flex items-center gap-2">
-      <span class="relative inline-flex h-7 w-7 items-center justify-center rounded-full crimson-glow" style="background: linear-gradient(135deg, oklch(0.7 0.26 25), oklch(0.45 0.22 22));">
-        <span class="h-2 w-2 rounded-full bg-white/90"></span>
-      </span>
       <span class="font-display text-xl tracking-tight">Brig<span class="italic" style="color:var(--crimson-soft)">Media</span></span>
     </a>
     <nav class="hidden md:flex items-center gap-1">
@@ -278,13 +276,48 @@
 <!-- Selected Work -->
 <section id="work" class="px-4 sm:px-6 py-14 sm:py-24">
   <div class="max-w-6xl mx-auto">
-    <div class="reveal mb-12">
-      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Selected Work</div>
-      <h2 class="font-display text-4xl sm:text-6xl text-balance max-w-2xl">
-        Stories that <span class="italic" style="color:var(--crimson-soft)">stop the scroll.</span>
-      </h2>
+    <div class="reveal mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Selected Work</div>
+        <h2 class="font-display text-4xl sm:text-6xl text-balance max-w-2xl">
+          Stories that <span class="italic" style="color:var(--crimson-soft)">stop the scroll.</span>
+        </h2>
+      </div>
+      <button onclick="openPortfolio()" class="group btn-primary inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-medium">
+        See Works
+        <svg class="arrow-rot" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </button>
     </div>
     <div id="work-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" class="hidden px-4 sm:px-6 py-14 sm:py-24">
+  <div class="max-w-6xl mx-auto">
+    <button onclick="closePortfolio()" class="reveal inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-white/50 hover:text-white transition-colors mb-10">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back
+    </button>
+    <div class="reveal mb-10">
+      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Selected Work</div>
+      <h2 class="font-display text-5xl sm:text-7xl text-balance max-w-3xl leading-[0.98]">
+        Films, campaigns, <span class="italic" style="color:var(--crimson-soft)">moments.</span>
+      </h2>
+      <p class="mt-8 max-w-2xl text-white/65 text-base sm:text-lg leading-relaxed">
+        A living archive of brand films, campaigns, weddings, events and editorial work built to create attention.
+      </p>
+    </div>
+    <div class="reveal mb-12 flex flex-wrap gap-3">
+      <button data-filter="All" onclick="filterPortfolio('All')" class="portfolio-filter btn-primary rounded-full px-5 py-3 text-sm font-medium">All</button>
+      <button data-filter="Brand Film" onclick="filterPortfolio('Brand Film')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Brand Film</button>
+      <button data-filter="Campaign" onclick="filterPortfolio('Campaign')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Campaign</button>
+      <button data-filter="Wedding" onclick="filterPortfolio('Wedding')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Wedding</button>
+      <button data-filter="Event" onclick="filterPortfolio('Event')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Event</button>
+      <button data-filter="Photography" onclick="filterPortfolio('Photography')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Photography</button>
+      <button data-filter="Reels" onclick="filterPortfolio('Reels')" class="portfolio-filter rounded-full glass px-5 py-3 text-sm font-medium text-white/70">Reels</button>
+    </div>
+    <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </div>
 </section>
 
@@ -399,7 +432,7 @@
 <!-- Modal -->
 <div id="modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="absolute inset-0 modal-backdrop" onclick="closeModal()"></div>
-  <div class="relative w-full sm:max-w-2xl max-h-[92vh] overflow-y-auto glass-strong rounded-t-3xl sm:rounded-3xl p-6 sm:p-10 modal-panel">
+  <div class="relative w-full sm:max-w-3xl max-h-[92vh] overflow-y-auto glass-strong rounded-t-3xl sm:rounded-3xl p-6 sm:p-10 modal-panel">
     <div class="flex items-start justify-between mb-6">
       <h2 id="modal-title" class="font-display text-3xl sm:text-4xl text-balance pr-6"></h2>
       <button onclick="closeModal()" class="h-10 w-10 inline-flex items-center justify-center rounded-full glass shrink-0" aria-label="Close modal">
@@ -423,6 +456,7 @@ const services = [
   { num: "05", title: "Event Production & Coverage", desc: "End-to-end production for launches, concerts, weddings, and large-scale moments." },
   { num: "06", title: "Brig Haus", desc: "Instant reel studio — we shoot, edit, and deliver ready-to-post content on location." },
 ];
+const portfolioProjects = projects.filter(p => !p.title.includes('Maison Sera') && !p.title.includes('Foundry Labs'));
 document.getElementById('services-grid').innerHTML = services.map(s => `
   <div class="reveal group glass rounded-3xl p-7 card-hover relative overflow-hidden">
     <div class="absolute -top-24 -right-24 h-48 w-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" style="background:oklch(0.55 0.24 25 / 0.18)"></div>
@@ -439,14 +473,78 @@ document.getElementById('services-grid').innerHTML = services.map(s => `
 
 // Work data
 const projects = [
+  {
+    title: "Island Cafe - Brand Reel",
+    tag: "Brand Film",
+    category: "Brand Film",
+    meta: "Island Cafe",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084511/2026_05_12_23_20_IMG_8153_prbjbn.mp4"
+  },
+  {
+    title: "HOD Pub - Brand Reel",
+    tag: "Brand Film",
+    category: "Brand Film",
+    meta: "HOD Pub",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084792/hod-4K_knvpmv.mp4"
+  },
+  {
+    title: "Posture Gym - Brand Reel",
+    tag: "Brand Film",
+    category: "Brand Film",
+    meta: "Posture Gym",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781083893/2026_06_02_20_04_IMG_8156_menvqp.mp4"
+  },
+  {
+    title: "Saloon - Brand Reel",
+    tag: "Brand Film",
+    category: "Brand Film",
+    meta: "Saloon",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084138/2026_05_18_03_29_IMG_8154_j69uwt.mp4"
+  },
+  {
+    title: "Mehroon - Event",
+    tag: "Event",
+    category: "Event",
+    meta: "Mehroon",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084168/2026_06_02_14_07_IMG_8157_ncvcya.mp4"
+  },
+  {
+    title: "Band Performance - Event",
+    tag: "Event",
+    category: "Event",
+    meta: "Band Performance",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781084262/2026_06_03_16_35_IMG_8159_t0xyth.mp4"
+  },
+  {
+    title: "DSU Event",
+    tag: "Event",
+    category: "Event",
+    meta: "DSU Event",
+    video: "https://res.cloudinary.com/dkkfzrysh/video/upload/v1781091324/2026_05_12_08_58_IMG_7544_jk46yw.mp4"
+  },
   { title: "Maison Sera — Atelier Film", tag: "Brand Film", meta: "Fashion · Mumbai" },
   { title: "Foundry Labs — Launch Campaign", tag: "Campaign", meta: "Tech · Bangalore" },
 ];
-document.getElementById('work-grid').innerHTML = projects.map((p, i) => `
-  <div class="reveal group cursor-pointer">
+
+function projectCard(p, i) {
+  return `
+  <div class="reveal group cursor-pointer" ${p.video ? `onclick="openVideo('${p.video}', '${p.title.replace(/'/g, "\\'")}')"` : ''}>
     <div class="relative aspect-[4/5] rounded-3xl overflow-hidden glass">
-      <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105" style="background-image: radial-gradient(ellipse at ${30 + i * 20}% 40%, oklch(0.55 0.24 25 / 0.45), transparent 60%), linear-gradient(135deg, oklch(0.15 0.04 20), oklch(0.05 0.01 20));"></div>
+      ${p.video ? `
+        <video class="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105" muted loop playsinline preload="metadata">
+          <source src="${p.video}" type="video/mp4">
+        </video>
+      ` : `
+        <div class="absolute inset-0 transition-transform duration-1000 group-hover:scale-105" style="background-image: radial-gradient(ellipse at ${30 + i * 20}% 40%, oklch(0.55 0.24 25 / 0.45), transparent 60%), linear-gradient(135deg, oklch(0.15 0.04 20), oklch(0.05 0.01 20));"></div>
+      `}
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+      ${p.video ? `
+        <div class="absolute inset-0 flex items-center justify-center">
+          <button class="h-16 w-16 rounded-full btn-primary inline-flex items-center justify-center shadow-2xl transition-transform duration-500 group-hover:scale-110" aria-label="Play ${p.title}">
+            <svg class="ml-1" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </button>
+        </div>
+      ` : ''}
       <div class="absolute top-5 left-5 right-5 flex items-center justify-between">
         <span class="rounded-full glass px-3 py-1 text-[10px] uppercase tracking-[0.18em]">${p.tag}</span>
         <svg class="arrow-rot text-white/70" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
@@ -457,7 +555,49 @@ document.getElementById('work-grid').innerHTML = projects.map((p, i) => `
       </div>
     </div>
   </div>
-`).join('');
+`;
+}
+
+document.getElementById('work-grid').innerHTML = portfolioProjects.slice(0, 2).map(projectCard).join('');
+document.getElementById('portfolio-grid').innerHTML = portfolioProjects.map(projectCard).join('');
+
+function openPortfolio() {
+  const portfolio = document.getElementById('portfolio');
+  portfolio.classList.remove('hidden');
+  portfolio.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('#portfolio .reveal').forEach(el => el.classList.add('in'));
+}
+
+function closePortfolio() {
+  document.getElementById('portfolio').classList.add('hidden');
+  document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function filterPortfolio(category) {
+  const filtered = category === 'All' ? portfolioProjects : portfolioProjects.filter(p => (p.category || p.tag) === category);
+  document.getElementById('portfolio-grid').innerHTML = filtered.map(projectCard).join('');
+  document.querySelectorAll('.portfolio-filter').forEach(button => {
+    const active = button.dataset.filter === category;
+    button.classList.toggle('btn-primary', active);
+    button.classList.toggle('glass', !active);
+    button.classList.toggle('text-white/70', !active);
+  });
+  document.querySelectorAll('#portfolio-grid .reveal').forEach(el => el.classList.add('in'));
+}
+
+function openVideo(src, videoTitle) {
+  const modal = document.getElementById('modal');
+  const title = document.getElementById('modal-title');
+  const body = document.getElementById('modal-body');
+  title.textContent = videoTitle;
+  body.innerHTML = `
+    <video class="w-full rounded-2xl bg-black" controls autoplay playsinline>
+      <source src="${src}" type="video/mp4">
+    </video>
+  `;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
 
 // Testimonials
 const testimonials = [
@@ -599,8 +739,67 @@ function openModal(type) {
     title.textContent = 'WhatsApp Us';
     body.innerHTML = `
       <div class="space-y-5">
-        <div><label>Name</label><input id="f-name" /></div>
-        <div><label>Your Message</label><textarea id="f-message" rows="5" placeholder="How can we help?"></textarea></div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label>Full Name *</label><input id="f-name" autocomplete="name" required /></div>
+          <div><label>Phone Number *</label><input id="f-phone" type="tel" autocomplete="tel" required /></div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label>Company Name</label><input id="f-company" /></div>
+          <div><label>Instagram Handle</label><input id="f-instagram" placeholder="@yourhandle" /></div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label>Company Category</label>
+            <select id="f-category">
+              <option value="">Select...</option>
+              <option>Brand / Business</option>
+              <option>Restaurant / Cafe</option>
+              <option>Wedding / Personal Event</option>
+              <option>Creator / Influencer</option>
+              <option>Startup / Tech</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div><label>Budget Range</label>
+            <select id="f-budget">
+              <option value="">Select...</option>
+              <option>Under Rs. 25,000</option>
+              <option>Rs. 25,000 - Rs. 50,000</option>
+              <option>Rs. 50,000 - Rs. 1,00,000</option>
+              <option>Rs. 1,00,000+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label>Services Needed</label>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <label class="flex items-center gap-3 rounded-xl glass px-4 py-3 normal-case tracking-normal text-sm text-white/75 mb-0"><input type="checkbox" name="f-service" value="Video Production">Video Production</label>
+            <label class="flex items-center gap-3 rounded-xl glass px-4 py-3 normal-case tracking-normal text-sm text-white/75 mb-0"><input type="checkbox" name="f-service" value="Photography">Photography</label>
+            <label class="flex items-center gap-3 rounded-xl glass px-4 py-3 normal-case tracking-normal text-sm text-white/75 mb-0"><input type="checkbox" name="f-service" value="Content Creation">Content Creation</label>
+            <label class="flex items-center gap-3 rounded-xl glass px-4 py-3 normal-case tracking-normal text-sm text-white/75 mb-0"><input type="checkbox" name="f-service" value="Digital Marketing">Digital Marketing</label>
+            <label class="flex items-center gap-3 rounded-xl glass px-4 py-3 normal-case tracking-normal text-sm text-white/75 mb-0"><input type="checkbox" name="f-service" value="Social Media Management">Social Media Management</label>
+            <label class="flex items-center gap-3 rounded-xl glass px-4 py-3 normal-case tracking-normal text-sm text-white/75 mb-0"><input type="checkbox" name="f-service" value="Event Production & Coverage">Event Production & Coverage</label>
+            <label class="flex items-center gap-3 rounded-xl glass px-4 py-3 normal-case tracking-normal text-sm text-white/75 mb-0"><input type="checkbox" name="f-service" value="Brig Haus">Brig Haus</label>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label>Shoot Date</label><input id="f-date" type="date" /></div>
+          <div><label>Shoot Duration</label>
+            <select id="f-duration">
+              <option value="">Select...</option>
+              <option>Half day</option>
+              <option>Full day</option>
+              <option>2-3 days</option>
+              <option>1 week+</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div><label>Number Of Days</label><input id="f-days" type="number" min="1" /></div>
+          <div><label>Shoot Location</label><input id="f-location" /></div>
+        </div>
+        <div><label>Additional Details</label><textarea id="f-details" rows="4" placeholder="Tell us anything useful for the project"></textarea></div>
         <button onclick="submitWhatsapp()" class="btn-primary w-full rounded-full py-4 text-sm font-medium mt-2">Open WhatsApp</button>
       </div>`;
   }
@@ -611,6 +810,7 @@ function openModal(type) {
 
 function closeModal() {
   document.getElementById('modal').classList.remove('active');
+  document.getElementById('modal-body').innerHTML = '';
   document.body.style.overflow = '';
 }
 
@@ -655,11 +855,31 @@ function submitEnquiry() {
 
 function submitWhatsapp() {
   const name = document.getElementById('f-name').value;
-  const message = document.getElementById('f-message').value;
-  if (!message) return;
-  const lines = ['*WhatsApp Message*', ''];
+  const phone = document.getElementById('f-phone').value;
+  const company = document.getElementById('f-company').value;
+  const instagram = document.getElementById('f-instagram').value;
+  const category = document.getElementById('f-category').value;
+  const budget = document.getElementById('f-budget').value;
+  const services = Array.from(document.querySelectorAll('input[name="f-service"]:checked')).map(el => el.value);
+  const date = document.getElementById('f-date').value;
+  const duration = document.getElementById('f-duration').value;
+  const days = document.getElementById('f-days').value;
+  const location = document.getElementById('f-location').value;
+  const details = document.getElementById('f-details').value;
+  if (!name || !phone) return;
+  const lines = ['*WhatsApp Enquiry*', ''];
   if (name) lines.push(`*Name:* ${name}`);
-  if (message) lines.push(`*Message:* ${message}`);
+  if (phone) lines.push(`*Phone:* ${phone}`);
+  if (company) lines.push(`*Company:* ${company}`);
+  if (instagram) lines.push(`*Instagram:* ${instagram}`);
+  if (category) lines.push(`*Category:* ${category}`);
+  if (budget) lines.push(`*Budget:* ${budget}`);
+  if (services.length) lines.push(`*Services:* ${services.join(', ')}`);
+  if (date) lines.push(`*Shoot Date:* ${date}`);
+  if (duration) lines.push(`*Shoot Duration:* ${duration}`);
+  if (days) lines.push(`*Number Of Days:* ${days}`);
+  if (location) lines.push(`*Shoot Location:* ${location}`);
+  if (details) lines.push(`*Additional Details:* ${details}`);
   lines.push('', '_Sent via brigmedia.in_');
   waOpen(lines);
 }
