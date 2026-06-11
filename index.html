@@ -23,7 +23,7 @@
   body {
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
     color: var(--foreground);
-    background: transparent;
+    background: linear-gradient(180deg, #080405 0%, #040203 100%);
     overflow-x: hidden;
     margin: 0;
   }
@@ -160,15 +160,7 @@
 </head>
 <body>
 
-<!-- Video background -->
-<div class="fixed inset-0 pointer-events-none" style="z-index:-20">
-  <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 h-full w-full object-cover">
-    <source src="https://res.cloudinary.com/dkkfzrysh/video/upload/q_auto:low,w_1280,vc_auto/v1781109070/136726-764934405_q0kc89.mp4" type="video/mp4">
-  </video>
-  <div class="absolute inset-0 bg-black/45"></div>
-</div>
-
-<!-- Canvas background -->
+<!-- Plain background -->
 <div class="fixed inset-0 pointer-events-none" style="z-index:-10">
   <canvas id="sphere" class="w-full h-full block" aria-hidden="true" style="display:none;"></canvas>
   <div class="absolute inset-0 grain scanlines"></div>
