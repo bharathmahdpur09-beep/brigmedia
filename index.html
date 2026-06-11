@@ -393,23 +393,6 @@
   </div>
 </section>
 
-<!-- Testimonials -->
-<section class="py-14 sm:py-24 overflow-hidden">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 mb-12">
-    <div class="reveal">
-      <div class="text-xs uppercase tracking-[0.22em] text-white/50 mb-3">Testimonials</div>
-      <h2 class="font-display text-4xl sm:text-6xl text-balance max-w-2xl">
-        Trusted by brands that <span class="italic" style="color:var(--crimson-soft)">obsess over craft.</span>
-      </h2>
-    </div>
-  </div>
-  <div class="relative">
-    <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
-    <div id="testimonials-marquee" class="flex marquee w-max gap-5"></div>
-  </div>
-</section>
-
 <!-- FAQ -->
 <section class="px-4 sm:px-6 py-14 sm:py-24">
   <div class="max-w-4xl mx-auto">
@@ -704,27 +687,6 @@ function openVideo(src, videoTitle) {
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
-// Testimonials
-const testimonials = [
-  { quote: "Brig translated our brand into film. Every frame felt intentional, every cut felt premium.", name: "Aanya R.", role: "Founder, Maison Sera" },
-  { quote: "Our launch reel hit 400K views in three days. The strategy and craft together are unmatched.", name: "Karan M.", role: "CMO, Foundry Labs" },
-  { quote: "Brig Haus turned our wedding into a series of films we'll show our grandkids.", name: "Priya & Devansh", role: "Wedding, Udaipur" },
-  { quote: "They don't shoot content. They shoot attention.", name: "Rohan S.", role: "Creator" },
-  { quote: "Calm, fast, premium. Exactly what a serious brand needs.", name: "Meera K.", role: "Director, Atlas&Co" },
-  { quote: "The editorial bar they hold is rare. Worth every rupee.", name: "Vikram J.", role: "Restaurateur" },
-];
-const loop = [...testimonials, ...testimonials];
-document.getElementById('testimonials-marquee').innerHTML = loop.map(t => `
-  <div class="glass rounded-3xl p-7 w-[340px] sm:w-[420px] shrink-0">
-    <div class="text-3xl font-display leading-none mb-3" style="color:var(--crimson-soft)">"</div>
-    <p class="text-white/80 text-base leading-relaxed">${t.quote}</p>
-    <div class="mt-6 pt-5 border-t border-white/10">
-      <div class="font-medium">${t.name}</div>
-      <div class="text-xs text-white/50 uppercase tracking-[0.18em] mt-0.5">${t.role}</div>
-    </div>
-  </div>
-`).join('');
 
 // FAQ
 const faqs = [
