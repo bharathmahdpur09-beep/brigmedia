@@ -69,6 +69,32 @@
     opacity: 0.06; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
+  .scroll-zoom-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -20;
+    pointer-events: none;
+    overflow: hidden;
+    background: #050203;
+  }
+  .scroll-zoom-bg img {
+    position: absolute;
+    inset: -3%;
+    width: 106%;
+    height: 106%;
+    object-fit: cover;
+    transform: scale(1);
+    transform-origin: center;
+    will-change: transform;
+  }
+  .scroll-zoom-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at center, rgba(8, 4, 5, 0.2), rgba(4, 2, 3, 0.78) 72%),
+      linear-gradient(180deg, rgba(4, 2, 3, 0.35), rgba(4, 2, 3, 0.85));
+  }
   .scanlines::before {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 1;
     background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, oklch(0 0 0 / 0.08) 3px, transparent 4px);
@@ -196,6 +222,9 @@
 <body>
 
 <!-- Background texture -->
+<div class="scroll-zoom-bg" aria-hidden="true">
+  <img id="scroll-zoom-bg-img" src="background.jpeg" alt="" />
+</div>
 <div class="fixed inset-0 pointer-events-none" style="z-index:-10">
   <div class="absolute inset-0 grain scanlines"></div>
 </div>
@@ -741,6 +770,31 @@ const countObserver = new IntersectionObserver((entries) => {
   });
 }, { rootMargin: '-50px' });
 document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+// Background scroll zoom
+const scrollZoomBg = document.getElementById('scroll-zoom-bg-img');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let bgZoomTick = false;
+function updateBackgroundZoom() {
+  if (!scrollZoomBg || reduceMotion.matches) {
+    bgZoomTick = false;
+    return;
+  }
+  const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+  const progress = Math.min(window.scrollY / maxScroll, 1);
+  const scale = 1 + progress * 0.22;
+  scrollZoomBg.style.transform = `scale(${scale.toFixed(3)})`;
+  bgZoomTick = false;
+}
+function queueBackgroundZoom() {
+  if (!bgZoomTick) {
+    bgZoomTick = true;
+    requestAnimationFrame(updateBackgroundZoom);
+  }
+}
+window.addEventListener('scroll', queueBackgroundZoom, { passive: true });
+window.addEventListener('resize', queueBackgroundZoom);
+updateBackgroundZoom();
 
 // Nav scroll
 const navBar = document.getElementById('nav-bar');
